@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#7b2d26">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Festkasse">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Hilgertshausen Festkasse – Alpha 2</title>
+  <style>
+    :root{
+      --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
+      --wine:#7b2d26;--wine2:#a64336;--gold:#dda93e;--green:#28734a;--red:#b43737;
+      --line:#d9cfc1;--shadow:0 8px 24px rgba(47,35,23,.13);--r:20px;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    button,input{font:inherit}button{cursor:pointer}
+    .app{max-width:1240px;margin:auto;padding:10px 10px 90px}
+    header{background:linear-gradient(135deg,var(--wine),#5b211d);color:#fff;padding:16px;border-radius:24px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:8px;z-index:20}
+    .brand{display:flex;align-items:center;gap:12px}.brand img{width:54px;height:54px;border-radius:15px}.brand h1{font-size:clamp(20px,3vw,31px);margin:0}.brand small{opacity:.83}
+    .head-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{border:0;border-radius:15px;padding:13px 16px;min-height:50px;font-weight:800;background:#ede6da;color:var(--ink)}
+    .btn.gold{background:var(--gold)}.btn.green{background:var(--green);color:white}.btn.red{background:var(--red);color:white}.btn.ghost{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.6);color:#fff}
+    .view{display:none}.view.active{display:block}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 2px 12px}.toolbar h2,.toolbar h3{margin:0}
+    .badge{background:#eadfce;border-radius:999px;padding:8px 12px;font-weight:750;color:#4f463d}
+    .grid{display:grid;gap:13px}.tables{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}.cats{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.products{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}
+    .tile{border:0;border-radius:var(--r);background:var(--card);box-shadow:var(--shadow);padding:18px;min-height:140px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:8px;color:var(--ink);transition:transform .08s ease}
+    .tile:active{transform:scale(.98)}.tile strong{font-size:22px}.tile .price,.tile .sum{font-size:25px;font-weight:900;color:var(--wine)}.tile .meta{color:var(--muted)}.tile.busy{outline:4px solid var(--gold);background:#fff4d0}
+    .cat{background:linear-gradient(145deg,#fffaf1,#eadbc2)}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}.panel{background:var(--card);border-radius:var(--r);padding:15px;box-shadow:var(--shadow)}.side{position:sticky;top:104px}
+    .list{display:flex;flex-direction:column;gap:9px;max-height:54vh;overflow:auto}.row{display:grid;grid-template-columns:50px 1fr 50px;gap:8px;align-items:center;background:#f0e7da;border-radius:15px;padding:9px}.row button{border:0;border-radius:12px;height:46px;font-size:26px;font-weight:900}.minus{background:#e8c8c3;color:#711d18}.plus{background:#cde8d7;color:#1f6038}.row-name{font-weight:850}.sub{font-size:14px;color:var(--muted)}
+    .total{display:flex;justify-content:space-between;font-size:28px;font-weight:950;border-top:2px solid var(--line);padding:14px 3px 4px;margin-top:12px}.actions2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+    .empty{text-align:center;color:var(--muted);padding:24px}.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modes .active{outline:4px solid var(--gold)}
+    .cash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.cash-grid .btn{font-size:19px;min-height:63px}.cash-input{width:100%;font-size:28px;padding:15px;border:2px solid #c9beb0;border-radius:15px;text-align:right;margin:11px 0;background:white}.change{display:flex;justify-content:space-between;background:#e1f1e5;padding:15px;border-radius:15px;font-size:25px;font-weight:950}
+    dialog{border:0;border-radius:22px;padding:0;width:min(600px,calc(100% - 22px));box-shadow:0 24px 70px rgba(0,0,0,.4)}dialog::backdrop{background:rgba(0,0,0,.55)}.dialog{padding:18px;background:var(--card)}.dialog h3{margin-top:0}.formrow{display:flex;gap:8px;margin:9px 0}.formrow input{flex:1;padding:13px;border:1px solid #bfb3a4;border-radius:13px}.config-list{display:flex;flex-direction:column;gap:8px;max-height:46vh;overflow:auto}.config-row{display:grid;grid-template-columns:1fr auto;gap:8px}.config-row input{padding:12px;border:1px solid #bfb3a4;border-radius:12px}
+    .settings-grid{display:grid;gap:9px}.settings-grid .btn{text-align:left}.notice{background:#fff0c5;border-radius:14px;padding:12px;margin:10px 0}.install-banner{display:none;background:#e9f2ff;border:2px solid #9dbce8;padding:12px;border-radius:16px;margin:14px 0;align-items:center;justify-content:space-between;gap:10px}.install-banner.show{display:flex}
+    .footerbar{position:fixed;bottom:0;left:0;right:0;background:rgba(243,239,230,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px;z-index:30;display:none}.footerbar .inner{max-width:1240px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}}
+  </style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><img src="icons/icon-192.png" alt=""><div><h1>Hilgertshausen Festkasse</h1><small>Alpha 2 · nur Barzahlung</small></div></div>
+  <div class="head-actions">
+    <button class="btn ghost desktop" id="home">Tische</button>
+    <button class="btn gold desktop" id="settings">Einstellungen</button>
+  </div>
+</header>
+
+<div class="install-banner" id="installBanner">
+  <div><strong>Als App installieren</strong><div class="sub">Dann startet die Festkasse im Vollbild und funktioniert offline.</div></div>
+  <button class="btn green" id="installBtn">Installieren</button>
+</div>
+
+<section id="tablesView" class="view active">
+  <div class="toolbar"><h2>Tischübersicht</h2><span id="summary" class="badge"></span></div>
+  <div id="tables" class="grid tables"></div>
+</section>
+
+<section id="orderView" class="view">
+  <div class="toolbar"><div><button class="btn" id="backTables">← Tische</button> <h2 id="tableName" style="display:inline"></h2></div><button class="btn red" id="clearTable">Tisch leeren</button></div>
+  <div class="layout">
+    <div>
+      <div class="panel"><h3>Bereich auswählen</h3><div id="categories" class="grid cats"></div></div>
+      <div class="panel" style="margin-top:14px"><div class="toolbar"><h3 id="productTitle">Artikel</h3><button id="backCats" class="btn" style="display:none">← Bereiche</button></div><div id="products" class="grid products"></div></div>
+    </div>
+    <aside class="panel side"><h3>Tischbestellung</h3><div id="orderList" class="list"></div><div class="total"><span>Gesamt</span><span id="orderTotal">0,00 €</span></div><div class="actions2"><button class="btn" id="undo">Rückgängig</button><button class="btn green" id="pay">Bezahlen</button></div></aside>
+  </div>
+</section>
+
+<section id="paymentView" class="view">
+  <div class="toolbar"><div><button class="btn" id="backOrder">← Bestellung</button> <h2 id="paymentName" style="display:inline"></h2></div></div>
+  <div class="layout">
+    <div class="panel"><h3>Abrechnung</h3><div class="modes"><button id="whole" class="btn active">Gesamter Tisch</button><button id="split" class="btn">Einzelne Positionen</button></div><div id="splitArea" style="display:none"><div class="notice">Wähle mit + und − genau aus, was diese Person bezahlt.</div><div id="splitList" class="list"></div></div></div>
+    <aside class="panel side"><h3>Barzahlung</h3><div class="total"><span>Zu zahlen</span><span id="payTotal">0,00 €</span></div><div id="cashButtons" class="cash-grid"></div><input id="cashInput" class="cash-input" inputmode="decimal" placeholder="Erhaltener Betrag"><div class="change"><span>Rückgeld</span><span id="change">0,00 €</span></div><button id="finish" class="btn green" style="width:100%;margin-top:11px">Zahlung abschließen</button></aside>
+  </div>
+</section>
+</div>
+
+<div class="footerbar"><div class="inner"><button class="btn" id="homeMobile">Tische</button><button class="btn gold" id="settingsMobile">Einstellungen</button><button class="btn" id="fullscreenBtn">Vollbild</button></div></div>
+
+<dialog id="settingsDialog"><div class="dialog"><h3>Einstellungen</h3><div class="settings-grid">
+<button class="btn" id="manageTables">Tische verwalten</button>
+<button class="btn" id="exportData">Datensicherung herunterladen</button>
+<label class="btn" style="display:block">Datensicherung einspielen<input type="file" id="importData" accept=".json" hidden></label>
+<button class="btn" id="iosHelp">iPhone/iPad: Installation erklären</button>
+<button class="btn" id="shareApp">App-Adresse teilen</button>
+<a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
+<button class="btn red" id="closeSettings">Schließen</button>
+</div></div></dialog>
+
+<dialog id="tablesDialog"><div class="dialog"><h3>Tische verwalten</h3><div id="configList" class="config-list"></div><div class="formrow"><input id="newTable" placeholder="z. B. Tisch 13 oder Bar"><button id="addTable" class="btn gold">Hinzufügen</button></div><div class="actions2"><button id="cancelTables" class="btn">Abbrechen</button><button id="saveTables" class="btn green">Speichern</button></div></div></dialog>
+
+<dialog id="helpDialog"><div class="dialog"><h3>Auf iPhone oder iPad installieren</h3><ol><li>Diese Seite in <strong>Safari</strong> öffnen.</li><li>Unten auf das Teilen-Symbol tippen.</li><li><strong>„Zum Home-Bildschirm“</strong> auswählen.</li><li>Oben rechts auf <strong>„Hinzufügen“</strong> tippen.</li></ol><div class="notice">Für die vollständige Offline-Installation muss die App über eine HTTPS-Adresse oder einen lokalen Webserver geöffnet werden. Beim direkten Öffnen der Datei funktioniert die Kasse, aber die Installation kann eingeschränkt sein.</div><button id="closeHelp" class="btn green" style="width:100%">Verstanden</button></div></dialog>
+
+<script>
+const PRODUCTS=[
+{id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
+{id:'bier_hell',c:'Bierspezialitäten',n:'Maß Bier Hell',p:10.5},{id:'weissbier',c:'Bierspezialitäten',n:'Maß Weißbier',p:10.5},{id:'radler',c:'Bierspezialitäten',n:'Maß Radler',p:10.5},{id:'russ',c:'Bierspezialitäten',n:'Maß Russ',p:10.5},{id:'hell_af',c:'Bierspezialitäten',n:'Maß Hell alkoholfrei',p:10.5},{id:'weissbier_af',c:'Bierspezialitäten',n:'Maß Weißbier alkoholfrei',p:10.5},
+{id:'weinschorle',c:'Wein',n:'Weißweinschorle 0,5 l',p:5.5},
+{id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5},
+{id:'gutschein_hendl',c:'Gutscheine',n:'Gutschein ½ Hendl',p:10.5},{id:'gutschein_bier',c:'Gutscheine',n:'Gutschein Maß Bier',p:10.5}
+];
+const KEY='hilgertshausen_festkasse_alpha1';
+const DEFAULT=Array.from({length:12},(_,i)=>({id:'t'+(i+1),name:'Tisch '+(i+1)}));
+let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},installPrompt=null;
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.payments=x.payments||[];return x}}catch(e){}return{tables:DEFAULT,orders:{},payments:[]}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function euro(v){return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(v||0)}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function prod(id){return PRODUCTS.find(x=>x.id===id)}function order(id){if(!state.orders[id])state.orders[id]={};return state.orders[id]}
+function total(o){return Object.entries(o).reduce((s,[id,q])=>s+(prod(id)?.p||0)*q,0)}
+function view(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function tables(){let open=0,sum=0;const g=document.getElementById('tables');g.innerHTML='';state.tables.forEach(t=>{const o=order(t.id),v=total(o),count=Object.values(o).reduce((a,b)=>a+b,0);if(v){open++;sum+=v}const b=document.createElement('button');b.className='tile '+(v?'busy':'');b.innerHTML=`<strong>${esc(t.name)}</strong><div class="meta">${count?count+' Artikel offen':'frei'}</div><div class="sum">${euro(v)}</div>`;b.onclick=()=>openTable(t.id);g.appendChild(b)});document.getElementById('summary').textContent=`${open} offene Tische · ${euro(sum)}`;save()}
+function openTable(id){tableId=id;category=null;history=[];document.getElementById('tableName').textContent=state.tables.find(x=>x.id===id)?.name||'Tisch';renderCats();renderOrder();view('orderView')}
+function renderCats(){const g=document.getElementById('categories');g.innerHTML='';[...new Set(PRODUCTS.map(x=>x.c))].forEach(c=>{const b=document.createElement('button');b.className='tile cat';b.innerHTML=`<strong>${esc(c)}</strong><div class="meta">${PRODUCTS.filter(x=>x.c===c).length} Artikel</div>`;b.onclick=()=>{category=c;renderProducts()};g.appendChild(b)});document.getElementById('products').innerHTML='<div class="empty">Bitte einen Bereich auswählen.</div>';document.getElementById('productTitle').textContent='Artikel';document.getElementById('backCats').style.display='none'}
+function renderProducts(){const g=document.getElementById('products');g.innerHTML='';document.getElementById('productTitle').textContent=category;document.getElementById('backCats').style.display='inline-block';PRODUCTS.filter(x=>x.c===category).forEach(p=>{const q=order(tableId)[p.id]||0,b=document.createElement('button');b.className='tile';b.innerHTML=`<strong>${esc(p.n)}</strong><div class="price">${euro(p.p)}</div><div class="meta">${q?'Bereits '+q+'×':'Antippen zum Hinzufügen'}</div>`;b.onclick=()=>qty(p.id,1,true);g.appendChild(b)})}
+function qty(id,d,record){const o=order(tableId),before=o[id]||0,after=Math.max(0,before+d);if(record)history.push({id,before});if(after)o[id]=after;else delete o[id];save();renderOrder();if(category)renderProducts()}
+function renderOrder(){const o=order(tableId),l=document.getElementById('orderList');l.innerHTML='';const es=Object.entries(o);if(!es.length)l.innerHTML='<div class="empty">Noch keine Artikel auf diesem Tisch.</div>';es.forEach(([id,q])=>{const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${q} × ${esc(p.n)}</div><div class="sub">${euro(q*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>qty(id,-1,true);r.children[2].onclick=()=>qty(id,1,true);l.appendChild(r)});document.getElementById('orderTotal').textContent=euro(total(o));document.getElementById('pay').disabled=!es.length}
+function undo(){const x=history.pop();if(!x)return;const o=order(tableId);if(x.before)o[x.id]=x.before;else delete o[x.id];save();renderOrder();if(category)renderProducts()}
+function startPay(){if(!total(order(tableId)))return;mode='whole';selection={};document.getElementById('whole').classList.add('active');document.getElementById('split').classList.remove('active');document.getElementById('splitArea').style.display='none';document.getElementById('paymentName').textContent=state.tables.find(x=>x.id===tableId)?.name||'Tisch';document.getElementById('cashInput').value='';renderSplit();updatePay();view('paymentView')}
+function setMode(m){mode=m;document.getElementById('whole').classList.toggle('active',m==='whole');document.getElementById('split').classList.toggle('active',m==='split');document.getElementById('splitArea').style.display=m==='split'?'block':'none';updatePay()}
+function renderSplit(){const l=document.getElementById('splitList');l.innerHTML='';Object.entries(order(tableId)).forEach(([id,q])=>{selection[id]=Math.min(selection[id]||0,q);const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${selection[id]} von ${q} × ${esc(p.n)}</div><div class="sub">${euro(selection[id]*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>{selection[id]=Math.max(0,selection[id]-1);renderSplit();updatePay()};r.children[2].onclick=()=>{selection[id]=Math.min(q,selection[id]+1);renderSplit();updatePay()};l.appendChild(r)})}
+function payTotal(){return mode==='whole'?total(order(tableId)):Object.entries(selection).reduce((s,[id,q])=>s+(prod(id)?.p||0)*q,0)}
+function cashValue(){return parseFloat((document.getElementById('cashInput').value||'0').replace(',','.'))||0}
+function updatePay(){const t=payTotal(),cash=cashValue();document.getElementById('payTotal').textContent=euro(t);document.getElementById('change').textContent=euro(Math.max(0,cash-t));const vals=[t,Math.ceil(t/5)*5,Math.ceil(t/10)*10,20,50,100].filter((v,i,a)=>v>=t&&a.indexOf(v)===i).slice(0,6),g=document.getElementById('cashButtons');g.innerHTML='';vals.forEach(v=>{const b=document.createElement('button');b.className='btn gold';b.textContent=v===t?euro(v)+' passend':euro(v);b.onclick=()=>{document.getElementById('cashInput').value=v.toFixed(2).replace('.',',');updatePay()};g.appendChild(b)})}
+function finish(){const t=payTotal(),cash=cashValue();if(t<=0)return alert('Bitte zuerst Positionen auswählen.');if(cash<t)return alert('Der erhaltene Betrag ist kleiner als die Rechnung.');const change=cash-t,name=state.tables.find(x=>x.id===tableId)?.name||'Tisch';if(!confirm(`${name}\n\nZu zahlen: ${euro(t)}\nErhalten: ${euro(cash)}\nRückgeld: ${euro(change)}\n\nZahlung abschließen?`))return;const o=order(tableId);if(mode==='whole')state.orders[tableId]={};else Object.entries(selection).forEach(([id,q])=>{if(!q)return;o[id]=(o[id]||0)-q;if(o[id]<=0)delete o[id]});state.payments.push({tableId,total:t,cash,change,time:new Date().toISOString()});history=[];save();renderOrder();tables();total(order(tableId))?view('orderView'):view('tablesView')}
+function openSettings(){document.getElementById('settingsDialog').showModal()}
+function openConfig(){document.getElementById('settingsDialog').close();const l=document.getElementById('configList');l.innerHTML='';state.tables.forEach(t=>{const r=document.createElement('div');r.className='config-row';r.innerHTML=`<input value="${esc(t.name)}" data-id="${t.id}"><button class="btn red">Löschen</button>`;r.children[1].onclick=()=>{if(total(order(t.id)))return alert('Dieser Tisch hat eine offene Bestellung.');r.remove()};l.appendChild(r)});document.getElementById('tablesDialog').showModal()}
+function addRow(){const inp=document.getElementById('newTable'),n=inp.value.trim();if(!n)return;const r=document.createElement('div');r.className='config-row';r.innerHTML=`<input value="${esc(n)}" data-id="t${Date.now()}"><button class="btn red">Löschen</button>`;r.children[1].onclick=()=>r.remove();document.getElementById('configList').appendChild(r);inp.value=''}
+function saveConfig(){const inputs=[...document.querySelectorAll('#configList input')];if(!inputs.length)return alert('Mindestens ein Tisch wird benötigt.');state.tables=inputs.map((x,i)=>({id:x.dataset.id,name:x.value.trim()||'Tisch '+(i+1)}));save();tables();document.getElementById('tablesDialog').close()}
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Festkasse_Datensicherung_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.tables||!x.orders)throw 0;if(confirm('Aktuelle Daten durch diese Datensicherung ersetzen?')){state=x;state.payments=state.payments||[];save();tables();document.getElementById('settingsDialog').close()}}catch(e){alert('Diese Datei ist keine gültige Datensicherung.')}};r.readAsText(file)}
+async function share(){const data={title:'Hilgertshausen Festkasse',text:'Hilgertshausen Festkasse',url:location.href};if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert('App-Adresse wurde kopiert.')}}
+document.getElementById('home').onclick=document.getElementById('homeMobile').onclick=()=>{tables();view('tablesView')};document.getElementById('settings').onclick=document.getElementById('settingsMobile').onclick=openSettings;document.getElementById('backTables').onclick=()=>{tables();view('tablesView')};document.getElementById('backCats').onclick=()=>{category=null;renderCats()};document.getElementById('clearTable').onclick=()=>{if(total(order(tableId))&&confirm('Tisch wirklich leeren? Dies wird nicht als Zahlung gespeichert.')){state.orders[tableId]={};history=[];save();renderOrder();tables()}};document.getElementById('undo').onclick=undo;document.getElementById('pay').onclick=startPay;document.getElementById('backOrder').onclick=()=>view('orderView');document.getElementById('whole').onclick=()=>setMode('whole');document.getElementById('split').onclick=()=>setMode('split');document.getElementById('cashInput').oninput=updatePay;document.getElementById('finish').onclick=finish;
+document.getElementById('closeSettings').onclick=()=>document.getElementById('settingsDialog').close();document.getElementById('manageTables').onclick=openConfig;document.getElementById('addTable').onclick=addRow;document.getElementById('cancelTables').onclick=()=>document.getElementById('tablesDialog').close();document.getElementById('saveTables').onclick=saveConfig;document.getElementById('exportData').onclick=exportData;document.getElementById('importData').onchange=e=>e.target.files[0]&&importData(e.target.files[0]);document.getElementById('iosHelp').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('helpDialog').showModal()};document.getElementById('closeHelp').onclick=()=>document.getElementById('helpDialog').close();document.getElementById('shareApp').onclick=share;document.getElementById('fullscreenBtn').onclick=()=>document.documentElement.requestFullscreen?.();
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installBanner').classList.add('show')});document.getElementById('installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installBanner').classList.remove('show')};
+if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js');
+tables();
+</script>
+</body>
+</html>
