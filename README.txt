@@ -1,36 +1,18 @@
-Hilgertshausen Festkasse – Alpha 2 PWA
+Hilgertshausen Festkasse – Alpha 3.0 „Tester Edition"
 
-INHALT
-- Alpha 2 mit modernem Touch-Design
-- große Tisch-, Kategorie- und Produktkacheln
-- Einzel- und Gesamtabrechnung
-- ausschließlich Barzahlung und Rückgeldberechnung
-- Tische frei konfigurieren
-- lokale Speicherung
-- Datensicherung als JSON exportieren und wieder einspielen
-- installierbare PWA für Android und iPhone/iPad
-- Offline-Cache über Service Worker
-- direkter Wechsel zurück zu Alpha 1.1 unter Einstellungen
+Neu:
+- Feedbackbutton 🐞
+- GitHub-Fehlerbericht mit Geräteinformationen
+- freiwillige Testfragen
+- Changelog und Versionsanzeige
+- Rückkehr zu Alpha 2.0 und Alpha 1.1
 
-SCHNELLTEST AM WINDOWS-PC
-1. ZIP entpacken.
-2. start_server.bat doppelt anklicken.
-3. Im Browser http://localhost:8080 öffnen.
-4. Nicht nur index.html doppelt anklicken, wenn du PWA/Offline testen möchtest.
+UPLOAD AUF GITHUB
+1. Den Inhalt dieses Ordners in das bestehende Repository hochladen.
+2. Vorhandene index.html, sw.js, manifest.webmanifest und README.txt ersetzen lassen.
+3. Zusätzlich CHANGELOG.md sowie versionen/alpha-2.0 hochladen.
+4. Commit-Nachricht: Alpha 3.0 - Tester Edition
 
-ANDROID
-1. Die App über eine HTTPS-Webadresse oder im selben WLAN über den lokalen Server öffnen.
-2. Chrome zeigt ggf. „Installieren“ an.
-3. Alternativ Chrome-Menü → „App installieren“ oder „Zum Startbildschirm hinzufügen“.
+Nach dem Upload kann wegen des Offline-Caches einmaliges Neuladen mit Strg+F5 nötig sein. Auf dem Handy die App vollständig schließen und erneut öffnen.
 
-IPHONE / IPAD
-1. In Safari öffnen.
-2. Teilen → „Zum Home-Bildschirm“.
-3. „Hinzufügen“.
-
-WICHTIG
-- Die Bestellungen liegen lokal auf dem jeweiligen Gerät.
-- Zwei Geräte teilen ihre Tische nicht automatisch.
-- Vor dem Fest eine Datensicherung testen.
-- Diese Alpha ist eine Bestell- und Rechenhilfe und kein steuerlich zertifiziertes Kassensystem.
-- Ein funktionierender QR-Code benötigt die endgültige Webadresse. Sobald die App gehostet ist, kann daraus ein QR-Code erstellt werden.
+Hinweis: Ein Feedbackbericht öffnet ein neues GitHub-Issue im Repository waddele-ger/Hilgertshausen. Tester benötigen möglicherweise ein GitHub-Konto, um den Bericht endgültig abzusenden.
