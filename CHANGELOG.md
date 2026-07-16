@@ -1,3 +1,14 @@
+# Änderungsprotokoll
+
+## Alpha 3.1 – Verständlicher Feedback-Ablauf
+
+### Verbessert
+- Der Feedback-Button verwendet keine technischen Begriffe mehr.
+- „Bericht öffnen“ wurde durch „Feedback senden“ ersetzt.
+- Vor dem Absenden wird verständlich erklärt, was anschließend passiert.
+- Nach dem Öffnen der vorbereiteten Meldung erscheint eine kurze Schritt-für-Schritt-Hilfe.
+- Die Tester müssen nur noch gegebenenfalls die Anmeldung durchführen und auf „Submit new issue“ tippen.
+
 # Changelog
 
 ## Alpha 3.0 – Tester Edition (2026-07-16)

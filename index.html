@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.0</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.1</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -48,7 +48,7 @@
 <body>
 <div class="app">
 <header>
-  <div class="brand"><img src="icons/icon-192.png" alt=""><div><h1>Hilgertshausen Festkasse</h1><small>Alpha 3.0 · Tester Edition · nur Barzahlung</small></div></div>
+  <div class="brand"><img src="icons/icon-192.png" alt=""><div><h1>Hilgertshausen Festkasse</h1><small>Alpha 3.1 · Tester Edition · nur Barzahlung</small></div></div>
   <div class="head-actions">
     <button class="btn ghost desktop" id="home">Tische</button>
     <button class="btn gold desktop" id="settings">Einstellungen</button>
@@ -96,7 +96,7 @@
 <button class="btn" id="iosHelp">iPhone/iPad: Installation erklären</button>
 <button class="btn" id="shareApp">App-Adresse teilen</button>
 <button class="btn" id="openChangelog">Was ist neu?</button>
-<div class="version-box"><strong>Installierte Version</strong><div>Alpha 3.0 – Tester Edition</div></div>
+<div class="version-box"><strong>Installierte Version</strong><div>Alpha 3.1 – Tester Edition</div></div>
 <a class="btn" href="versionen/alpha-2.0/index.html" style="text-decoration:none">Zur Alpha 2.0 wechseln</a>
 <a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
 <button class="btn red" id="closeSettings">Schließen</button>
@@ -117,9 +117,11 @@
 <label><input type="checkbox" value="Bestellung schnell aufgenommen"> Bestellung schnell aufgenommen</label>
 <label><input type="checkbox" value="Berechnung korrekt"> Berechnung korrekt</label>
 <label><input type="checkbox" value="Daten wurden gespeichert"> Daten wurden gespeichert</label>
-</div><div class="notice">Beim Absenden öffnet sich GitHub mit einem vorausgefüllten Bericht. Dort muss nur noch auf „Submit new issue“ gedrückt werden. Ein GitHub-Konto kann erforderlich sein.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Bericht öffnen</button></div></div></dialog>
+</div><div class="notice">Nach „Feedback senden“ öffnet sich eine vorbereitete Seite. Deine Angaben sind dort bereits eingetragen. Falls eine Anmeldung erscheint, bitte kurz anmelden und anschließend nur noch auf den grünen Button „Submit new issue“ tippen.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.0?</h3><ul class="changelog-list"><li>🐞 Neuer Feedback-Button auf jeder Ansicht</li><li>Fehler, Verbesserung oder Idee auswählbar</li><li>Automatische Geräte-, Browser-, Versions- und Seiteninformationen</li><li>Kurze freiwillige Testfragen</li><li>Direktes Öffnen eines vorausgefüllten GitHub-Issues</li><li>Versionsanzeige in den Einstellungen</li><li>Rückkehr zu Alpha 2.0 oder Alpha 1.1</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+
+<dialog id="feedbackNextDialog"><div class="dialog"><h3>Fast geschafft 🐞</h3><p>Die vorbereitete Meldeseite wurde in einem neuen Tab geöffnet.</p><ol><li>Falls eine Anmeldung erscheint, bitte kurz anmelden.</li><li>Deine Beschreibung ist bereits vollständig eingetragen.</li><li>Zum Abschluss nur noch auf den grünen Button <strong>„Submit new issue“</strong> tippen.</li></ol><div class="notice">Danach kannst du diesen Hinweis schließen und zur Festkasse zurückkehren.</div><button id="closeFeedbackNext" class="btn green" style="width:100%">Verstanden</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.1?</h3><ul class="changelog-list"><li>🐞 Neuer Feedback-Button auf jeder Ansicht</li><li>Fehler, Verbesserung oder Idee auswählbar</li><li>Automatische Geräte-, Browser-, Versions- und Seiteninformationen</li><li>Kurze freiwillige Testfragen</li><li>Einfacheres Weitergeben von Feedback ohne technische Begriffe</li><li>Versionsanzeige in den Einstellungen</li><li>Rückkehr zu Alpha 2.0 oder Alpha 1.1</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -129,7 +131,7 @@ const PRODUCTS=[
 {id:'gutschein_hendl',c:'Gutscheine',n:'Gutschein ½ Hendl',p:10.5},{id:'gutschein_bier',c:'Gutscheine',n:'Gutschein Maß Bier',p:10.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.0';
+const APP_VERSION='Alpha 3.1';
 const ISSUE_URL='https://github.com/waddele-ger/Hilgertshausen/issues/new';
 const DEFAULT=Array.from({length:12},(_,i)=>({id:'t'+(i+1),name:'Tisch '+(i+1)}));
 let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},installPrompt=null;
@@ -163,10 +165,10 @@ function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSO
 async function share(){const data={title:'Hilgertshausen Festkasse',text:'Hilgertshausen Festkasse',url:location.href};if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert('App-Adresse wurde kopiert.')}}
 function openFeedback(){document.getElementById('feedbackText').value='';document.querySelectorAll('#feedbackDialog input[type=checkbox]').forEach(x=>x.checked=false);document.getElementById('feedbackDialog').showModal()}
 function deviceInfo(){return {version:APP_VERSION,url:location.href,datum:new Date().toLocaleString('de-DE'),browser:navigator.userAgent,plattform:navigator.platform||'unbekannt',bildschirm:`${screen.width} × ${screen.height}`,online:navigator.onLine?'ja':'nein'}}
-function sendFeedback(){const type=document.querySelector('input[name=feedbackType]:checked')?.value||'Fehler',text=document.getElementById('feedbackText').value.trim(),checks=[...document.querySelectorAll('#feedbackDialog input[type=checkbox]:checked')].map(x=>'- [x] '+x.value),i=deviceInfo();if(!text)return alert('Bitte beschreibe kurz dein Feedback.');const title=`[${APP_VERSION}] ${type}: ${text.slice(0,70)}`;const body=`## Art\n${type}\n\n## Beschreibung\n${text}\n\n## Testfragen\n${checks.length?checks.join('\n'):'Keine Angaben'}\n\n## Automatische technische Angaben\n- Version: ${i.version}\n- Datum: ${i.datum}\n- Seite: ${i.url}\n- Plattform: ${i.plattform}\n- Bildschirm: ${i.bildschirm}\n- Online: ${i.online}\n- Browser/User-Agent: ${i.browser}`;location.href=ISSUE_URL+'?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body)}
+function sendFeedback(){const type=document.querySelector('input[name=feedbackType]:checked')?.value||'Fehler',text=document.getElementById('feedbackText').value.trim(),checks=[...document.querySelectorAll('#feedbackDialog input[type=checkbox]:checked')].map(x=>'- [x] '+x.value),i=deviceInfo();if(!text)return alert('Bitte beschreibe kurz dein Feedback.');const title=`[${APP_VERSION}] ${type}: ${text.slice(0,70)}`;const body=`## Art\n${type}\n\n## Beschreibung\n${text}\n\n## Testfragen\n${checks.length?checks.join('\n'):'Keine Angaben'}\n\n## Automatische technische Angaben\n- Version: ${i.version}\n- Datum: ${i.datum}\n- Seite: ${i.url}\n- Plattform: ${i.plattform}\n- Bildschirm: ${i.bildschirm}\n- Online: ${i.online}\n- Browser/User-Agent: ${i.browser}`;const url=ISSUE_URL+'?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);const opened=window.open(url,'_blank','noopener');document.getElementById('feedbackDialog').close();if(opened){document.getElementById('feedbackNextDialog').showModal()}else{location.href=url}}
 document.getElementById('home').onclick=document.getElementById('homeMobile').onclick=()=>{tables();view('tablesView')};document.getElementById('settings').onclick=document.getElementById('settingsMobile').onclick=openSettings;document.getElementById('backTables').onclick=()=>{tables();view('tablesView')};document.getElementById('backCats').onclick=()=>{category=null;renderCats()};document.getElementById('clearTable').onclick=()=>{if(total(order(tableId))&&confirm('Tisch wirklich leeren? Dies wird nicht als Zahlung gespeichert.')){state.orders[tableId]={};history=[];save();renderOrder();tables()}};document.getElementById('undo').onclick=undo;document.getElementById('pay').onclick=startPay;document.getElementById('backOrder').onclick=()=>view('orderView');document.getElementById('whole').onclick=()=>setMode('whole');document.getElementById('split').onclick=()=>setMode('split');document.getElementById('cashInput').oninput=updatePay;document.getElementById('finish').onclick=finish;
 document.getElementById('closeSettings').onclick=()=>document.getElementById('settingsDialog').close();document.getElementById('manageTables').onclick=openConfig;document.getElementById('addTable').onclick=addRow;document.getElementById('cancelTables').onclick=()=>document.getElementById('tablesDialog').close();document.getElementById('saveTables').onclick=saveConfig;document.getElementById('exportData').onclick=exportData;document.getElementById('importData').onchange=e=>e.target.files[0]&&importData(e.target.files[0]);document.getElementById('iosHelp').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('helpDialog').showModal()};document.getElementById('closeHelp').onclick=()=>document.getElementById('helpDialog').close();document.getElementById('shareApp').onclick=share;document.getElementById('fullscreenBtn').onclick=()=>document.documentElement.requestFullscreen?.();
-document.getElementById('feedbackFab').onclick=openFeedback;document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
+document.getElementById('feedbackFab').onclick=openFeedback;document.getElementById('closeFeedbackNext').onclick=()=>document.getElementById('feedbackNextDialog').close();document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installBanner').classList.add('show')});document.getElementById('installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installBanner').classList.remove('show')};
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js');
 tables();
