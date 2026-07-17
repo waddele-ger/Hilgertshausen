@@ -163,7 +163,7 @@
 <label><input type="checkbox" value="Bestellung schnell aufgenommen"> Bestellung schnell aufgenommen</label>
 <label><input type="checkbox" value="Berechnung korrekt"> Berechnung korrekt</label>
 <label><input type="checkbox" value="Daten wurden gespeichert"> Daten wurden gespeichert</label>
-</div><div class="notice">Nach „Feedback senden“ öffnet sich eine vorbereitete Seite. Deine Angaben sind dort bereits eingetragen. Falls eine Anmeldung erscheint, bitte kurz anmelden und anschließend nur noch auf den grünen Button „Submit new issue“ tippen.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
+</div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
 <dialog id="feedbackNextDialog"><div class="dialog"><h3>Fast geschafft 🐞</h3><p>Die vorbereitete Meldeseite wurde in einem neuen Tab geöffnet.</p><ol><li>Falls eine Anmeldung erscheint, bitte kurz anmelden.</li><li>Deine Beschreibung ist bereits vollständig eingetragen.</li><li>Zum Abschluss nur noch auf den grünen Button <strong>„Submit new issue“</strong> tippen.</li></ol><div class="notice">Danach kannst du diesen Hinweis schließen und zur Festkasse zurückkehren.</div><button id="closeFeedbackNext" class="btn green" style="width:100%">Verstanden</button></div></dialog>
@@ -178,7 +178,7 @@ const PRODUCTS=[
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
 const APP_VERSION='Alpha 3.4.2-dev7';
-const ISSUE_URL='https://github.com/waddele-ger/Hilgertshausen/issues/new';
+const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const DEFAULT=Array.from({length:12},(_,i)=>({id:'t'+(i+1),name:'Tisch '+(i+1)}));
 let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},installPrompt=null,editingPayment=null,developerMode=false,developerTapCount=0,developerTapTimer=null,selectedArchiveDayId=null;
 function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[]});return x}}catch(e){}return{tables:DEFAULT,orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1}}
@@ -450,7 +450,49 @@ function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSO
 async function share(){const data={title:'Hilgertshausen Festkasse',text:'Hilgertshausen Festkasse',url:location.href};if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert('App-Adresse wurde kopiert.')}}
 function openFeedback(){document.getElementById('feedbackText').value='';document.querySelectorAll('#feedbackDialog input[type=checkbox]').forEach(x=>x.checked=false);document.getElementById('feedbackDialog').showModal()}
 function deviceInfo(){return {version:APP_VERSION,url:location.href,datum:new Date().toLocaleString('de-DE'),browser:navigator.userAgent,plattform:navigator.platform||'unbekannt',bildschirm:`${screen.width} × ${screen.height}`,online:navigator.onLine?'ja':'nein'}}
-function sendFeedback(){const type=document.querySelector('input[name=feedbackType]:checked')?.value||'Fehler',text=document.getElementById('feedbackText').value.trim(),checks=[...document.querySelectorAll('#feedbackDialog input[type=checkbox]:checked')].map(x=>'- [x] '+x.value),i=deviceInfo();if(!text)return alert('Bitte beschreibe kurz dein Feedback.');const title=`[${APP_VERSION}] ${type}: ${text.slice(0,70)}`;const body=`## Art\n${type}\n\n## Beschreibung\n${text}\n\n## Testfragen\n${checks.length?checks.join('\n'):'Keine Angaben'}\n\n## Automatische technische Angaben\n- Version: ${i.version}\n- Datum: ${i.datum}\n- Seite: ${i.url}\n- Plattform: ${i.plattform}\n- Bildschirm: ${i.bildschirm}\n- Online: ${i.online}\n- Browser/User-Agent: ${i.browser}`;const url=ISSUE_URL+'?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);const opened=window.open(url,'_blank','noopener');document.getElementById('feedbackDialog').close();if(opened){document.getElementById('feedbackNextDialog').showModal()}else{location.href=url}}
+async function sendFeedback(){
+  const type=document.querySelector('input[name=feedbackType]:checked')?.value||'Fehler';
+  const feedbackText=document.getElementById('feedbackText').value.trim();
+  const checks=[...document.querySelectorAll('#feedbackDialog input[type=checkbox]:checked')].map(x=>x.value);
+  const info=deviceInfo();
+  if(!feedbackText)return alert('Bitte beschreibe kurz dein Feedback.');
+
+  const button=document.getElementById('sendFeedback');
+  const previousText=button.textContent;
+  button.disabled=true;
+  button.textContent='Wird gesendet …';
+
+  try{
+    const response=await fetch(FORMSPREE_URL,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body:JSON.stringify({
+        _subject:`[${APP_VERSION}] ${type}: ${feedbackText.slice(0,70)}`,
+        art:type,
+        beschreibung:feedbackText,
+        testfragen:checks.length?checks.join(', '):'Keine Angaben',
+        version:info.version,
+        datum:info.datum,
+        seite:info.url,
+        plattform:info.plattform,
+        bildschirm:info.bildschirm,
+        online:info.online,
+        browser:info.browser
+      })
+    });
+    if(!response.ok)throw new Error('Feedback konnte nicht gesendet werden.');
+    document.getElementById('feedbackDialog').close();
+    alert('Vielen Dank! Dein Feedback wurde erfolgreich gesendet.');
+  }catch(error){
+    alert('Das Feedback konnte gerade nicht gesendet werden. Bitte prüfe die Internetverbindung und versuche es später erneut.');
+  }finally{
+    button.disabled=false;
+    button.textContent=previousText;
+  }
+}
 document.getElementById('home').onclick=document.getElementById('homeMobile').onclick=()=>{tables();view('tablesView')};document.getElementById('settings').onclick=document.getElementById('settingsMobile').onclick=openSettings;document.getElementById('backTables').onclick=()=>{tables();view('tablesView')};document.getElementById('backCats').onclick=()=>{category=null;renderCats()};document.getElementById('clearTable').onclick=()=>{if(total(order(tableId))&&confirm('Tisch wirklich leeren? Dies wird nicht als Zahlung gespeichert.')){state.orders[tableId]={};history=[];save();renderOrder();tables()}};document.getElementById('undo').onclick=undo;document.getElementById('pay').onclick=startPay;document.getElementById('backOrder').onclick=()=>view('orderView');document.getElementById('whole').onclick=()=>setMode('whole');document.getElementById('split').onclick=()=>setMode('split');document.getElementById('cashInput').oninput=updatePay;document.getElementById('finish').onclick=finish;
 document.getElementById('confirmStartDay').onclick=startCashDay;document.getElementById('startDemoDay').onclick=startDemoCashDay;document.getElementById('startCashDaySettings').onclick=openStartDay;document.getElementById('endCashDay').onclick=requestEndCashDay;document.getElementById('cancelEndDay').onclick=()=>document.getElementById('endDayDialog').close();document.getElementById('confirmEndDay').onclick=finishCashDay;document.getElementById('deleteCurrentDay').onclick=requestDeleteCurrentDay;document.getElementById('cancelDeleteDay').onclick=()=>{document.getElementById('deleteDayDialog').close();renderStats();document.getElementById('statsDialog').showModal()};document.getElementById('confirmDeleteDay').onclick=deleteCurrentDay;
 document.getElementById('openStats').onclick=openStats;document.getElementById('closeArchiveDetail').onclick=closeArchiveDetail;document.getElementById('deleteArchivedDay').onclick=requestDeleteArchivedDay;document.getElementById('cancelDeleteArchivedDay').onclick=()=>{document.getElementById('deleteArchivedDayDialog').close();openArchiveDetail(selectedArchiveDayId)};document.getElementById('confirmDeleteArchivedDay').onclick=deleteArchivedDay;document.getElementById('closeStats').onclick=()=>document.getElementById('statsDialog').close();document.getElementById('cancelEditPayment').onclick=()=>{document.getElementById('editPaymentDialog').close();renderStats();document.getElementById('statsDialog').showModal()};document.getElementById('saveEditPayment').onclick=savePaymentEdit;document.getElementById('deletePayment').onclick=deleteEditingPayment;document.getElementById('closeSettings').onclick=()=>document.getElementById('settingsDialog').close();document.getElementById('manageTables').onclick=openConfig;document.getElementById('addTable').onclick=addRow;document.getElementById('cancelTables').onclick=()=>document.getElementById('tablesDialog').close();document.getElementById('saveTables').onclick=saveConfig;document.getElementById('exportData').onclick=exportData;document.getElementById('importData').onchange=e=>e.target.files[0]&&importData(e.target.files[0]);document.getElementById('iosHelp').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('helpDialog').showModal()};document.getElementById('closeHelp').onclick=()=>document.getElementById('helpDialog').close();document.getElementById('shareApp').onclick=share;document.getElementById('fullscreenBtn').onclick=()=>document.documentElement.requestFullscreen?.();
