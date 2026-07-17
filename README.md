@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.4.2-dev7
+Version: Alpha 3.4.2-dev8
 
 ## Projekt
 
@@ -50,8 +50,12 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Einzelne abgeschlossene Zahlungen können gelöscht werden; ihre Artikel werden auf den ursprünglichen Tisch zurückgebucht
 - Die Tischansicht aktualisiert sich nach Korrekturen und Löschungen sofort
 - Ein kompletter Test-Kassentag kann über einen klaren Sicherheitsdialog gelöscht werden
-- Entwickler können durch fünfmaliges Tippen auf die Versionsanzeige vorübergehend den Entwicklermodus aktivieren
-- Archivierte Live-Kassentage sind nur in diesem Modus und nach Eingabe von `LIVE LÖSCHEN` löschbar
+- Archivierte Live-Kassentage sind in der normalen Bedienung vor dem Löschen geschützt
+
+### Feedback
+- Fehler, Verbesserungen und Ideen direkt aus der App senden
+- Keine GitHub-Anmeldung erforderlich
+- Optionale Testfragen und automatische technische Angaben
 
 ## Bedienphilosophie
 

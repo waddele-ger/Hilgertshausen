@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.4.2-dev7</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.4.2-dev8</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -119,8 +119,7 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.4.2-dev7</div></div>
-<div id="developerStatus" class="notice" style="display:none">🔧 <strong>Entwicklermodus aktiv</strong><div class="sub">Live-Kassentage können in der Archivansicht gelöscht werden. Nach einem Neustart ist dieser Modus wieder aus.</div></div>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.4.2-dev8</div></div>
 <a class="btn" href="versionen/alpha-2.0/index.html" style="text-decoration:none">Zur Alpha 2.0 wechseln</a>
 <a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
 </div>
@@ -166,8 +165,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="feedbackNextDialog"><div class="dialog"><h3>Fast geschafft 🐞</h3><p>Die vorbereitete Meldeseite wurde in einem neuen Tab geöffnet.</p><ol><li>Falls eine Anmeldung erscheint, bitte kurz anmelden.</li><li>Deine Beschreibung ist bereits vollständig eingetragen.</li><li>Zum Abschluss nur noch auf den grünen Button <strong>„Submit new issue“</strong> tippen.</li></ol><div class="notice">Danach kannst du diesen Hinweis schließen und zur Festkasse zurückkehren.</div><button id="closeFeedbackNext" class="btn green" style="width:100%">Verstanden</button></div></dialog>
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.4.2-dev7?</h3><ul class="changelog-list"><li>Verbesserte Verwaltung archivierter Kassentage</li><li>Zusätzlicher Schutz vor versehentlichem Löschen</li><li>Kleinere Verbesserungen an der Benutzerführung</li><li>Der Demo-Ablauf bleibt unverändert</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.4.2-dev8?</h3><ul class="changelog-list"><li>Feedback kann jetzt direkt aus der App gesendet werden</li><li>Keine GitHub-Anmeldung mehr erforderlich</li><li>Verbesserte Verwaltung archivierter Kassentage</li><li>Zusätzlicher Schutz vor versehentlichem Löschen</li><li>Aktualisierung der Offline-Dateien verbessert</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -177,10 +175,10 @@ const PRODUCTS=[
 {id:'gutschein_hendl',c:'Gutscheine',n:'Gutschein ½ Hendl',p:10.5},{id:'gutschein_bier',c:'Gutscheine',n:'Gutschein Maß Bier',p:10.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.4.2-dev7';
+const APP_VERSION='Alpha 3.4.2-dev8';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const DEFAULT=Array.from({length:12},(_,i)=>({id:'t'+(i+1),name:'Tisch '+(i+1)}));
-let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},installPrompt=null,editingPayment=null,developerMode=false,developerTapCount=0,developerTapTimer=null,selectedArchiveDayId=null;
+let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},installPrompt=null,editingPayment=null,secureArchiveAccess=false,accessTapCount=0,accessTapTimer=null,selectedArchiveDayId=null;
 function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[]});return x}}catch(e){}return{tables:DEFAULT,orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1}}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function hasOpenOrders(){return Object.values(state.orders||{}).some(o=>total(o)>0)}
@@ -192,7 +190,7 @@ function startCashDay(){if(!prepareCashDayStart())return;state.activeCashDay={id
 function startDemoCashDay(){if(!prepareCashDayStart())return;state.activeCashDay={id:'demo-'+Date.now(),name:'Demo-Kassentag',startedAt:new Date().toISOString(),isDemo:true};state.orders={};state.payments=[];save();document.getElementById('startDayDialog').close();updateCashDayStatus();tables()}
 function requestEndCashDay(){if(!state.activeCashDay)return alert('Es ist kein Kassentag aktiv.');if(hasOpenOrders())return alert('Der Kassentag kann noch nicht beendet werden. Mindestens ein Tisch hat eine offene Bestellung.');const demo=!!state.activeCashDay.isDemo,sum=state.payments.reduce((a,p)=>a+(Number(p.total)||0),0);document.getElementById('endDaySummary').innerHTML=`<strong>${esc(activeDayLabel())}</strong><br>${state.payments.length} Vorgänge · ${euro(sum)}`;document.getElementById('endDayTitle').textContent=demo?'Demo-Kassentag beenden':'Kassentag beenden';document.getElementById('endDayText').textContent=demo?'Alle Demo-Zahlungen werden verworfen und nicht archiviert.':'Der Kassentag wird archiviert und die aktive Statistik anschließend auf 0 gesetzt.';document.getElementById('endDaySafety').style.display=demo?'none':'block';document.getElementById('endDayConfirm').style.display=demo?'none':'block';document.getElementById('endDayConfirm').value='';document.getElementById('confirmEndDay').textContent=demo?'Demo beenden':'Endgültig beenden';document.getElementById('settingsDialog').close();document.getElementById('endDayDialog').showModal()}
 function finishCashDay(){const demo=!!state.activeCashDay?.isDemo;if(!demo&&document.getElementById('endDayConfirm').value.trim().toUpperCase()!=='BEENDEN')return alert('Bitte das Wort BEENDEN vollständig eingeben.');if(!demo)state.archivedCashDays.push({id:state.activeCashDay.id,name:state.activeCashDay.name,startedAt:state.activeCashDay.startedAt,endedAt:new Date().toISOString(),payments:structuredClone(state.payments),incomplete:false});state.activeCashDay=null;state.payments=[];state.orders={};save();document.getElementById('endDayDialog').close();updateCashDayStatus();tables();alert(demo?'Demo-Kassentag wurde beendet. Alle Demo-Daten wurden verworfen.':'Kassentag wurde beendet und archiviert.')}
-function requestDeleteCurrentDay(){if(!state.activeCashDay)return alert('Es ist kein aktueller Kassentag vorhanden.');if(!state.activeCashDay.isDemo&&!developerMode)return alert('Ein echter Kassentag kann nur im Entwicklermodus gelöscht werden.');document.getElementById('statsDialog').close();document.getElementById('deleteDayDialog').showModal()}
+function requestDeleteCurrentDay(){if(!state.activeCashDay)return alert('Es ist kein aktueller Kassentag vorhanden.');if(!state.activeCashDay.isDemo&&!secureArchiveAccess)return alert('Ein echter Kassentag ist für die normale Bedienung vor dem Löschen geschützt.');document.getElementById('statsDialog').close();document.getElementById('deleteDayDialog').showModal()}
 function deleteCurrentDay(){
   if(!state.activeCashDay)return alert('Es ist kein aktueller Kassentag vorhanden.');
   state.payments=[];
@@ -227,31 +225,29 @@ function finish(){if(!requireActiveCashDay())return;const t=payTotal(),cash=cash
 function tableNameById(id){return state.tables.find(t=>t.id===id)?.name||'Unbekannter Tisch'}
 function paymentNumber(p){return '#'+String(p.number||0).padStart(5,'0')}
 
-function updateDeveloperUi(){
-  const status=document.getElementById('developerStatus');
-  if(status)status.style.display=developerMode?'block':'none';
+function updateProtectedUi(){
   const deleteCurrent=document.getElementById('deleteCurrentDay');
   if(deleteCurrent&&state.activeCashDay){
-    deleteCurrent.style.display=(state.activeCashDay.isDemo||developerMode)?'block':'none';
+    deleteCurrent.style.display=(state.activeCashDay.isDemo||secureArchiveAccess)?'block':'none';
     deleteCurrent.textContent=state.activeCashDay.isDemo?'Kompletten Demo-Kassentag löschen':'Aktiven Live-Kassentag löschen';
   }
 }
-function handleDeveloperTap(){
-  developerTapCount++;
-  clearTimeout(developerTapTimer);
-  developerTapTimer=setTimeout(()=>developerTapCount=0,1800);
-  if(developerTapCount<5)return;
-  developerTapCount=0;
-  clearTimeout(developerTapTimer);
-  developerMode=!developerMode;
-  updateDeveloperUi();
+function handleProtectedAccess(){
+  accessTapCount++;
+  clearTimeout(accessTapTimer);
+  accessTapTimer=setTimeout(()=>accessTapCount=0,1800);
+  if(accessTapCount<5)return;
+  accessTapCount=0;
+  clearTimeout(accessTapTimer);
+  secureArchiveAccess=!secureArchiveAccess;
+  updateProtectedUi();
   if(document.getElementById('statsDialog')?.open)renderStats();
-  alert(developerMode?'Entwicklermodus aktiviert. Live-Kassentage können jetzt im Archiv gelöscht werden.':'Entwicklermodus deaktiviert.');
+  alert(secureArchiveAccess?'Erweiterte Archivverwaltung aktiviert.':'Erweiterte Archivverwaltung deaktiviert.');
 }
 function requestDeleteArchivedDay(){
   const day=(state.archivedCashDays||[]).find(x=>x.id===selectedArchiveDayId);
   if(!day)return alert('Dieser Kassentag konnte nicht gefunden werden.');
-  if(!developerMode)return alert('Live-Kassentage können nur im Entwicklermodus gelöscht werden.');
+  if(!secureArchiveAccess)return alert('Dieser Kassentag ist für die normale Bedienung vor dem Löschen geschützt.');
   document.getElementById('deleteArchivedDayName').textContent=day.name||'Kassentag';
   document.getElementById('deleteArchivedDayPeriod').textContent=`${formatArchiveDate(day.startedAt)} bis ${formatArchiveDate(day.endedAt)}`;
   document.getElementById('deleteArchivedDayConfirm').value='';
@@ -259,7 +255,7 @@ function requestDeleteArchivedDay(){
   document.getElementById('deleteArchivedDayDialog').showModal();
 }
 function deleteArchivedDay(){
-  if(!developerMode)return alert('Der Entwicklermodus ist nicht aktiv.');
+  if(!secureArchiveAccess)return alert('Die geschützte Archivverwaltung ist nicht freigeschaltet.');
   if(document.getElementById('deleteArchivedDayConfirm').value.trim().toUpperCase()!=='LIVE LÖSCHEN')return alert('Bitte LIVE LÖSCHEN vollständig eingeben.');
   const day=(state.archivedCashDays||[]).find(x=>x.id===selectedArchiveDayId);
   if(!day)return alert('Dieser Kassentag konnte nicht gefunden werden.');
@@ -294,8 +290,8 @@ function openArchiveDetail(dayId){
   document.getElementById('archiveDetailPeriod').innerHTML=`<strong>Zeitraum</strong><div class="sub">Gestartet: ${esc(formatArchiveDate(day.startedAt))}<br>Beendet: ${esc(formatArchiveDate(day.endedAt))}</div>${day.incomplete?'<div class="correction">⚠️ Als unvollständiger Kassentag archiviert</div>':''}`;
   document.getElementById('archiveDetailSummary').innerHTML=`<div class="archive-detail-box"><span>Umsatz</span><strong>${euro(stats.sum)}</strong></div><div class="archive-detail-box"><span>Zahlungen</span><strong>${stats.payments.length}</strong></div><div class="archive-detail-box"><span>Korrekturen</span><strong>${stats.corrections}</strong></div><div class="archive-detail-box"><span>Status</span><strong>${day.incomplete?'Unvollständig':'Abgeschlossen'}</strong></div>`;
   const deleteButton=document.getElementById('deleteArchivedDay');
-  deleteButton.style.display=developerMode?'block':'none';
-  document.getElementById('archiveReadonlyNotice').innerHTML=developerMode?'🔧 Entwicklermodus aktiv – dieser Live-Kassentag kann ausnahmsweise gelöscht werden.':'🔒 Schreibgeschützte Ansicht – dieser Kassentag kann nicht verändert werden.';
+  deleteButton.style.display=secureArchiveAccess?'block':'none';
+  document.getElementById('archiveReadonlyNotice').innerHTML=secureArchiveAccess?'🔓 Erweiterte Archivverwaltung aktiv – dieser Kassentag kann gelöscht werden.':'🔒 Schreibgeschützte Ansicht – dieser Kassentag kann nicht verändert werden.';
   document.getElementById('statsDialog').close();
   document.getElementById('archiveDetailDialog').showModal();
 }
@@ -305,7 +301,7 @@ function closeArchiveDetail(){
   document.getElementById('statsDialog').showModal();
 }
 
-function renderStats(){document.getElementById('statsDayInfo').innerHTML=state.activeCashDay?`<strong>Aktueller Kassentag:</strong> ${esc(activeDayLabel())}`:'<strong>Kein Kassentag aktiv.</strong> Die aktive Statistik ist leer.';const payments=state.payments||[],sum=payments.reduce((a,p)=>a+(Number(p.total)||0),0),corrected=payments.filter(p=>(p.corrections||[]).length).length;document.getElementById('statsSummary').innerHTML=`<div class="stat-box"><span>Gesamt</span><strong>${euro(sum)}</strong></div><div class="stat-box"><span>Vorgänge</span><strong>${payments.length}</strong></div><div class="stat-box"><span>Korrigiert</span><strong>${corrected} ⚠️</strong></div>`;const grouped={};payments.forEach(p=>{const k=p.tableId||'unknown';grouped[k]=grouped[k]||{sum:0,count:0};grouped[k].sum+=Number(p.total)||0;grouped[k].count++});const ts=document.getElementById('tableStats');ts.innerHTML='';Object.entries(grouped).sort((a,b)=>b[1].sum-a[1].sum).forEach(([id,v])=>{const d=document.createElement('div');d.className='payment-entry';d.innerHTML=`<div class="payment-head"><strong>${esc(tableNameById(id))}</strong><strong>${euro(v.sum)}</strong></div><div class="sub">${v.count} Zahlung${v.count===1?'':'en'}</div>`;ts.appendChild(d)});if(!Object.keys(grouped).length)ts.innerHTML='<div class="empty">Noch keine abgeschlossenen Zahlungen.</div>';const h=document.getElementById('paymentHistory');h.innerHTML='';[...payments].reverse().forEach(p=>{const d=document.createElement('div'),corr=(p.corrections||[]);d.className='payment-entry'+(corr.length?' corrected':'');const when=new Date(p.time).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});d.innerHTML=`<div class="payment-head"><div><strong>${paymentNumber(p)} · ${esc(tableNameById(p.tableId))}</strong><div class="sub">${when}</div></div><strong>${euro(p.total)}</strong></div>${corr.length?`<div class="correction">⚠️ ${corr.length} Korrektur${corr.length===1?'':'en'} · ursprünglich ${euro(corr[0].oldTotal)}</div>`:''}<button class="btn" style="width:100%;margin-top:8px">Öffnen und bearbeiten</button>`;d.querySelector('button').onclick=()=>openPaymentEdit(p);h.appendChild(d)});if(!payments.length)h.innerHTML='<div class="empty">Noch keine abgeschlossenen Zahlungen.</div>';const a=document.getElementById('cashDayArchive');a.innerHTML='';[...(state.archivedCashDays||[])].reverse().forEach(day=>{const stats=archiveDayStats(day),d=document.createElement('button');d.type='button';d.className='archive-entry archive-entry-button';const ended=formatArchiveDate(day.endedAt);d.innerHTML=`<strong>${esc(day.name||'Kassentag')}</strong>${day.incomplete?' ⚠️':''}<div class="sub">Beendet: ${esc(ended)} · ${stats.payments.length} Vorgänge · ${euro(stats.sum)}</div><div class="sub" style="margin-top:5px">Antippen zum Öffnen →</div>`;d.onclick=()=>openArchiveDetail(day.id);a.appendChild(d)});if(!(state.archivedCashDays||[]).length)a.innerHTML='<div class="empty">Noch keine archivierten Kassentage.</div>';updateDeveloperUi()}
+function renderStats(){document.getElementById('statsDayInfo').innerHTML=state.activeCashDay?`<strong>Aktueller Kassentag:</strong> ${esc(activeDayLabel())}`:'<strong>Kein Kassentag aktiv.</strong> Die aktive Statistik ist leer.';const payments=state.payments||[],sum=payments.reduce((a,p)=>a+(Number(p.total)||0),0),corrected=payments.filter(p=>(p.corrections||[]).length).length;document.getElementById('statsSummary').innerHTML=`<div class="stat-box"><span>Gesamt</span><strong>${euro(sum)}</strong></div><div class="stat-box"><span>Vorgänge</span><strong>${payments.length}</strong></div><div class="stat-box"><span>Korrigiert</span><strong>${corrected} ⚠️</strong></div>`;const grouped={};payments.forEach(p=>{const k=p.tableId||'unknown';grouped[k]=grouped[k]||{sum:0,count:0};grouped[k].sum+=Number(p.total)||0;grouped[k].count++});const ts=document.getElementById('tableStats');ts.innerHTML='';Object.entries(grouped).sort((a,b)=>b[1].sum-a[1].sum).forEach(([id,v])=>{const d=document.createElement('div');d.className='payment-entry';d.innerHTML=`<div class="payment-head"><strong>${esc(tableNameById(id))}</strong><strong>${euro(v.sum)}</strong></div><div class="sub">${v.count} Zahlung${v.count===1?'':'en'}</div>`;ts.appendChild(d)});if(!Object.keys(grouped).length)ts.innerHTML='<div class="empty">Noch keine abgeschlossenen Zahlungen.</div>';const h=document.getElementById('paymentHistory');h.innerHTML='';[...payments].reverse().forEach(p=>{const d=document.createElement('div'),corr=(p.corrections||[]);d.className='payment-entry'+(corr.length?' corrected':'');const when=new Date(p.time).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});d.innerHTML=`<div class="payment-head"><div><strong>${paymentNumber(p)} · ${esc(tableNameById(p.tableId))}</strong><div class="sub">${when}</div></div><strong>${euro(p.total)}</strong></div>${corr.length?`<div class="correction">⚠️ ${corr.length} Korrektur${corr.length===1?'':'en'} · ursprünglich ${euro(corr[0].oldTotal)}</div>`:''}<button class="btn" style="width:100%;margin-top:8px">Öffnen und bearbeiten</button>`;d.querySelector('button').onclick=()=>openPaymentEdit(p);h.appendChild(d)});if(!payments.length)h.innerHTML='<div class="empty">Noch keine abgeschlossenen Zahlungen.</div>';const a=document.getElementById('cashDayArchive');a.innerHTML='';[...(state.archivedCashDays||[])].reverse().forEach(day=>{const stats=archiveDayStats(day),d=document.createElement('button');d.type='button';d.className='archive-entry archive-entry-button';const ended=formatArchiveDate(day.endedAt);d.innerHTML=`<strong>${esc(day.name||'Kassentag')}</strong>${day.incomplete?' ⚠️':''}<div class="sub">Beendet: ${esc(ended)} · ${stats.payments.length} Vorgänge · ${euro(stats.sum)}</div><div class="sub" style="margin-top:5px">Antippen zum Öffnen →</div>`;d.onclick=()=>openArchiveDetail(day.id);a.appendChild(d)});if(!(state.archivedCashDays||[]).length)a.innerHTML='<div class="empty">Noch keine archivierten Kassentage.</div>';updateProtectedUi()}
 function openStats(){document.getElementById('settingsDialog').close();renderStats();document.getElementById('statsDialog').showModal()}
 function openPaymentEdit(p){editingPayment=p;const box=document.getElementById('editItems');box.innerHTML='';document.getElementById('editPaymentTitle').textContent=`${paymentNumber(p)} · ${tableNameById(p.tableId)}`;if(p.items&&Object.keys(p.items).length){Object.entries(p.items).forEach(([id,q])=>{const pr=prod(id);if(!pr)return;const r=document.createElement('div');r.className='edit-item';r.innerHTML=`<div><strong>${esc(pr.n)}</strong><div class="sub">${euro(pr.p)} je Stück</div></div><input type="number" min="0" step="1" value="${q}" data-id="${id}">`;r.querySelector('input').oninput=updateEditTotal;box.appendChild(r)})}else{box.innerHTML=`<label>Neuer Gesamtbetrag<input id="legacyEditTotal" class="cash-input" inputmode="decimal" value="${Number(p.total).toFixed(2).replace('.',',')}"></label>`;box.querySelector('input').oninput=updateEditTotal}updateEditTotal();document.getElementById('statsDialog').close();document.getElementById('editPaymentDialog').showModal()}
 function editPaymentTotal(){const legacy=document.getElementById('legacyEditTotal');if(legacy)return parseFloat((legacy.value||'0').replace(',','.'))||0;return [...document.querySelectorAll('#editItems input[data-id]')].reduce((s,i)=>s+(prod(i.dataset.id)?.p||0)*(parseInt(i.value)||0),0)}
@@ -496,11 +492,11 @@ async function sendFeedback(){
 document.getElementById('home').onclick=document.getElementById('homeMobile').onclick=()=>{tables();view('tablesView')};document.getElementById('settings').onclick=document.getElementById('settingsMobile').onclick=openSettings;document.getElementById('backTables').onclick=()=>{tables();view('tablesView')};document.getElementById('backCats').onclick=()=>{category=null;renderCats()};document.getElementById('clearTable').onclick=()=>{if(total(order(tableId))&&confirm('Tisch wirklich leeren? Dies wird nicht als Zahlung gespeichert.')){state.orders[tableId]={};history=[];save();renderOrder();tables()}};document.getElementById('undo').onclick=undo;document.getElementById('pay').onclick=startPay;document.getElementById('backOrder').onclick=()=>view('orderView');document.getElementById('whole').onclick=()=>setMode('whole');document.getElementById('split').onclick=()=>setMode('split');document.getElementById('cashInput').oninput=updatePay;document.getElementById('finish').onclick=finish;
 document.getElementById('confirmStartDay').onclick=startCashDay;document.getElementById('startDemoDay').onclick=startDemoCashDay;document.getElementById('startCashDaySettings').onclick=openStartDay;document.getElementById('endCashDay').onclick=requestEndCashDay;document.getElementById('cancelEndDay').onclick=()=>document.getElementById('endDayDialog').close();document.getElementById('confirmEndDay').onclick=finishCashDay;document.getElementById('deleteCurrentDay').onclick=requestDeleteCurrentDay;document.getElementById('cancelDeleteDay').onclick=()=>{document.getElementById('deleteDayDialog').close();renderStats();document.getElementById('statsDialog').showModal()};document.getElementById('confirmDeleteDay').onclick=deleteCurrentDay;
 document.getElementById('openStats').onclick=openStats;document.getElementById('closeArchiveDetail').onclick=closeArchiveDetail;document.getElementById('deleteArchivedDay').onclick=requestDeleteArchivedDay;document.getElementById('cancelDeleteArchivedDay').onclick=()=>{document.getElementById('deleteArchivedDayDialog').close();openArchiveDetail(selectedArchiveDayId)};document.getElementById('confirmDeleteArchivedDay').onclick=deleteArchivedDay;document.getElementById('closeStats').onclick=()=>document.getElementById('statsDialog').close();document.getElementById('cancelEditPayment').onclick=()=>{document.getElementById('editPaymentDialog').close();renderStats();document.getElementById('statsDialog').showModal()};document.getElementById('saveEditPayment').onclick=savePaymentEdit;document.getElementById('deletePayment').onclick=deleteEditingPayment;document.getElementById('closeSettings').onclick=()=>document.getElementById('settingsDialog').close();document.getElementById('manageTables').onclick=openConfig;document.getElementById('addTable').onclick=addRow;document.getElementById('cancelTables').onclick=()=>document.getElementById('tablesDialog').close();document.getElementById('saveTables').onclick=saveConfig;document.getElementById('exportData').onclick=exportData;document.getElementById('importData').onchange=e=>e.target.files[0]&&importData(e.target.files[0]);document.getElementById('iosHelp').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('helpDialog').showModal()};document.getElementById('closeHelp').onclick=()=>document.getElementById('helpDialog').close();document.getElementById('shareApp').onclick=share;document.getElementById('fullscreenBtn').onclick=()=>document.documentElement.requestFullscreen?.();
-document.getElementById('versionBox').onclick=handleDeveloperTap;document.getElementById('versionBox').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handleDeveloperTap()}};
-document.getElementById('feedbackSettings').onclick=()=>{document.getElementById('settingsDialog').close();openFeedback()};document.getElementById('closeFeedbackNext').onclick=()=>document.getElementById('feedbackNextDialog').close();document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
+document.getElementById('versionBox').onclick=handleProtectedAccess;document.getElementById('versionBox').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handleProtectedAccess()}};
+document.getElementById('feedbackSettings').onclick=()=>{document.getElementById('settingsDialog').close();openFeedback()};document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installBanner').classList.add('show')});document.getElementById('installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installBanner').classList.remove('show')};
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js');
-tables();updateCashDayStatus();updateDeveloperUi();if(!state.activeCashDay)setTimeout(openStartDay,100);
+tables();updateCashDayStatus();updateProtectedUi();if(!state.activeCashDay)setTimeout(openStartDay,100);
 </script>
 </body>
 </html>

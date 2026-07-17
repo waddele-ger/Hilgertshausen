@@ -1,15 +1,26 @@
 # Änderungsprotokoll
 
-## Alpha 3.4.2-dev7 – Geschütztes Löschen von Live-Kassentagen
+## Alpha 3.4.2-dev8 – Direktes Feedback
 
 ### Neu
-- Versteckter Entwicklermodus durch fünfmaliges Tippen auf die Versionsanzeige.
-- Archivierte Live-Kassentage können ausschließlich im Entwicklermodus gelöscht werden.
-- Vor dem endgültigen Löschen muss zusätzlich `LIVE LÖSCHEN` eingegeben werden.
-- Der Entwicklermodus gilt nur für die aktuelle Sitzung und ist nach einem Neustart wieder deaktiviert.
+- Feedback kann direkt aus der App an das Festkasse-Team gesendet werden.
+- Eine GitHub-Anmeldung ist für Rückmeldungen nicht mehr erforderlich.
+- Fehler, Verbesserungen und Ideen können weiterhin getrennt ausgewählt werden.
+- Optionale Testfragen und technische Angaben werden zusammen mit der Rückmeldung übermittelt.
+
+### Verbessert
+- Der Offline-Cache wurde aktualisiert, damit neue Versionen zuverlässiger geladen werden.
+- Öffentliche Hinweise wurden auf die für Kassierer relevanten Änderungen reduziert.
+
+## Alpha 3.4.2-dev7 – Geschützte Archivverwaltung
+
+### Neu
+- Archivierte Live-Kassentage sind vor versehentlichem Löschen geschützt.
+- Vor dem endgültigen Löschen ist eine zusätzliche eindeutige Bestätigung erforderlich.
 
 ### Unverändert
 - Der Demo-Kassentag bleibt sichtbar und funktioniert weiterhin wie bisher.
+
 
 ## Alpha 3.4.2-dev6 – Abschlüsse und Testdaten verwalten
 

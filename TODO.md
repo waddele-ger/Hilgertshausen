@@ -19,8 +19,8 @@
 
 ## 🛠️ Technik
 
-- [ ] Formspree integrieren
-- [ ] GitHub-Issue-System vollständig entfernen
+- [x] Formspree integrieren
+- [x] GitHub-Issue-System vollständig entfernen
 - [ ] Einstellungen und Kassendaten sauber voneinander trennen
 - [ ] Favicon hinzufügen
 
@@ -48,10 +48,8 @@
 - [x] Vorgangsnummern nach Löschungen nicht neu vergeben.
 
 
-#feature Geschütztes Löschen archivierter Live-Kassentage
+#feature Geschützte Archivverwaltung
 
-- [x] Versteckten Entwicklermodus über die Versionsanzeige aktivieren.
-- [x] Live-Kassentage nur im Entwicklermodus löschbar machen.
-- [x] Eingabe `LIVE LÖSCHEN` als zusätzliche Sicherheitsabfrage verlangen.
-- [x] Entwicklermodus nach Neustart automatisch deaktivieren.
+- [x] Archivierte Live-Kassentage vor versehentlichem Löschen schützen.
+- [x] Zusätzliche eindeutige Sicherheitsabfrage verwenden.
 - [x] Demo-Ablauf unverändert lassen.
