@@ -1,3 +1,12 @@
+# Änderungsprotokoll
+
+## Alpha 3.4.2-dev2 – Rückmeldung bei der Artikelauswahl
+
+### Verbessert
+- Nur die gewählte Hauptkategorie bleibt dauerhaft hervorgehoben.
+- Artikelbuttons geben beim Antippen einen kurzen, dezenten visuellen Impuls.
+- Artikel selbst bleiben nach der Auswahl nicht dauerhaft markiert.
+
 # Changelog
 
 ## Alpha 3.4.2-dev1 – UX-Test Artikelauswahl
