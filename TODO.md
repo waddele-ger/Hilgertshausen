@@ -8,10 +8,11 @@
 
 ## ⚙️ Funktionen
 
-- [ ] Export / Import der Daten besprechen
+- [ ] Praxistest für Kassentag starten, beenden, archivieren und löschen auswerten
+- [ ] Prüfen, ob archivierte Kassentage später geöffnet oder exportiert werden sollen
+- [ ] Export / Import der Daten weiter testen
 - [ ] Neue Preisliste importieren
 - [ ] Bewirtungsbeleg
-- [ ] Praxistest der Statistik und Zahlungskorrektur auswerten
 
 ---
 

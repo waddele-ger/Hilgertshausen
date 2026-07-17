@@ -1,5 +1,16 @@
 # Änderungsprotokoll
 
+## Alpha 3.4.1 – Kassentage und Datenabgrenzung
+
+### Neu
+- Vor dem Kassieren muss zwingend ein Kassentag gestartet werden.
+- Kassentage können sicher beendet und anschließend archiviert werden.
+- Das Beenden ist durch die zusätzliche Eingabe „BEENDEN“ geschützt.
+- Ein Kassentag kann nur beendet werden, wenn keine offenen Bestellungen vorhanden sind.
+- Unvollständige Test-Kassentage können nach Eingabe von „LÖSCHEN“ vollständig entfernt werden.
+- Ältere Zahlungsdaten aus Alpha 3.4 können beim Start archiviert oder gelöscht werden.
+- Die Statistik zeigt nur den aktiven Kassentag und listet abgeschlossene Kassentage separat im Archiv.
+
 ## Alpha 3.4 – Statistik und Zahlungskorrekturen
 
 ### Neu
