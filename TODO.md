@@ -47,3 +47,11 @@
 - [x] Kompletten aktiven Test-Kassentag einfach löschen.
 - [x] Vorgangsnummern nach Löschungen nicht neu vergeben.
 
+
+#feature Geschütztes Löschen archivierter Live-Kassentage
+
+- [x] Versteckten Entwicklermodus über die Versionsanzeige aktivieren.
+- [x] Live-Kassentage nur im Entwicklermodus löschbar machen.
+- [x] Eingabe `LIVE LÖSCHEN` als zusätzliche Sicherheitsabfrage verlangen.
+- [x] Entwicklermodus nach Neustart automatisch deaktivieren.
+- [x] Demo-Ablauf unverändert lassen.

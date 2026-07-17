@@ -1,5 +1,16 @@
 # Änderungsprotokoll
 
+## Alpha 3.4.2-dev7 – Geschütztes Löschen von Live-Kassentagen
+
+### Neu
+- Versteckter Entwicklermodus durch fünfmaliges Tippen auf die Versionsanzeige.
+- Archivierte Live-Kassentage können ausschließlich im Entwicklermodus gelöscht werden.
+- Vor dem endgültigen Löschen muss zusätzlich `LIVE LÖSCHEN` eingegeben werden.
+- Der Entwicklermodus gilt nur für die aktuelle Sitzung und ist nach einem Neustart wieder deaktiviert.
+
+### Unverändert
+- Der Demo-Kassentag bleibt sichtbar und funktioniert weiterhin wie bisher.
+
 ## Alpha 3.4.2-dev6 – Abschlüsse und Testdaten verwalten
 
 ### Neu
