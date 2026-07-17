@@ -14,6 +14,9 @@ Ein einfaches, schnelles und offlinefähiges Kassensystem als Progressive Web Ap
 - Bestellungen erfassen
 - Barzahlung mit Wechselgeldberechnung
 - Übersicht offener Tische
+- Statistik gesamt und nach Tischen
+- Liste abgeschlossener Kassenvorgänge mit Vorgangsnummer
+- Abgeschlossene Zahlungen korrigieren und nachvollziehen
 - Datensicherung (Export / Import)
 - Integrierte Feedback-Funktion
 
@@ -21,4 +24,4 @@ Ein einfaches, schnelles und offlinefähiges Kassensystem als Progressive Web Ap
 
 🚧 Das Projekt befindet sich aktuell in der aktiven Entwicklung.
 
-Aktuelle Version: Alpha 3.3
+Aktuelle Version: Alpha 3.4

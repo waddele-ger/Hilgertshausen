@@ -16,8 +16,16 @@ Die Festkasse soll eine einfache, zuverlässige und leicht bedienbare Kassierhil
 - Nach jedem Schritt gemeinsam bewerten.
 - Funktionen werden nur eingebaut, wenn sie den Kassierern die Arbeit erleichtern.
 - Die Startseite dient ausschließlich dem Kassieren.
-- Alles, was nicht unmittelbar beim Kassieren hilft (Feedback, Changelog, technische Informationen usw.), gehört in die Einstellungen.
+- Alles, was nicht unmittelbar beim Kassieren hilft, gehört in die Einstellungen.
 - Optimierungen aufgrund echter Praxistests haben Vorrang vor neuen Funktionen.
+
+## Kassendaten und Korrekturen
+
+- Abgeschlossene Zahlungen erhalten eine eindeutige, fortlaufende Vorgangsnummer.
+- Eine abgeschlossene Zahlung darf nachträglich korrigiert werden, weil Freizeitkassierer Fehler machen können.
+- Korrekturen dürfen nicht unsichtbar überschrieben werden. Alter Betrag, neuer Betrag, Differenz und Zeitpunkt bleiben nachvollziehbar.
+- Korrigierte Zahlungen werden in der Statistik deutlich gekennzeichnet, damit Abweichungen bei der Kassenprüfung gefunden werden können.
+- Die Statistik zeigt die aktuell gültigen Beträge nach allen Korrekturen.
 
 ## TODO
 

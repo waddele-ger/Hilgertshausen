@@ -1,5 +1,15 @@
 # Änderungsprotokoll
 
+## Alpha 3.4 – Statistik und Zahlungskorrekturen
+
+### Neu
+- Statistik mit Gesamtumsatz und Anzahl abgeschlossener Kassenvorgänge.
+- Auswertung von Umsatz und Zahlungen nach Tischen.
+- Liste aller abgeschlossenen Zahlungen mit fortlaufender Vorgangsnummer.
+- Abgeschlossene Zahlungen können erneut geöffnet und korrigiert werden.
+- Korrigierte Zahlungen werden mit ursprünglichem Betrag, neuem Betrag, Differenz und Korrekturzeitpunkt nachvollziehbar gespeichert.
+- Korrekturen werden in der Statistik deutlich gekennzeichnet.
+
 ## Alpha 3.3 – Tischübersicht optimiert
 
 ### Neu

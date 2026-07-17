@@ -11,6 +11,7 @@
 - [ ] Export / Import der Daten besprechen
 - [ ] Neue Preisliste importieren
 - [ ] Bewirtungsbeleg
+- [ ] Praxistest der Statistik und Zahlungskorrektur auswerten
 
 ---
 
