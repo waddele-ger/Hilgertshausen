@@ -28,6 +28,10 @@
 ## ✨ Quality of Life (QoL)
 
 - [x] Feedback in die Einstellungen verschieben (Priorität 1)
+- [x] Offene Tische zuerst anzeigen
+- [x] Tischstatus „Offen“ und „Frei“ deutlich kennzeichnen
+- [x] Einstellungen in verständliche Bereiche gliedern
+- [x] Vereinslogo im Header besser sichtbar machen
 
 ---
 

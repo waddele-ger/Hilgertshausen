@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.2</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.3</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -21,7 +21,7 @@
     button,input{font:inherit}button{cursor:pointer}
     .app{max-width:1240px;margin:auto;padding:10px 10px 90px}
     header{background:linear-gradient(135deg,var(--wine),#5b211d);color:#fff;padding:16px;border-radius:24px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:8px;z-index:20}
-    .brand{display:flex;align-items:center;gap:12px}.brand img{width:54px;height:54px;border-radius:15px}.brand h1{font-size:clamp(20px,3vw,31px);margin:0}.brand small{opacity:.83}
+    .brand{display:flex;align-items:center;gap:14px}.brand img{width:68px;height:68px;object-fit:contain;background:#fff;border-radius:16px;padding:4px}.brand h1{font-size:clamp(20px,3vw,31px);margin:0}.brand small{opacity:.83}
     .head-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
     .btn{border:0;border-radius:15px;padding:13px 16px;min-height:50px;font-weight:800;background:#ede6da;color:var(--ink)}
     .btn.gold{background:var(--gold)}.btn.green{background:var(--green);color:white}.btn.red{background:var(--red);color:white}.btn.ghost{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.6);color:#fff}
@@ -29,7 +29,7 @@
     .status-card{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);min-width:min(100%,360px)}.status-item{display:flex;align-items:center;gap:10px}.status-icon{font-size:24px}.status-label{font-size:13px;color:var(--muted);font-weight:750}.status-value{font-size:20px;font-weight:950;color:var(--wine)}
     .grid{display:grid;gap:13px}.tables{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}.cats{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.products{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}
     .tile{border:0;border-radius:var(--r);background:var(--card);box-shadow:var(--shadow);padding:18px;min-height:140px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:8px;color:var(--ink);transition:transform .08s ease}
-    .tile:active{transform:scale(.98)}.tile.free{background:#e7f4eb;outline:2px solid #a9d0b8}.tile strong{font-size:22px}.tile .price,.tile .sum{font-size:25px;font-weight:900;color:var(--wine)}.tile .meta{color:var(--muted)}.tile.busy{outline:4px solid var(--gold);background:#fff4d0}
+    .tile:active{transform:scale(.98)}.tile.free{background:#e7f4eb;outline:2px solid #a9d0b8}.table-status{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:900}.table-status.open{color:#7a5411}.table-status.free{color:#24663f}.tile strong{font-size:22px}.tile .price,.tile .sum{font-size:25px;font-weight:900;color:var(--wine)}.tile .meta{color:var(--muted)}.tile.busy{outline:4px solid var(--gold);background:#fff4d0}
     .cat{background:linear-gradient(145deg,#fffaf1,#eadbc2)}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}.panel{background:var(--card);border-radius:var(--r);padding:15px;box-shadow:var(--shadow)}.side{position:sticky;top:104px}
     .list{display:flex;flex-direction:column;gap:9px;max-height:54vh;overflow:auto}.row{display:grid;grid-template-columns:50px 1fr 50px;gap:8px;align-items:center;background:#f0e7da;border-radius:15px;padding:9px}.row button{border:0;border-radius:12px;height:46px;font-size:26px;font-weight:900}.minus{background:#e8c8c3;color:#711d18}.plus{background:#cde8d7;color:#1f6038}.row-name{font-weight:850}.sub{font-size:14px;color:var(--muted)}
@@ -37,16 +37,16 @@
     .empty{text-align:center;color:var(--muted);padding:24px}.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modes .active{outline:4px solid var(--gold)}
     .cash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.cash-grid .btn{font-size:19px;min-height:63px}.cash-input{width:100%;font-size:28px;padding:15px;border:2px solid #c9beb0;border-radius:15px;text-align:right;margin:11px 0;background:white}.change{display:flex;justify-content:space-between;background:#e1f1e5;padding:15px;border-radius:15px;font-size:25px;font-weight:950}
     dialog{border:0;border-radius:22px;padding:0;width:min(600px,calc(100% - 22px));box-shadow:0 24px 70px rgba(0,0,0,.4)}dialog::backdrop{background:rgba(0,0,0,.55)}.dialog{padding:18px;background:var(--card)}.dialog h3{margin-top:0}.formrow{display:flex;gap:8px;margin:9px 0}.formrow input{flex:1;padding:13px;border:1px solid #bfb3a4;border-radius:13px}.config-list{display:flex;flex-direction:column;gap:8px;max-height:46vh;overflow:auto}.config-row{display:grid;grid-template-columns:1fr auto;gap:8px}.config-row input{padding:12px;border:1px solid #bfb3a4;border-radius:12px}
-    .settings-grid{display:grid;gap:9px}.settings-grid .btn{text-align:left}.notice{background:#fff0c5;border-radius:14px;padding:12px;margin:10px 0}.install-banner{display:none;background:#e9f2ff;border:2px solid #9dbce8;padding:12px;border-radius:16px;margin:14px 0;align-items:center;justify-content:space-between;gap:10px}.install-banner.show{display:flex}
+    .settings-grid{display:grid;gap:14px}.settings-group{display:grid;gap:8px;padding:12px;background:#f3eadc;border-radius:16px}.settings-group h4{margin:0 0 2px;font-size:15px;color:var(--wine)}.settings-grid .btn{text-align:left}.notice{background:#fff0c5;border-radius:14px;padding:12px;margin:10px 0}.install-banner{display:none;background:#e9f2ff;border:2px solid #9dbce8;padding:12px;border-radius:16px;margin:14px 0;align-items:center;justify-content:space-between;gap:10px}.install-banner.show{display:flex}
     .footerbar{position:fixed;bottom:0;left:0;right:0;background:rgba(243,239,230,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px;z-index:30;display:none}.footerbar .inner{max-width:1240px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .feedback-types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.feedback-types label{background:#eee3d4;border:2px solid transparent;border-radius:14px;padding:12px;text-align:center;font-weight:800}.feedback-types label:has(input:checked){border-color:var(--gold);background:#fff0c6}.feedback-types input{display:none}.feedback-text{width:100%;min-height:150px;border:2px solid #c9beb0;border-radius:14px;padding:13px;font:inherit;resize:vertical;background:#fff}.test-questions{display:grid;gap:7px;background:#f1e8dc;border-radius:14px;padding:12px;margin:10px 0}.test-questions label{display:flex;gap:9px;align-items:flex-start}.version-box{background:#efe5d7;padding:12px;border-radius:14px}.changelog-list{padding-left:20px}.changelog-list li{margin:8px 0}
-    @media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}}
+    @media(max-width:850px){.brand img{width:60px;height:60px}.layout{grid-template-columns:1fr}.side{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}}
   </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand"><img src="icons/icon-192.png" alt=""><div><h1>Hilgertshausen Festkasse</h1><small>Nur Barzahlung</small></div></div>
+  <div class="brand"><img src="assets/logo/tsv-hilgertshausen-logo.png" alt="TSV Hilgertshausen"><div><h1>Hilgertshausen Festkasse</h1><small>Nur Barzahlung</small></div></div>
   <div class="head-actions">
     <button class="btn ghost desktop" id="home">Tische</button>
     <button class="btn gold desktop" id="settings">Einstellungen</button>
@@ -86,16 +86,26 @@
 <div class="footerbar"><div class="inner"><button class="btn" id="homeMobile">Tische</button><button class="btn gold" id="settingsMobile">Einstellungen</button><button class="btn" id="fullscreenBtn">Vollbild</button></div></div>
 
 <dialog id="settingsDialog"><div class="dialog"><h3>Einstellungen</h3><div class="settings-grid">
+<div class="settings-group"><h4>📋 Allgemein</h4>
 <button class="btn" id="manageTables">Tische verwalten</button>
+</div>
+<div class="settings-group"><h4>💾 Daten</h4>
 <button class="btn" id="exportData">Datensicherung herunterladen</button>
 <label class="btn" style="display:block">Datensicherung einspielen<input type="file" id="importData" accept=".json" hidden></label>
+</div>
+<div class="settings-group"><h4>📱 App</h4>
 <button class="btn" id="iosHelp">iPhone/iPad: Installation erklären</button>
 <button class="btn" id="shareApp">App-Adresse teilen</button>
-<button class="btn" id="feedbackSettings">🐞 Feedback senden</button>
+</div>
+<div class="settings-group"><h4>🐞 Support</h4>
+<button class="btn" id="feedbackSettings">Feedback senden</button>
 <button class="btn" id="openChangelog">Was ist neu?</button>
-<div class="version-box"><strong>Installierte Version</strong><div>Alpha 3.2 – Tester Edition</div></div>
+</div>
+<div class="settings-group"><h4>ℹ️ Über die App</h4>
+<div class="version-box"><strong>Installierte Version</strong><div>Alpha 3.3 – Tester Edition</div></div>
 <a class="btn" href="versionen/alpha-2.0/index.html" style="text-decoration:none">Zur Alpha 2.0 wechseln</a>
 <a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
+</div>
 <button class="btn red" id="closeSettings">Schließen</button>
 </div></div></dialog>
 
@@ -118,7 +128,7 @@
 
 
 <dialog id="feedbackNextDialog"><div class="dialog"><h3>Fast geschafft 🐞</h3><p>Die vorbereitete Meldeseite wurde in einem neuen Tab geöffnet.</p><ol><li>Falls eine Anmeldung erscheint, bitte kurz anmelden.</li><li>Deine Beschreibung ist bereits vollständig eingetragen.</li><li>Zum Abschluss nur noch auf den grünen Button <strong>„Submit new issue“</strong> tippen.</li></ol><div class="notice">Danach kannst du diesen Hinweis schließen und zur Festkasse zurückkehren.</div><button id="closeFeedbackNext" class="btn green" style="width:100%">Verstanden</button></div></dialog>
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.2?</h3><ul class="changelog-list"><li>Offene Tische und offener Betrag sind deutlich sichtbar</li><li>Freie Tische sind dezent grün markiert</li><li>Belegte Tische bleiben gelb hervorgehoben</li><li>Feedback wurde in die Einstellungen verschoben</li><li>Der Header wurde vereinfacht</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.3?</h3><ul class="changelog-list"><li>Offene Tische stehen automatisch am Anfang der Übersicht</li><li>Jeder Tisch zeigt klar „🟡 Offen“ oder „🟢 Frei“</li><li>Die Einstellungen sind übersichtlich in Bereiche gegliedert</li><li>Das Vereinslogo ist im Header größer und besser sichtbar</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -128,7 +138,7 @@ const PRODUCTS=[
 {id:'gutschein_hendl',c:'Gutscheine',n:'Gutschein ½ Hendl',p:10.5},{id:'gutschein_bier',c:'Gutscheine',n:'Gutschein Maß Bier',p:10.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.2';
+const APP_VERSION='Alpha 3.3';
 const ISSUE_URL='https://github.com/waddele-ger/Hilgertshausen/issues/new';
 const DEFAULT=Array.from({length:12},(_,i)=>({id:'t'+(i+1),name:'Tisch '+(i+1)}));
 let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},installPrompt=null;
@@ -139,7 +149,7 @@ function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;',
 function prod(id){return PRODUCTS.find(x=>x.id===id)}function order(id){if(!state.orders[id])state.orders[id]={};return state.orders[id]}
 function total(o){return Object.entries(o).reduce((s,[id,q])=>s+(prod(id)?.p||0)*q,0)}
 function view(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
-function tables(){let open=0,sum=0;const g=document.getElementById('tables');g.innerHTML='';state.tables.forEach(t=>{const o=order(t.id),v=total(o),count=Object.values(o).reduce((a,b)=>a+b,0);if(v){open++;sum+=v}const b=document.createElement('button');b.className='tile '+(v?'busy':'free');b.innerHTML=`<strong>${esc(t.name)}</strong><div class="meta">${count?count+' Artikel offen':'frei'}</div><div class="sum">${euro(v)}</div>`;b.onclick=()=>openTable(t.id);g.appendChild(b)});document.getElementById('openTablesCount').textContent=open;document.getElementById('openAmount').textContent=euro(sum);save()}
+function tables(){let open=0,sum=0;const g=document.getElementById('tables');g.innerHTML='';const sorted=[...state.tables].sort((a,b)=>Number(total(order(b.id))>0)-Number(total(order(a.id))>0));sorted.forEach(t=>{const o=order(t.id),v=total(o),count=Object.values(o).reduce((a,b)=>a+b,0);if(v){open++;sum+=v}const isOpen=v>0,b=document.createElement('button');b.className='tile '+(isOpen?'busy':'free');b.innerHTML=`<div class="table-status ${isOpen?'open':'free'}">${isOpen?'🟡 Offen':'🟢 Frei'}</div><strong>${esc(t.name)}</strong><div class="meta">${count?count+' Artikel offen':'Noch keine Bestellung'}</div><div class="sum">${euro(v)}</div>`;b.onclick=()=>openTable(t.id);g.appendChild(b)});document.getElementById('openTablesCount').textContent=open;document.getElementById('openAmount').textContent=euro(sum);save()}
 function openTable(id){tableId=id;category=null;history=[];document.getElementById('tableName').textContent=state.tables.find(x=>x.id===id)?.name||'Tisch';renderCats();renderOrder();view('orderView')}
 function renderCats(){const g=document.getElementById('categories');g.innerHTML='';[...new Set(PRODUCTS.map(x=>x.c))].forEach(c=>{const b=document.createElement('button');b.className='tile cat';b.innerHTML=`<strong>${esc(c)}</strong><div class="meta">${PRODUCTS.filter(x=>x.c===c).length} Artikel</div>`;b.onclick=()=>{category=c;renderProducts()};g.appendChild(b)});document.getElementById('products').innerHTML='<div class="empty">Bitte einen Bereich auswählen.</div>';document.getElementById('productTitle').textContent='Artikel';document.getElementById('backCats').style.display='none'}
 function renderProducts(){const g=document.getElementById('products');g.innerHTML='';document.getElementById('productTitle').textContent=category;document.getElementById('backCats').style.display='inline-block';PRODUCTS.filter(x=>x.c===category).forEach(p=>{const q=order(tableId)[p.id]||0,b=document.createElement('button');b.className='tile';b.innerHTML=`<strong>${esc(p.n)}</strong><div class="price">${euro(p.p)}</div><div class="meta">${q?'Bereits '+q+'×':'Antippen zum Hinzufügen'}</div>`;b.onclick=()=>qty(p.id,1,true);g.appendChild(b)})}

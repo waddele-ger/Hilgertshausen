@@ -1,5 +1,15 @@
 # Änderungsprotokoll
 
+## Alpha 3.3 – Tischübersicht optimiert
+
+### Neu
+- Offene Tische werden automatisch vor freien Tischen angezeigt.
+- Jeder Tisch zeigt seinen Status deutlich als „🟡 Offen“ oder „🟢 Frei“.
+
+### Verbessert
+- Die Einstellungen sind in die Bereiche Allgemein, Daten, App, Support und Über die App gegliedert.
+- Das TSV-Vereinslogo ist im Header größer und besser sichtbar.
+
 ## Alpha 3.2 – Kassieransicht aufgeräumt
 
 ### Neu
