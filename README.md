@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.4.2-dev5
+Version: Alpha 3.4.2-dev6
 
 ## Projekt
 
@@ -47,6 +47,9 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Reduzierte Mengen werden auf den ursprünglichen Tisch zurückgebucht
 - Erhöhte Mengen werden nur dann vom Tisch abgezogen, wenn sie dort noch offen sind
 - Unmögliche Korrekturen werden blockiert
+- Einzelne abgeschlossene Zahlungen können gelöscht werden; ihre Artikel werden auf den ursprünglichen Tisch zurückgebucht
+- Die Tischansicht aktualisiert sich nach Korrekturen und Löschungen sofort
+- Ein kompletter Test-Kassentag kann über einen klaren Sicherheitsdialog gelöscht werden
 
 ## Bedienphilosophie
 

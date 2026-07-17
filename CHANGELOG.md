@@ -1,5 +1,17 @@
 # Änderungsprotokoll
 
+## Alpha 3.4.2-dev6 – Abschlüsse und Testdaten verwalten
+
+### Neu
+- Abgeschlossene Zahlungen können einzeln gelöscht werden.
+- Beim Löschen werden alle enthaltenen Artikel automatisch auf den ursprünglichen Tisch zurückgebucht.
+- Die ursprüngliche Vorgangsnummer bleibt verbraucht und wird nicht erneut vergeben.
+- Ein kompletter aktiver Test-Kassentag kann über einen einfachen, klaren Sicherheitsdialog gelöscht werden.
+
+### Behoben
+- Nach Zahlungskorrekturen und Löschungen aktualisieren sich Tischbestellung, Artikelmengen und Gesamtbetrag sofort.
+
+
 ## Alpha 3.4.2-dev5 – Zahlungskorrekturen mit Tisch synchronisiert
 
 ### Behoben

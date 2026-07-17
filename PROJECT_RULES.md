@@ -35,6 +35,9 @@ Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 - Korrekturen dürfen nicht unsichtbar überschrieben werden. Alter Betrag, neuer Betrag, Differenz und Zeitpunkt bleiben nachvollziehbar.
 - Korrigierte Zahlungen werden in der Statistik deutlich gekennzeichnet.
 - Die Statistik zeigt die aktuell gültigen Beträge nach allen Korrekturen.
+- Gelöschte Zahlungen müssen ihre Artikel auf den ursprünglichen Tisch zurückbuchen.
+- Vorgangsnummern gelöschter Zahlungen werden nicht wiederverwendet.
+- Test-Kassentage müssen für ehrenamtliche Helfer vollständig und verständlich löschbar sein.
 - Mengenänderungen einer Zahlung müssen automatisch mit der offenen Bestellung des ursprünglichen Tisches abgeglichen werden.
 - Eine Erhöhung darf nur gespeichert werden, wenn die zusätzliche Menge auf dem Tisch noch offen ist.
 

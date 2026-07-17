@@ -39,3 +39,11 @@
 - [x] Korrektur blockieren, wenn auf dem Tisch nicht genügend Artikel offen sind.
 - [x] Artikeländerungen in der Korrekturhistorie dokumentieren.
 
+#bug Abschlüsse und Test-Kassentage verwalten
+
+- [x] Tischansicht nach einer Zahlungskorrektur sofort aktualisieren.
+- [x] Einzelne abgeschlossene Zahlung löschen.
+- [x] Gelöschte Artikel auf den ursprünglichen Tisch zurückbuchen.
+- [x] Kompletten aktiven Test-Kassentag einfach löschen.
+- [x] Vorgangsnummern nach Löschungen nicht neu vergeben.
+
