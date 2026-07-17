@@ -9,7 +9,8 @@
 ## ⚙️ Funktionen
 
 - [ ] Praxistest für Kassentag starten, beenden, archivieren und löschen auswerten
-- [ ] Prüfen, ob archivierte Kassentage später geöffnet oder exportiert werden sollen
+- [x] Archivierte Kassentage öffnen und Grunddaten schreibgeschützt anzeigen
+- [ ] Archivdetails um vollständige Zahlungsliste, Tischstatistik und Korrekturhistorie erweitern
 - [ ] Export / Import der Daten weiter testen
 - [ ] Neue Preisliste importieren
 - [ ] Bewirtungsbeleg

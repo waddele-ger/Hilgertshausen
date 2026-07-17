@@ -24,6 +24,7 @@ Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 - Ein Kassentag darf nicht beendet werden, solange offene Bestellungen vorhanden sind.
 - Das Beenden muss vor versehentlichen Klicks durch eine zusätzliche Texteingabe geschützt sein.
 - Beendete Kassentage werden archiviert und nicht stillschweigend gelöscht.
+- Archivierte Kassentage dürfen angesehen, aber nicht nachträglich verändert werden.
 - Ein unvollständiger oder versehentlich gestarteter Kassentag darf vollständig gelöscht werden, aber nur nach einer besonders deutlichen Sicherheitsabfrage.
 - Ältere, nicht zugeordnete Daten dürfen nicht automatisch in einen neuen Kassentag übernommen werden.
 

@@ -1,5 +1,14 @@
 # Änderungsprotokoll
 
+## Alpha 3.4.2-dev4 – Archivdetails
+
+### Neu
+- Archivierte Kassentage können durch Antippen geöffnet werden.
+- Die schreibgeschützte Detailansicht zeigt Startzeit, Endzeit, Umsatz, Anzahl Zahlungen und Anzahl Korrekturen.
+- Unvollständig archivierte Kassentage werden entsprechend gekennzeichnet.
+- Über „Zurück zur Statistik“ gelangt man wieder in die aktive Statistikansicht.
+
+
 ## Alpha 3.4.2-dev3 – Demo-Kassentag
 
 - Demo-Kassentag kann ohne Namenseingabe sofort gestartet werden.

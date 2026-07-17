@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.4.2-dev3
+Version: Alpha 3.4.2-dev4
 
 ## Projekt
 
@@ -32,6 +32,11 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Umsatz und Zahlungen je Tisch
 - Liste abgeschlossener Zahlungen
 - Übersicht archivierter Kassentage
+
+### Archiv
+- Archivierte Kassentage können geöffnet werden
+- Die Detailansicht zeigt Start, Ende, Umsatz, Anzahl Zahlungen und Anzahl Korrekturen
+- Archivierte Kassentage sind vollständig schreibgeschützt
 
 ### Zahlungskorrekturen
 - Abgeschlossene Zahlungen erneut öffnen
