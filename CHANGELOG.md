@@ -1,5 +1,12 @@
 # Änderungsprotokoll
 
+## Alpha 3.4.2-dev3 – Demo-Kassentag
+
+- Demo-Kassentag kann ohne Namenseingabe sofort gestartet werden.
+- Ein gelber Banner kennzeichnet den Demo-Modus dauerhaft.
+- Demo-Zahlungen werden beim Beenden vollständig verworfen und nicht archiviert.
+- Normaler Kassentag und Archivierungsablauf bleiben unverändert.
+
 ## Alpha 3.4.2-dev2 – Rückmeldung bei der Artikelauswahl
 
 ### Verbessert

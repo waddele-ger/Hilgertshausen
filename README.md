@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.4.1
+Version: Alpha 3.4.2-dev3
 
 ## Projekt
 
