@@ -5,6 +5,8 @@
 Das Ziel ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 
 Die Festkasse soll eine einfache, zuverlässige und leicht bedienbare Kassierhilfe für Vereinsveranstaltungen sein.
+- Größere Änderungen werden immer im Browser und auf dem Smartphone geprüft.
+- Bei Unterschieden hat die Smartphone-Ansicht immer Vorrang (Mobile First).
 
 ---
 

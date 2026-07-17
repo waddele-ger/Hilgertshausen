@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.1</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.2</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -26,10 +26,10 @@
     .btn{border:0;border-radius:15px;padding:13px 16px;min-height:50px;font-weight:800;background:#ede6da;color:var(--ink)}
     .btn.gold{background:var(--gold)}.btn.green{background:var(--green);color:white}.btn.red{background:var(--red);color:white}.btn.ghost{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.6);color:#fff}
     .view{display:none}.view.active{display:block}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 2px 12px}.toolbar h2,.toolbar h3{margin:0}
-    .badge{background:#eadfce;border-radius:999px;padding:8px 12px;font-weight:750;color:#4f463d}
+    .status-card{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);min-width:min(100%,360px)}.status-item{display:flex;align-items:center;gap:10px}.status-icon{font-size:24px}.status-label{font-size:13px;color:var(--muted);font-weight:750}.status-value{font-size:20px;font-weight:950;color:var(--wine)}
     .grid{display:grid;gap:13px}.tables{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}.cats{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.products{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}
     .tile{border:0;border-radius:var(--r);background:var(--card);box-shadow:var(--shadow);padding:18px;min-height:140px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:8px;color:var(--ink);transition:transform .08s ease}
-    .tile:active{transform:scale(.98)}.tile strong{font-size:22px}.tile .price,.tile .sum{font-size:25px;font-weight:900;color:var(--wine)}.tile .meta{color:var(--muted)}.tile.busy{outline:4px solid var(--gold);background:#fff4d0}
+    .tile:active{transform:scale(.98)}.tile.free{background:#e7f4eb;outline:2px solid #a9d0b8}.tile strong{font-size:22px}.tile .price,.tile .sum{font-size:25px;font-weight:900;color:var(--wine)}.tile .meta{color:var(--muted)}.tile.busy{outline:4px solid var(--gold);background:#fff4d0}
     .cat{background:linear-gradient(145deg,#fffaf1,#eadbc2)}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}.panel{background:var(--card);border-radius:var(--r);padding:15px;box-shadow:var(--shadow)}.side{position:sticky;top:104px}
     .list{display:flex;flex-direction:column;gap:9px;max-height:54vh;overflow:auto}.row{display:grid;grid-template-columns:50px 1fr 50px;gap:8px;align-items:center;background:#f0e7da;border-radius:15px;padding:9px}.row button{border:0;border-radius:12px;height:46px;font-size:26px;font-weight:900}.minus{background:#e8c8c3;color:#711d18}.plus{background:#cde8d7;color:#1f6038}.row-name{font-weight:850}.sub{font-size:14px;color:var(--muted)}
@@ -39,16 +39,14 @@
     dialog{border:0;border-radius:22px;padding:0;width:min(600px,calc(100% - 22px));box-shadow:0 24px 70px rgba(0,0,0,.4)}dialog::backdrop{background:rgba(0,0,0,.55)}.dialog{padding:18px;background:var(--card)}.dialog h3{margin-top:0}.formrow{display:flex;gap:8px;margin:9px 0}.formrow input{flex:1;padding:13px;border:1px solid #bfb3a4;border-radius:13px}.config-list{display:flex;flex-direction:column;gap:8px;max-height:46vh;overflow:auto}.config-row{display:grid;grid-template-columns:1fr auto;gap:8px}.config-row input{padding:12px;border:1px solid #bfb3a4;border-radius:12px}
     .settings-grid{display:grid;gap:9px}.settings-grid .btn{text-align:left}.notice{background:#fff0c5;border-radius:14px;padding:12px;margin:10px 0}.install-banner{display:none;background:#e9f2ff;border:2px solid #9dbce8;padding:12px;border-radius:16px;margin:14px 0;align-items:center;justify-content:space-between;gap:10px}.install-banner.show{display:flex}
     .footerbar{position:fixed;bottom:0;left:0;right:0;background:rgba(243,239,230,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px;z-index:30;display:none}.footerbar .inner{max-width:1240px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-
-    .bug-fab{position:fixed;right:18px;bottom:88px;z-index:45;border:0;border-radius:999px;background:#f0b83f;color:#281b09;box-shadow:0 10px 30px rgba(0,0,0,.28);min-width:62px;height:62px;padding:0 18px;font-size:25px;font-weight:950;display:flex;align-items:center;justify-content:center;gap:8px}
-    .bug-fab span{font-size:16px}.feedback-types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.feedback-types label{background:#eee3d4;border:2px solid transparent;border-radius:14px;padding:12px;text-align:center;font-weight:800}.feedback-types label:has(input:checked){border-color:var(--gold);background:#fff0c6}.feedback-types input{display:none}.feedback-text{width:100%;min-height:150px;border:2px solid #c9beb0;border-radius:14px;padding:13px;font:inherit;resize:vertical;background:#fff}.test-questions{display:grid;gap:7px;background:#f1e8dc;border-radius:14px;padding:12px;margin:10px 0}.test-questions label{display:flex;gap:9px;align-items:flex-start}.version-box{background:#efe5d7;padding:12px;border-radius:14px}.changelog-list{padding-left:20px}.changelog-list li{margin:8px 0}
+.feedback-types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.feedback-types label{background:#eee3d4;border:2px solid transparent;border-radius:14px;padding:12px;text-align:center;font-weight:800}.feedback-types label:has(input:checked){border-color:var(--gold);background:#fff0c6}.feedback-types input{display:none}.feedback-text{width:100%;min-height:150px;border:2px solid #c9beb0;border-radius:14px;padding:13px;font:inherit;resize:vertical;background:#fff}.test-questions{display:grid;gap:7px;background:#f1e8dc;border-radius:14px;padding:12px;margin:10px 0}.test-questions label{display:flex;gap:9px;align-items:flex-start}.version-box{background:#efe5d7;padding:12px;border-radius:14px}.changelog-list{padding-left:20px}.changelog-list li{margin:8px 0}
     @media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}}
   </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand"><img src="icons/icon-192.png" alt=""><div><h1>Hilgertshausen Festkasse</h1><small>Alpha 3.1 · Tester Edition · nur Barzahlung</small></div></div>
+  <div class="brand"><img src="icons/icon-192.png" alt=""><div><h1>Hilgertshausen Festkasse</h1><small>Nur Barzahlung</small></div></div>
   <div class="head-actions">
     <button class="btn ghost desktop" id="home">Tische</button>
     <button class="btn gold desktop" id="settings">Einstellungen</button>
@@ -61,7 +59,7 @@
 </div>
 
 <section id="tablesView" class="view active">
-  <div class="toolbar"><h2>Tischübersicht</h2><span id="summary" class="badge"></span></div>
+  <div class="toolbar"><h2>Tischübersicht</h2><div class="status-card" aria-live="polite"><div class="status-item"><span class="status-icon">🟢</span><div><div class="status-label">Offene Tische</div><div id="openTablesCount" class="status-value">0</div></div></div><div class="status-item"><span class="status-icon">💶</span><div><div class="status-label">Offener Betrag</div><div id="openAmount" class="status-value">0,00 €</div></div></div></div></div>
   <div id="tables" class="grid tables"></div>
 </section>
 
@@ -85,8 +83,6 @@
 </section>
 </div>
 
-
-<button class="bug-fab" id="feedbackFab" aria-label="Problem oder Feedback melden">🐞 <span>Feedback</span></button>
 <div class="footerbar"><div class="inner"><button class="btn" id="homeMobile">Tische</button><button class="btn gold" id="settingsMobile">Einstellungen</button><button class="btn" id="fullscreenBtn">Vollbild</button></div></div>
 
 <dialog id="settingsDialog"><div class="dialog"><h3>Einstellungen</h3><div class="settings-grid">
@@ -95,8 +91,9 @@
 <label class="btn" style="display:block">Datensicherung einspielen<input type="file" id="importData" accept=".json" hidden></label>
 <button class="btn" id="iosHelp">iPhone/iPad: Installation erklären</button>
 <button class="btn" id="shareApp">App-Adresse teilen</button>
+<button class="btn" id="feedbackSettings">🐞 Feedback senden</button>
 <button class="btn" id="openChangelog">Was ist neu?</button>
-<div class="version-box"><strong>Installierte Version</strong><div>Alpha 3.1 – Tester Edition</div></div>
+<div class="version-box"><strong>Installierte Version</strong><div>Alpha 3.2 – Tester Edition</div></div>
 <a class="btn" href="versionen/alpha-2.0/index.html" style="text-decoration:none">Zur Alpha 2.0 wechseln</a>
 <a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
 <button class="btn red" id="closeSettings">Schließen</button>
@@ -121,7 +118,7 @@
 
 
 <dialog id="feedbackNextDialog"><div class="dialog"><h3>Fast geschafft 🐞</h3><p>Die vorbereitete Meldeseite wurde in einem neuen Tab geöffnet.</p><ol><li>Falls eine Anmeldung erscheint, bitte kurz anmelden.</li><li>Deine Beschreibung ist bereits vollständig eingetragen.</li><li>Zum Abschluss nur noch auf den grünen Button <strong>„Submit new issue“</strong> tippen.</li></ol><div class="notice">Danach kannst du diesen Hinweis schließen und zur Festkasse zurückkehren.</div><button id="closeFeedbackNext" class="btn green" style="width:100%">Verstanden</button></div></dialog>
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.1?</h3><ul class="changelog-list"><li>🐞 Neuer Feedback-Button auf jeder Ansicht</li><li>Fehler, Verbesserung oder Idee auswählbar</li><li>Automatische Geräte-, Browser-, Versions- und Seiteninformationen</li><li>Kurze freiwillige Testfragen</li><li>Einfacheres Weitergeben von Feedback ohne technische Begriffe</li><li>Versionsanzeige in den Einstellungen</li><li>Rückkehr zu Alpha 2.0 oder Alpha 1.1</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.2?</h3><ul class="changelog-list"><li>Offene Tische und offener Betrag sind deutlich sichtbar</li><li>Freie Tische sind dezent grün markiert</li><li>Belegte Tische bleiben gelb hervorgehoben</li><li>Feedback wurde in die Einstellungen verschoben</li><li>Der Header wurde vereinfacht</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -131,7 +128,7 @@ const PRODUCTS=[
 {id:'gutschein_hendl',c:'Gutscheine',n:'Gutschein ½ Hendl',p:10.5},{id:'gutschein_bier',c:'Gutscheine',n:'Gutschein Maß Bier',p:10.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.1';
+const APP_VERSION='Alpha 3.2';
 const ISSUE_URL='https://github.com/waddele-ger/Hilgertshausen/issues/new';
 const DEFAULT=Array.from({length:12},(_,i)=>({id:'t'+(i+1),name:'Tisch '+(i+1)}));
 let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},installPrompt=null;
@@ -142,7 +139,7 @@ function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;',
 function prod(id){return PRODUCTS.find(x=>x.id===id)}function order(id){if(!state.orders[id])state.orders[id]={};return state.orders[id]}
 function total(o){return Object.entries(o).reduce((s,[id,q])=>s+(prod(id)?.p||0)*q,0)}
 function view(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
-function tables(){let open=0,sum=0;const g=document.getElementById('tables');g.innerHTML='';state.tables.forEach(t=>{const o=order(t.id),v=total(o),count=Object.values(o).reduce((a,b)=>a+b,0);if(v){open++;sum+=v}const b=document.createElement('button');b.className='tile '+(v?'busy':'');b.innerHTML=`<strong>${esc(t.name)}</strong><div class="meta">${count?count+' Artikel offen':'frei'}</div><div class="sum">${euro(v)}</div>`;b.onclick=()=>openTable(t.id);g.appendChild(b)});document.getElementById('summary').textContent=`${open} offene Tische · ${euro(sum)}`;save()}
+function tables(){let open=0,sum=0;const g=document.getElementById('tables');g.innerHTML='';state.tables.forEach(t=>{const o=order(t.id),v=total(o),count=Object.values(o).reduce((a,b)=>a+b,0);if(v){open++;sum+=v}const b=document.createElement('button');b.className='tile '+(v?'busy':'free');b.innerHTML=`<strong>${esc(t.name)}</strong><div class="meta">${count?count+' Artikel offen':'frei'}</div><div class="sum">${euro(v)}</div>`;b.onclick=()=>openTable(t.id);g.appendChild(b)});document.getElementById('openTablesCount').textContent=open;document.getElementById('openAmount').textContent=euro(sum);save()}
 function openTable(id){tableId=id;category=null;history=[];document.getElementById('tableName').textContent=state.tables.find(x=>x.id===id)?.name||'Tisch';renderCats();renderOrder();view('orderView')}
 function renderCats(){const g=document.getElementById('categories');g.innerHTML='';[...new Set(PRODUCTS.map(x=>x.c))].forEach(c=>{const b=document.createElement('button');b.className='tile cat';b.innerHTML=`<strong>${esc(c)}</strong><div class="meta">${PRODUCTS.filter(x=>x.c===c).length} Artikel</div>`;b.onclick=()=>{category=c;renderProducts()};g.appendChild(b)});document.getElementById('products').innerHTML='<div class="empty">Bitte einen Bereich auswählen.</div>';document.getElementById('productTitle').textContent='Artikel';document.getElementById('backCats').style.display='none'}
 function renderProducts(){const g=document.getElementById('products');g.innerHTML='';document.getElementById('productTitle').textContent=category;document.getElementById('backCats').style.display='inline-block';PRODUCTS.filter(x=>x.c===category).forEach(p=>{const q=order(tableId)[p.id]||0,b=document.createElement('button');b.className='tile';b.innerHTML=`<strong>${esc(p.n)}</strong><div class="price">${euro(p.p)}</div><div class="meta">${q?'Bereits '+q+'×':'Antippen zum Hinzufügen'}</div>`;b.onclick=()=>qty(p.id,1,true);g.appendChild(b)})}
@@ -168,7 +165,7 @@ function deviceInfo(){return {version:APP_VERSION,url:location.href,datum:new Da
 function sendFeedback(){const type=document.querySelector('input[name=feedbackType]:checked')?.value||'Fehler',text=document.getElementById('feedbackText').value.trim(),checks=[...document.querySelectorAll('#feedbackDialog input[type=checkbox]:checked')].map(x=>'- [x] '+x.value),i=deviceInfo();if(!text)return alert('Bitte beschreibe kurz dein Feedback.');const title=`[${APP_VERSION}] ${type}: ${text.slice(0,70)}`;const body=`## Art\n${type}\n\n## Beschreibung\n${text}\n\n## Testfragen\n${checks.length?checks.join('\n'):'Keine Angaben'}\n\n## Automatische technische Angaben\n- Version: ${i.version}\n- Datum: ${i.datum}\n- Seite: ${i.url}\n- Plattform: ${i.plattform}\n- Bildschirm: ${i.bildschirm}\n- Online: ${i.online}\n- Browser/User-Agent: ${i.browser}`;const url=ISSUE_URL+'?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);const opened=window.open(url,'_blank','noopener');document.getElementById('feedbackDialog').close();if(opened){document.getElementById('feedbackNextDialog').showModal()}else{location.href=url}}
 document.getElementById('home').onclick=document.getElementById('homeMobile').onclick=()=>{tables();view('tablesView')};document.getElementById('settings').onclick=document.getElementById('settingsMobile').onclick=openSettings;document.getElementById('backTables').onclick=()=>{tables();view('tablesView')};document.getElementById('backCats').onclick=()=>{category=null;renderCats()};document.getElementById('clearTable').onclick=()=>{if(total(order(tableId))&&confirm('Tisch wirklich leeren? Dies wird nicht als Zahlung gespeichert.')){state.orders[tableId]={};history=[];save();renderOrder();tables()}};document.getElementById('undo').onclick=undo;document.getElementById('pay').onclick=startPay;document.getElementById('backOrder').onclick=()=>view('orderView');document.getElementById('whole').onclick=()=>setMode('whole');document.getElementById('split').onclick=()=>setMode('split');document.getElementById('cashInput').oninput=updatePay;document.getElementById('finish').onclick=finish;
 document.getElementById('closeSettings').onclick=()=>document.getElementById('settingsDialog').close();document.getElementById('manageTables').onclick=openConfig;document.getElementById('addTable').onclick=addRow;document.getElementById('cancelTables').onclick=()=>document.getElementById('tablesDialog').close();document.getElementById('saveTables').onclick=saveConfig;document.getElementById('exportData').onclick=exportData;document.getElementById('importData').onchange=e=>e.target.files[0]&&importData(e.target.files[0]);document.getElementById('iosHelp').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('helpDialog').showModal()};document.getElementById('closeHelp').onclick=()=>document.getElementById('helpDialog').close();document.getElementById('shareApp').onclick=share;document.getElementById('fullscreenBtn').onclick=()=>document.documentElement.requestFullscreen?.();
-document.getElementById('feedbackFab').onclick=openFeedback;document.getElementById('closeFeedbackNext').onclick=()=>document.getElementById('feedbackNextDialog').close();document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
+document.getElementById('feedbackSettings').onclick=()=>{document.getElementById('settingsDialog').close();openFeedback()};document.getElementById('closeFeedbackNext').onclick=()=>document.getElementById('feedbackNextDialog').close();document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installBanner').classList.add('show')});document.getElementById('installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installBanner').classList.remove('show')};
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js');
 tables();

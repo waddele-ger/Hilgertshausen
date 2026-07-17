@@ -1,5 +1,16 @@
 # Änderungsprotokoll
 
+## Alpha 3.2 – Kassieransicht aufgeräumt
+
+### Neu
+- Offene Tische und offener Betrag werden als gut sichtbare Statuskarte angezeigt.
+- Freie Tische sind dezent grün markiert, belegte Tische weiterhin gelb.
+
+### Verbessert
+- Die Feedback-Funktion befindet sich jetzt in den Einstellungen.
+- Der störende schwebende Feedback-Button wurde entfernt.
+- Der Header zeigt nur noch den für das Kassieren relevanten Hinweis „Nur Barzahlung“.
+
 ## Alpha 3.1 – Verständlicher Feedback-Ablauf
 
 ### Verbessert
