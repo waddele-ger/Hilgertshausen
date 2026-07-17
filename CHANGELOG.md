@@ -1,3 +1,12 @@
+# Changelog
+
+## Alpha 3.4.2-dev1 – UX-Test Artikelauswahl
+
+- Gewählte Hauptkategorie wird deutlich hervorgehoben.
+- Nach Auswahl einer Kategorie scrollt die Ansicht weich zur Artikelauswahl.
+- Klare Aufforderung „Bitte Artikel auswählen“.
+- Teststand: noch kein offizieller Release.
+
 # Änderungsprotokoll
 
 ## Alpha 3.4.1 – Kassentage und Datenabgrenzung
