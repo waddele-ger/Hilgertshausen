@@ -35,6 +35,8 @@ Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 - Korrekturen dürfen nicht unsichtbar überschrieben werden. Alter Betrag, neuer Betrag, Differenz und Zeitpunkt bleiben nachvollziehbar.
 - Korrigierte Zahlungen werden in der Statistik deutlich gekennzeichnet.
 - Die Statistik zeigt die aktuell gültigen Beträge nach allen Korrekturen.
+- Mengenänderungen einer Zahlung müssen automatisch mit der offenen Bestellung des ursprünglichen Tisches abgeglichen werden.
+- Eine Erhöhung darf nur gespeichert werden, wenn die zusätzliche Menge auf dem Tisch noch offen ist.
 
 ## TODO-Kennzeichnungen
 

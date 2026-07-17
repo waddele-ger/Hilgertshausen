@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.4.2-dev4
+Version: Alpha 3.4.2-dev5
 
 ## Projekt
 
@@ -44,6 +44,9 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Fortlaufende Vorgangsnummern
 - Korrigierte Zahlungen deutlich kennzeichnen
 - Alter Betrag, neuer Betrag, Differenz und Korrekturzeitpunkt bleiben nachvollziehbar
+- Reduzierte Mengen werden auf den ursprünglichen Tisch zurückgebucht
+- Erhöhte Mengen werden nur dann vom Tisch abgezogen, wenn sie dort noch offen sind
+- Unmögliche Korrekturen werden blockiert
 
 ## Bedienphilosophie
 

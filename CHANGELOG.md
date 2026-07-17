@@ -1,5 +1,15 @@
 # Änderungsprotokoll
 
+## Alpha 3.4.2-dev5 – Zahlungskorrekturen mit Tisch synchronisiert
+
+### Behoben
+- Reduzierte bezahlte Artikelmengen werden automatisch auf den ursprünglichen Tisch zurückgebucht.
+- Erhöhte bezahlte Artikelmengen werden automatisch vom ursprünglichen Tisch abgezogen.
+- Korrekturen werden blockiert, wenn auf dem Tisch nicht genügend Artikel offen sind.
+- Artikeländerungen werden gemeinsam mit Betrag, Differenz und Zeitpunkt in der Korrekturhistorie gespeichert.
+- Negative oder erfundene Tischmengen werden verhindert.
+
+
 ## Alpha 3.4.2-dev4 – Archivdetails
 
 ### Neu

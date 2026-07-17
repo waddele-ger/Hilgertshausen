@@ -31,3 +31,11 @@
 - Optional auch beim Abschließen einer Zahlung.
 - Nur auf unterstützten Geräten verwenden.
 - In den Einstellungen ein- und ausschaltbar machen.
+
+#bug Zahlungskorrekturen mit Tischbestellung synchronisieren
+
+- [x] Verringerte bezahlte Mengen auf den ursprünglichen Tisch zurückbuchen.
+- [x] Erhöhte bezahlte Mengen vom ursprünglichen Tisch abziehen.
+- [x] Korrektur blockieren, wenn auf dem Tisch nicht genügend Artikel offen sind.
+- [x] Artikeländerungen in der Korrekturhistorie dokumentieren.
+
