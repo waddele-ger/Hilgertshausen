@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.5.0</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.5.1</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -31,6 +31,16 @@
     .row-picker{display:grid;gap:7px;min-width:170px}.row-picker label{font-size:14px;font-weight:900;color:var(--muted)}.row-picker select{width:100%;padding:12px;border:2px solid #c9beb0;border-radius:13px;background:#fff;font:inherit;font-weight:900;color:var(--wine)}
     .voucher-box{display:grid;gap:9px;background:#fff4d0;border:2px solid var(--gold);border-radius:14px;padding:12px;margin:12px 0}.voucher-controls{display:grid;grid-template-columns:52px 1fr 52px;gap:8px;align-items:center}.voucher-count{text-align:center;font-size:24px;font-weight:900;color:var(--wine)}.voucher-summary{display:flex;justify-content:space-between;gap:10px;font-weight:900}
     .setting-toggle{display:flex;justify-content:space-between;gap:14px;align-items:center;background:#fff;padding:12px;border-radius:13px;font-weight:800}.setting-toggle input{width:24px;height:24px;accent-color:var(--wine)}
+    .setting-select{display:grid;gap:7px;background:#fff;padding:12px;border-radius:13px;font-weight:800}.setting-select select{width:100%;padding:11px;border:2px solid #c9beb0;border-radius:11px;background:#fff;font:inherit;font-weight:800;color:var(--wine)}
+    .payment-layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}.payment-options-toggle{display:none;margin-bottom:10px;width:100%}.payment-main{position:sticky;top:104px}.update-status{min-height:20px;color:var(--muted);font-size:14px;font-weight:750}
+    #paymentView.compact .payment-layout{grid-template-columns:minmax(0,680px);justify-content:center}
+    #paymentView.compact .payment-options{display:none}
+    #paymentView.compact.show-options .payment-options{display:block}
+    #paymentView.compact .payment-options-toggle{display:block}
+    #paymentView.compact .payment-main{position:static}
+    #paymentView.compact .payment-main h3{margin-bottom:4px}
+    #paymentView.compact .cash-grid{grid-template-columns:repeat(3,1fr)}
+    #paymentView.compact .total{font-size:30px}
     .tile{border:0;border-radius:var(--r);background:var(--card);box-shadow:var(--shadow);padding:18px;min-height:140px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:8px;color:var(--ink);transition:transform .08s ease}
     .tile:active{transform:scale(.98)}.tile.free{background:#e7f4eb;outline:2px solid #a9d0b8}.table-status{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:900}.table-status.open{color:#7a5411}.table-status.free{color:#24663f}.tile strong{font-size:22px}.tile .price,.tile .sum{font-size:25px;font-weight:900;color:var(--wine)}.tile .meta{color:var(--muted)}.tile.busy{outline:4px solid var(--gold);background:#fff4d0}
     .cat{background:linear-gradient(145deg,#fffaf1,#eadbc2)}.cat.active{outline:4px solid var(--gold);background:#fff0c6;transform:translateY(-2px)}.product-tile{transition:transform .12s ease,filter .12s ease}.product-tile.tap-impulse{transform:scale(.96);filter:brightness(.92)}.product-prompt{margin:3px 0 12px;color:var(--muted);font-weight:800}.product-panel{scroll-margin-top:18px}
@@ -51,7 +61,7 @@
 .archive-detail-box span{display:block;font-size:13px;color:var(--muted);font-weight:750}
 .archive-detail-box strong{display:block;font-size:19px;color:var(--wine);margin-top:3px}
 @media(max-width:520px){.archive-detail-grid{grid-template-columns:1fr}}.locked-note{background:#fff0c5;border:2px solid #ddb85c;border-radius:14px;padding:12px;margin:12px 0}.demo-banner{display:none;background:#ffd95f;border:3px solid #9b6d00;border-radius:16px;padding:11px 14px;margin:12px 0;font-weight:950;text-align:center;color:#4f3700}.demo-banner.show{display:block}.demo-start-separator{display:flex;align-items:center;gap:10px;margin:14px 0;color:var(--muted);font-weight:800}.demo-start-separator:before,.demo-start-separator:after{content:"";height:1px;background:var(--line);flex:1}
-    @media(max-width:850px){.brand img{width:60px;height:60px}.layout{grid-template-columns:1fr}.side{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}}
+    @media(max-width:850px){.brand img{width:60px;height:60px}.layout,.payment-layout{grid-template-columns:1fr}.side,.payment-main{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}}
   </style>
 </head>
 <body>
@@ -88,9 +98,9 @@
 
 <section id="paymentView" class="view">
   <div class="toolbar"><div><button class="btn" id="backOrder">← Bestellung</button> <h2 id="paymentName" style="display:inline"></h2></div></div>
-  <div class="layout">
-    <div class="panel"><h3>Abrechnung</h3><div class="modes"><button id="whole" class="btn active">Gesamter Tisch</button><button id="split" class="btn">Einzelne Positionen</button></div><div id="splitArea" style="display:none"><div class="notice">Wähle mit + und − genau aus, was diese Person bezahlt.</div><div id="splitList" class="list"></div></div></div>
-    <aside class="panel side"><h3>Barzahlung</h3><div class="total"><span>Warenwert</span><span id="grossTotal">0,00 €</span></div><div class="voucher-box"><strong>Gutscheine einlösen</strong><div class="voucher-controls"><button class="btn" id="voucherMinus" aria-label="Einen Gutschein entfernen">−</button><div class="voucher-count"><span id="voucherCount">0</span> ×</div><button class="btn gold" id="voucherPlus" aria-label="Gutschein im Wert von 10,50 Euro hinzufügen">+</button></div><button class="btn gold" id="voucherAdd" style="width:100%">Gutschein −10,50 €</button><div class="voucher-summary"><span>Gutscheinwert</span><span id="voucherDiscount">−0,00 €</span></div></div><div class="total"><span>Bar zu zahlen</span><span id="payTotal">0,00 €</span></div><div id="cashButtons" class="cash-grid"></div><input id="cashInput" class="cash-input" inputmode="decimal" placeholder="Erhaltener Betrag"><div class="change"><span>Rückgeld</span><span id="change">0,00 €</span></div><button id="finish" class="btn green" style="width:100%;margin-top:11px">Zahlung abschließen</button></aside>
+  <div class="payment-layout">
+    <div class="panel payment-options"><h3>Zahlungsoptionen</h3><div class="modes"><button id="whole" class="btn active">Gesamter Tisch</button><button id="split" class="btn">Einzelne Positionen</button></div><div id="splitArea" style="display:none"><div class="notice">Wähle mit + und − genau aus, was diese Person bezahlt.</div><div id="splitList" class="list"></div></div><div class="total"><span>Warenwert</span><span id="grossTotal">0,00 €</span></div><div class="voucher-box"><strong>Gutscheine einlösen</strong><div class="voucher-controls"><button class="btn" id="voucherMinus" aria-label="Einen Gutschein entfernen">−</button><div class="voucher-count"><span id="voucherCount">0</span> ×</div><button class="btn gold" id="voucherPlus" aria-label="Gutschein im Wert von 10,50 Euro hinzufügen">+</button></div><button class="btn gold" id="voucherAdd" style="width:100%">Gutschein −10,50 €</button><div class="voucher-summary"><span>Gutscheinwert</span><span id="voucherDiscount">−0,00 €</span></div></div></div>
+    <aside class="panel payment-main"><h3>Barzahlung</h3><button class="btn payment-options-toggle" id="togglePaymentOptions">Teilzahlung oder Gutschein</button><div class="total"><span>Bar zu zahlen</span><span id="payTotal">0,00 €</span></div><div id="cashButtons" class="cash-grid"></div><input id="cashInput" class="cash-input" inputmode="decimal" placeholder="Erhaltener Betrag"><div class="change"><span>Rückgeld</span><span id="change">0,00 €</span></div><button id="finish" class="btn green" style="width:100%;margin-top:11px">Zahlung abschließen</button></aside>
   </div>
 </section>
 </div>
@@ -100,6 +110,7 @@
 <dialog id="settingsDialog"><div class="dialog"><h3>Einstellungen</h3><div class="settings-grid">
 <div class="settings-group"><h4>📋 Allgemein</h4>
 <label class="setting-toggle"><span>Haptisches Feedback</span><input type="checkbox" id="hapticEnabled"></label>
+<label class="setting-select"><span>Bezahlansicht</span><select id="paymentUiMode"><option value="compact">Kompakt</option><option value="extended">Erweitert</option></select></label>
 </div>
 <div class="settings-group"><h4>🧾 Kassentag</h4>
 <div id="cashDayStatus" class="day-status inactive"></div>
@@ -114,6 +125,8 @@
 <label class="btn" style="display:block">Datensicherung einspielen<input type="file" id="importData" accept=".json" hidden></label>
 </div>
 <div class="settings-group"><h4>📱 App</h4>
+<button class="btn green" id="updateApp">App aktualisieren</button>
+<div id="updateStatus" class="update-status" role="status" aria-live="polite"></div>
 <button class="btn" id="iosHelp">iPhone/iPad: Installation erklären</button>
 <button class="btn" id="shareApp">App-Adresse teilen</button>
 </div>
@@ -122,7 +135,7 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.0</div></div>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.1</div></div>
 <a class="btn" href="versionen/alpha-2.0/index.html" style="text-decoration:none">Zur Alpha 2.0 wechseln</a>
 <a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
 </div>
@@ -168,7 +181,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.0?</h3><ul class="changelog-list"><li>Tische sind nach den Reihen 1 bis 9 gegliedert</li><li>Getränke und Essen erscheinen in der gewünschten Reihenfolge</li><li>Gutscheine werden bequem beim Bezahlen abgezogen</li><li>Optionales haptisches Feedback bestätigt Artikelbuchungen</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.1?</h3><ul class="changelog-list"><li>Die App kann direkt in den Einstellungen aktualisiert werden</li><li>Das Bezahlmenü ist zwischen kompakter und erweiterter Ansicht umschaltbar</li><li>Die gewählte Ansicht bleibt auf diesem Gerät gespeichert</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -177,7 +190,7 @@ const PRODUCTS=[
 {id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.5.0';
+const APP_VERSION='Alpha 3.5.1';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const CATEGORY_ORDER=['Bier','Alkoholfreie Getränke','Wein','Essen'];
 const VOUCHER_VALUE=10.5;
@@ -187,7 +200,7 @@ function normalizeTables(tables){
   const byId=new Map((tables||[]).map(t=>[t.id,t]));
   return DEFAULT.map(t=>({...t,...byId.get(t.id),name:t.name,row:t.row}));
 }
-function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.tables=normalizeTables(x.tables);x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.settings=x.settings||{};x.settings.haptic=x.settings.haptic!==false;x.selectedTableRow=Math.min(9,Math.max(1,Number(x.selectedTableRow)||1));x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[];p.voucherCount=Number(p.voucherCount)||0;p.voucherValue=Number(p.voucherValue)||0});return x}}catch(e){}return{tables:DEFAULT,orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1,selectedTableRow:1,settings:{haptic:true}}}
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.tables=normalizeTables(x.tables);x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.settings=x.settings||{};x.settings.haptic=x.settings.haptic!==false;x.settings.paymentUi=x.settings.paymentUi==='extended'?'extended':'compact';x.selectedTableRow=Math.min(9,Math.max(1,Number(x.selectedTableRow)||1));x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[];p.voucherCount=Number(p.voucherCount)||0;p.voucherValue=Number(p.voucherValue)||0});return x}}catch(e){}return{tables:DEFAULT,orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1,selectedTableRow:1,settings:{haptic:true,paymentUi:'compact'}}}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function hasOpenOrders(){return Object.values(state.orders||{}).some(o=>total(o)>0)}
 function activeDayLabel(){if(!state.activeCashDay)return 'Kein Kassentag aktiv';const d=new Date(state.activeCashDay.startedAt).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});return `${state.activeCashDay.name||'Kassentag'} · gestartet ${d}`}
@@ -241,7 +254,17 @@ function hapticPulse(){if(state.settings?.haptic&&navigator.vibrate)navigator.vi
 function qty(id,d,record){const o=order(tableId),before=o[id]||0,after=Math.max(0,before+d);if(record)history.push({id,before});if(after)o[id]=after;else delete o[id];if(d>0)hapticPulse();save();renderOrder();if(category)renderProducts()}
 function renderOrder(){const o=order(tableId),l=document.getElementById('orderList');l.innerHTML='';const es=Object.entries(o);if(!es.length)l.innerHTML='<div class="empty">Noch keine Artikel auf diesem Tisch.</div>';es.forEach(([id,q])=>{const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${q} × ${esc(p.n)}</div><div class="sub">${euro(q*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>qty(id,-1,true);r.children[2].onclick=()=>qty(id,1,true);l.appendChild(r)});document.getElementById('orderTotal').textContent=euro(total(o));document.getElementById('pay').disabled=!es.length}
 function undo(){const x=history.pop();if(!x)return;const o=order(tableId);if(x.before)o[x.id]=x.before;else delete o[x.id];save();renderOrder();if(category)renderProducts()}
-function startPay(){if(!total(order(tableId)))return;mode='whole';selection={};voucherCount=0;document.getElementById('whole').classList.add('active');document.getElementById('split').classList.remove('active');document.getElementById('splitArea').style.display='none';document.getElementById('paymentName').textContent=state.tables.find(x=>x.id===tableId)?.name||'Tisch';document.getElementById('cashInput').value='';renderSplit();updatePay();view('paymentView')}
+function applyPaymentUi(){
+  const compact=state.settings?.paymentUi!=='extended',paymentView=document.getElementById('paymentView');
+  paymentView.classList.toggle('compact',compact);
+  paymentView.classList.remove('show-options');
+  document.getElementById('togglePaymentOptions').textContent='Teilzahlung oder Gutschein';
+}
+function togglePaymentOptions(){
+  const paymentView=document.getElementById('paymentView'),shown=paymentView.classList.toggle('show-options');
+  document.getElementById('togglePaymentOptions').textContent=shown?'Zahlungsoptionen ausblenden':'Teilzahlung oder Gutschein';
+}
+function startPay(){if(!total(order(tableId)))return;mode='whole';selection={};voucherCount=0;document.getElementById('whole').classList.add('active');document.getElementById('split').classList.remove('active');document.getElementById('splitArea').style.display='none';document.getElementById('paymentName').textContent=state.tables.find(x=>x.id===tableId)?.name||'Tisch';document.getElementById('cashInput').value='';applyPaymentUi();renderSplit();updatePay();view('paymentView')}
 function setMode(m){mode=m;document.getElementById('whole').classList.toggle('active',m==='whole');document.getElementById('split').classList.toggle('active',m==='split');document.getElementById('splitArea').style.display=m==='split'?'block':'none';updatePay()}
 function renderSplit(){const l=document.getElementById('splitList');l.innerHTML='';Object.entries(order(tableId)).forEach(([id,q])=>{selection[id]=Math.min(selection[id]||0,q);const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${selection[id]} von ${q} × ${esc(p.n)}</div><div class="sub">${euro(selection[id]*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>{selection[id]=Math.max(0,selection[id]-1);renderSplit();updatePay()};r.children[2].onclick=()=>{selection[id]=Math.min(q,selection[id]+1);renderSplit();updatePay()};l.appendChild(r)})}
 function grossPayTotal(){return mode==='whole'?total(order(tableId)):Object.entries(selection).reduce((s,[id,q])=>s+(prod(id)?.p||0)*q,0)}
@@ -473,12 +496,42 @@ function deleteEditingPayment(){
   document.getElementById('statsDialog').showModal();
 }
 
-function openSettings(){updateCashDayStatus();document.getElementById('settingsDialog').showModal()}
+function openSettings(){updateCashDayStatus();document.getElementById('paymentUiMode').value=state.settings.paymentUi||'compact';document.getElementById('updateStatus').textContent='';document.getElementById('settingsDialog').showModal()}
 function openConfig(){document.getElementById('settingsDialog').close();const l=document.getElementById('configList');l.innerHTML='';state.tables.forEach(t=>{const r=document.createElement('div');r.className='config-row';r.innerHTML=`<input value="${esc(t.name)}" data-id="${t.id}"><button class="btn red">Löschen</button>`;r.children[1].onclick=()=>{if(total(order(t.id)))return alert('Dieser Tisch hat eine offene Bestellung.');r.remove()};l.appendChild(r)});document.getElementById('tablesDialog').showModal()}
 function addRow(){const inp=document.getElementById('newTable'),n=inp.value.trim();if(!n)return;const r=document.createElement('div');r.className='config-row';r.innerHTML=`<input value="${esc(n)}" data-id="t${Date.now()}"><button class="btn red">Löschen</button>`;r.children[1].onclick=()=>r.remove();document.getElementById('configList').appendChild(r);inp.value=''}
 function saveConfig(){const inputs=[...document.querySelectorAll('#configList input')];if(!inputs.length)return alert('Mindestens ein Tisch wird benötigt.');state.tables=inputs.map((x,i)=>({id:x.dataset.id,name:x.value.trim()||'Tisch '+(i+1)}));save();tables();document.getElementById('tablesDialog').close()}
 function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Festkasse_Datensicherung_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
-function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.tables||!x.orders)throw 0;if(confirm('Aktuelle Daten durch diese Datensicherung ersetzen?')){state=x;state.tables=normalizeTables(state.tables);state.payments=state.payments||[];state.archivedCashDays=state.archivedCashDays||[];state.activeCashDay=state.activeCashDay||null;state.settings=state.settings||{};state.settings.haptic=state.settings.haptic!==false;state.selectedTableRow=Math.min(9,Math.max(1,Number(state.selectedTableRow)||1));save();location.reload()}}catch(e){alert('Diese Datei ist keine gültige Datensicherung.')}};r.readAsText(file)}
+function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.tables||!x.orders)throw 0;if(confirm('Aktuelle Daten durch diese Datensicherung ersetzen?')){state=x;state.tables=normalizeTables(state.tables);state.payments=state.payments||[];state.archivedCashDays=state.archivedCashDays||[];state.activeCashDay=state.activeCashDay||null;state.settings=state.settings||{};state.settings.haptic=state.settings.haptic!==false;state.settings.paymentUi=state.settings.paymentUi==='extended'?'extended':'compact';state.selectedTableRow=Math.min(9,Math.max(1,Number(state.selectedTableRow)||1));save();location.reload()}}catch(e){alert('Diese Datei ist keine gültige Datensicherung.')}};r.readAsText(file)}
+async function updateApp(){
+  const button=document.getElementById('updateApp'),status=document.getElementById('updateStatus'),oldText=button.textContent;
+  button.disabled=true;button.textContent='Suche nach Aktualisierung …';status.textContent='';
+  try{
+    if(!('serviceWorker' in navigator))throw new Error('Service Worker nicht verfügbar');
+    const registration=await navigator.serviceWorker.getRegistration();
+    if(!registration)throw new Error('App ist noch nicht installiert');
+    let foundUpdate=!!registration.waiting;
+    const installingBefore=registration.installing;
+    await registration.update();
+    const worker=registration.installing||registration.waiting;
+    foundUpdate=foundUpdate||!!worker||worker!==installingBefore;
+    if(worker&&worker.state!=='activated'){
+      await new Promise(resolve=>{
+        const timeout=setTimeout(resolve,4000);
+        worker.addEventListener('statechange',()=>{if(worker.state==='activated'){clearTimeout(timeout);resolve()}});
+      });
+    }
+    if(foundUpdate){
+      status.textContent='Neue Version geladen. Die App wird neu gestartet.';
+      setTimeout(()=>location.reload(),700);
+    }else{
+      status.textContent='Du verwendest bereits die aktuelle Version.';
+    }
+  }catch(error){
+    status.textContent=navigator.onLine?'Aktualisierung derzeit nicht möglich. Bitte später erneut versuchen.':'Keine Internetverbindung. Offline-Daten bleiben erhalten.';
+  }finally{
+    button.disabled=false;button.textContent=oldText;
+  }
+}
 async function share(){const data={title:'Hilgertshausen Festkasse',text:'Hilgertshausen Festkasse',url:location.href};if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert('App-Adresse wurde kopiert.')}}
 function openFeedback(){document.getElementById('feedbackText').value='';document.querySelectorAll('#feedbackDialog input[type=checkbox]').forEach(x=>x.checked=false);document.getElementById('feedbackDialog').showModal()}
 function deviceInfo(){return {version:APP_VERSION,url:location.href,datum:new Date().toLocaleString('de-DE'),browser:navigator.userAgent,plattform:navigator.platform||'unbekannt',bildschirm:`${screen.width} × ${screen.height}`,online:navigator.onLine?'ja':'nein'}}
@@ -525,14 +578,16 @@ async function sendFeedback(){
     button.textContent=previousText;
   }
 }
-document.getElementById('home').onclick=document.getElementById('homeMobile').onclick=()=>{tables();view('tablesView')};document.getElementById('settings').onclick=document.getElementById('settingsMobile').onclick=openSettings;document.getElementById('backTables').onclick=()=>{tables();view('tablesView')};document.getElementById('backCats').onclick=()=>{category=null;renderCats()};document.getElementById('clearTable').onclick=()=>{if(total(order(tableId))&&confirm('Tisch wirklich leeren? Dies wird nicht als Zahlung gespeichert.')){state.orders[tableId]={};history=[];save();renderOrder();tables()}};document.getElementById('undo').onclick=undo;document.getElementById('pay').onclick=startPay;document.getElementById('backOrder').onclick=()=>view('orderView');document.getElementById('whole').onclick=()=>setMode('whole');document.getElementById('split').onclick=()=>setMode('split');document.getElementById('cashInput').oninput=updatePay;document.getElementById('voucherMinus').onclick=()=>changeVoucher(-1);document.getElementById('voucherPlus').onclick=document.getElementById('voucherAdd').onclick=()=>changeVoucher(1);document.getElementById('finish').onclick=finish;
+document.getElementById('home').onclick=document.getElementById('homeMobile').onclick=()=>{tables();view('tablesView')};document.getElementById('settings').onclick=document.getElementById('settingsMobile').onclick=openSettings;document.getElementById('backTables').onclick=()=>{tables();view('tablesView')};document.getElementById('backCats').onclick=()=>{category=null;renderCats()};document.getElementById('clearTable').onclick=()=>{if(total(order(tableId))&&confirm('Tisch wirklich leeren? Dies wird nicht als Zahlung gespeichert.')){state.orders[tableId]={};history=[];save();renderOrder();tables()}};document.getElementById('undo').onclick=undo;document.getElementById('pay').onclick=startPay;document.getElementById('backOrder').onclick=()=>view('orderView');document.getElementById('whole').onclick=()=>setMode('whole');document.getElementById('split').onclick=()=>setMode('split');document.getElementById('togglePaymentOptions').onclick=togglePaymentOptions;document.getElementById('cashInput').oninput=updatePay;document.getElementById('voucherMinus').onclick=()=>changeVoucher(-1);document.getElementById('voucherPlus').onclick=document.getElementById('voucherAdd').onclick=()=>changeVoucher(1);document.getElementById('finish').onclick=finish;
 document.getElementById('confirmStartDay').onclick=startCashDay;document.getElementById('startDemoDay').onclick=startDemoCashDay;document.getElementById('startCashDaySettings').onclick=openStartDay;document.getElementById('endCashDay').onclick=requestEndCashDay;document.getElementById('cancelEndDay').onclick=()=>document.getElementById('endDayDialog').close();document.getElementById('confirmEndDay').onclick=finishCashDay;document.getElementById('deleteCurrentDay').onclick=requestDeleteCurrentDay;document.getElementById('cancelDeleteDay').onclick=()=>{document.getElementById('deleteDayDialog').close();renderStats();document.getElementById('statsDialog').showModal()};document.getElementById('confirmDeleteDay').onclick=deleteCurrentDay;
 document.getElementById('openStats').onclick=openStats;document.getElementById('closeArchiveDetail').onclick=closeArchiveDetail;document.getElementById('deleteArchivedDay').onclick=requestDeleteArchivedDay;document.getElementById('cancelDeleteArchivedDay').onclick=()=>{document.getElementById('deleteArchivedDayDialog').close();openArchiveDetail(selectedArchiveDayId)};document.getElementById('confirmDeleteArchivedDay').onclick=deleteArchivedDay;document.getElementById('closeStats').onclick=()=>document.getElementById('statsDialog').close();document.getElementById('cancelEditPayment').onclick=()=>{document.getElementById('editPaymentDialog').close();renderStats();document.getElementById('statsDialog').showModal()};document.getElementById('saveEditPayment').onclick=savePaymentEdit;document.getElementById('deletePayment').onclick=deleteEditingPayment;document.getElementById('closeSettings').onclick=()=>document.getElementById('settingsDialog').close();document.getElementById('addTable').onclick=addRow;document.getElementById('cancelTables').onclick=()=>document.getElementById('tablesDialog').close();document.getElementById('saveTables').onclick=saveConfig;document.getElementById('exportData').onclick=exportData;document.getElementById('importData').onchange=e=>e.target.files[0]&&importData(e.target.files[0]);document.getElementById('iosHelp').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('helpDialog').showModal()};document.getElementById('closeHelp').onclick=()=>document.getElementById('helpDialog').close();document.getElementById('shareApp').onclick=share;document.getElementById('fullscreenBtn').onclick=()=>document.documentElement.requestFullscreen?.();
 document.getElementById('versionBox').onclick=handleProtectedAccess;document.getElementById('versionBox').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handleProtectedAccess()}};
 document.getElementById('feedbackSettings').onclick=()=>{document.getElementById('settingsDialog').close();openFeedback()};document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
+document.getElementById('updateApp').onclick=updateApp;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installBanner').classList.add('show')});document.getElementById('installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installBanner').classList.remove('show')};
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js');
 const hapticSetting=document.getElementById('hapticEnabled');hapticSetting.checked=state.settings.haptic!==false;hapticSetting.onchange=()=>{state.settings.haptic=hapticSetting.checked;save();if(hapticSetting.checked)hapticPulse()};
+const paymentUiSetting=document.getElementById('paymentUiMode');paymentUiSetting.value=state.settings.paymentUi||'compact';paymentUiSetting.onchange=()=>{state.settings.paymentUi=paymentUiSetting.value==='extended'?'extended':'compact';save();applyPaymentUi()};
 initTableRows();tables();updateCashDayStatus();updateProtectedUi();if(!state.activeCashDay)setTimeout(openStartDay,100);
 </script>
 </body>

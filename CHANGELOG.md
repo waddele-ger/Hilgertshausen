@@ -1,5 +1,16 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.1 – Bezahlansicht und Aktualisierung
+
+### Neu
+- In den Einstellungen kann direkt nach einer App-Aktualisierung gesucht werden.
+- Das Bezahlmenü kann zwischen einer kompakten und einer erweiterten Ansicht umgeschaltet werden.
+- Die gewählte Bezahlansicht wird lokal auf dem Gerät gespeichert.
+
+### Verbessert
+- Die kompakte Ansicht konzentriert sich auf den normalen Barzahlungsablauf.
+- Teilzahlung und Gutscheine bleiben über die Zahlungsoptionen vollständig erreichbar.
+
 ## Alpha 3.5.0 – Tischreihen, Gutscheine und Haptik
 
 ### Neu

@@ -49,6 +49,8 @@ Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 - Die Tischübersicht folgt dem realen Tischplan mit Reihen 1 bis 9.
 - Es wird immer nur die vom Kassierer ausgewählte Tischreihe angezeigt.
 - Haptisches Feedback darf nur erfolgreiche Eingaben bestätigen, die Bedienung nicht verzögern und muss abschaltbar sein.
+- Kompakte und erweiterte Bezahlansicht verwenden dieselbe Zahlungslogik und unterscheiden sich nur in der Darstellung.
+- Ein App-Update darf keine Kassendaten oder lokal gespeicherten Einstellungen löschen.
 
 ## TODO-Kennzeichnungen
 

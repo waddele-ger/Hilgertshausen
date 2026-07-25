@@ -41,6 +41,12 @@
 - [x] Mehrere Gutscheine im Bezahlvorgang ermöglichen.
 - [x] Gutscheinanzahl in Zahlung und Statistik speichern und anzeigen.
 
+#feature Bedienkomfort
+
+- [x] Aktualisierungsbutton in den Einstellungen ergänzen.
+- [x] Kompakte und erweiterte Bezahlansicht anbieten.
+- [x] Gewählte Bezahlansicht lokal speichern.
+
 #bug Zahlungskorrekturen mit Tischbestellung synchronisieren
 
 - [x] Verringerte bezahlte Mengen auf den ursprünglichen Tisch zurückbuchen.
