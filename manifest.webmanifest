@@ -1,7 +1,7 @@
 {
   "name": "Hilgertshausen Festkasse",
   "short_name": "Festkasse",
-  "description": "Tischbasierte Bar-Kassenhilfe für das Sportfest in Hilgertshausen – Alpha 3.2 Tester Edition.",
+  "description": "Mobile Bar-Kassierhilfe für das Sportfest in Hilgertshausen – Alpha 3.5.0.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

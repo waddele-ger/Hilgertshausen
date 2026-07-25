@@ -1,4 +1,4 @@
-const CACHE = 'hilgertshausen-festkasse-alpha3-4-2-dev8-v1';
+const CACHE = 'hilgertshausen-festkasse-alpha3-5-0-v1';
 const ASSETS = [
   './',
   './index.html',

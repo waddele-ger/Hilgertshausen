@@ -41,6 +41,14 @@ Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 - Test-Kassentage müssen für ehrenamtliche Helfer vollständig und verständlich löschbar sein.
 - Mengenänderungen einer Zahlung müssen automatisch mit der offenen Bestellung des ursprünglichen Tisches abgeglichen werden.
 - Eine Erhöhung darf nur gespeichert werden, wenn die zusätzliche Menge auf dem Tisch noch offen ist.
+- Gutscheine werden nicht als Verkaufsartikel geführt, sondern ausschließlich beim Bezahlen angerechnet.
+- Anzahl und Wert eingelöster Gutscheine müssen je Zahlung nachvollziehbar gespeichert werden.
+
+## Bedienung
+
+- Die Tischübersicht folgt dem realen Tischplan mit Reihen 1 bis 9.
+- Es wird immer nur die vom Kassierer ausgewählte Tischreihe angezeigt.
+- Haptisches Feedback darf nur erfolgreiche Eingaben bestätigen, die Bedienung nicht verzögern und muss abschaltbar sein.
 
 ## TODO-Kennzeichnungen
 

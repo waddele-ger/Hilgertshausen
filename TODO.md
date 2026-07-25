@@ -25,12 +25,21 @@
 - [ ] Favicon hinzufügen
 
 
-#idee Haptisches Feedback (Vibration)
+#feature Haptisches Feedback (Vibration)
 
-- Kurze Vibration beim Hinzufügen eines Artikels.
+- [x] Kurze Vibration beim Hinzufügen eines Artikels.
 - Optional auch beim Abschließen einer Zahlung.
-- Nur auf unterstützten Geräten verwenden.
-- In den Einstellungen ein- und ausschaltbar machen.
+- [x] Nur auf unterstützten Geräten verwenden.
+- [x] In den Einstellungen ein- und ausschaltbar machen.
+
+#feature Tischreihen und Gutscheine
+
+- [x] Tischreihen 1 bis 9 per Dropdown auswählbar machen.
+- [x] Tischbezeichnungen nach dem Schema `Reihe.Platz` verwenden.
+- [x] Kategorien in die gewünschte Reihenfolge bringen.
+- [x] Gutscheine aus der Artikelauswahl entfernen.
+- [x] Mehrere Gutscheine im Bezahlvorgang ermöglichen.
+- [x] Gutscheinanzahl in Zahlung und Statistik speichern und anzeigen.
 
 #bug Zahlungskorrekturen mit Tischbestellung synchronisieren
 

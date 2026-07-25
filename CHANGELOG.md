@@ -1,5 +1,20 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.0 – Tischreihen, Gutscheine und Haptik
+
+### Neu
+- Die Tischübersicht ist in neun auswählbare Tischreihen gegliedert.
+- Tische werden nach dem Schema `Reihe.Platz` bezeichnet.
+- Beim Bezahlen können mehrere Gutscheine zu je 10,50 € eingelöst werden.
+- Anzahl und Wert eingelöster Gutscheine werden je Zahlung gespeichert und in der Statistik angezeigt.
+- Erfolgreiche Artikelbuchungen können durch eine kurze Vibration bestätigt werden.
+- Das haptische Feedback ist in den Einstellungen abschaltbar und standardmäßig aktiv.
+
+### Geändert
+- Kategorien erscheinen in der Reihenfolge Bier, Alkoholfreie Getränke, Wein und Essen.
+- Gutscheine wurden aus der Artikelauswahl entfernt und in den Bezahlvorgang verlagert.
+- Alkoholfreies Bier wird unter „Alkoholfreie Getränke“ geführt.
+
 ## Alpha 3.4.2-dev8 – Direktes Feedback
 
 ### Neu

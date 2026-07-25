@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.4.2-dev8
+Version: Alpha 3.5.0
 
 ## Projekt
 
@@ -11,9 +11,13 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 ## Funktionen
 
 ### Kassieren
-- Tische verwalten
+- Tischreihen 1 bis 9 über ein Dropdown auswählen
+- Tische nach dem Schema `Reihe.Platz` anzeigen
 - Bestellungen erfassen
 - Zahlungen abschließen
+- Mehrere Gutscheine zu je 10,50 € beim Bezahlen einlösen
+- Eingelöste Gutscheine in Zahlung und Statistik nachvollziehen
+- Optionales haptisches Feedback beim Hinzufügen eines Artikels
 - Tische automatisch freigeben
 
 ### Kassentage
@@ -27,8 +31,9 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Ältere Zahlungsdaten aus Alpha 3.4 können beim ersten Start archiviert oder gelöscht werden
 
 ### Statistik
-- Gesamtumsatz des aktiven Kassentags
+- Barumsatz des aktiven Kassentags
 - Anzahl der Kassenvorgänge
+- Anzahl eingelöster Gutscheine
 - Umsatz und Zahlungen je Tisch
 - Liste abgeschlossener Zahlungen
 - Übersicht archivierter Kassentage
