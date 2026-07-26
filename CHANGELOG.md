@@ -1,5 +1,14 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.2 – Kompakte Bezahlansicht überarbeitet
+
+### Verbessert
+- Die kompakte Ansicht zeigt alle zu bezahlenden Artikel mit Menge und Betrag.
+- Bezahlvorschläge werden in der kompakten Ansicht nicht mehr angezeigt.
+- Erklärende Hilfstexte zur Teilzahlung werden in der kompakten Ansicht ausgeblendet.
+- Teilzahlung und Gutscheine bleiben weiterhin erreichbar.
+- Die erweiterte Ansicht bleibt unverändert.
+
 ## Alpha 3.5.1 – Bezahlansicht und Aktualisierung
 
 ### Neu

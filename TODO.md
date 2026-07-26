@@ -46,6 +46,8 @@
 - [x] Aktualisierungsbutton in den Einstellungen ergänzen.
 - [x] Kompakte und erweiterte Bezahlansicht anbieten.
 - [x] Gewählte Bezahlansicht lokal speichern.
+- [x] Artikelaufzählung in der kompakten Bezahlansicht anzeigen.
+- [x] Bezahlvorschläge und Erklärtexte in der kompakten Ansicht ausblenden.
 
 #bug Zahlungskorrekturen mit Tischbestellung synchronisieren
 
