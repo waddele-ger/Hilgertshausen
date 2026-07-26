@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.5.3</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.5.2</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -141,9 +141,9 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.3</div></div>
-<a class="btn" href="versionen/alpha-3.5.2/index.html" style="text-decoration:none">Zur Alpha 3.5.2 wechseln</a>
-<a class="btn" href="versionen/alpha-3.5.1/index.html" style="text-decoration:none">Zur Alpha 3.5.1 wechseln</a>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.2</div></div>
+<a class="btn" href="versionen/alpha-2.0/index.html" style="text-decoration:none">Zur Alpha 2.0 wechseln</a>
+<a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
 </div>
 <button class="btn red" id="closeSettings">Schließen</button>
 </div></div></dialog>
@@ -187,7 +187,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.3?</h3><ul class="changelog-list"><li>Die Versionsauswahl zeigt nur noch die beiden unmittelbar vorherigen Versionen</li><li>Rücksprünge führen jetzt zu Alpha 3.5.2 und Alpha 3.5.1</li><li>Ältere Versionen bleiben über GitHub verfügbar</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.2?</h3><ul class="changelog-list"><li>Die kompakte Bezahlansicht zeigt die zu bezahlenden Artikel direkt an</li><li>Bezahlvorschläge und erklärende Hilfstexte sind dort ausgeblendet</li><li>Die erweiterte Bezahlansicht bleibt unverändert</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -196,7 +196,7 @@ const PRODUCTS=[
 {id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.5.3';
+const APP_VERSION='Alpha 3.5.2';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const CATEGORY_ORDER=['Bier','Alkoholfreie Getränke','Wein','Essen'];
 const VOUCHER_VALUE=10.5;

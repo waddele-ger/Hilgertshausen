@@ -48,6 +48,7 @@
 - [x] Gewählte Bezahlansicht lokal speichern.
 - [x] Artikelaufzählung in der kompakten Bezahlansicht anzeigen.
 - [x] Bezahlvorschläge und Erklärtexte in der kompakten Ansicht ausblenden.
+- [x] Versionsauswahl auf die beiden vorherigen Versionen begrenzen.
 
 #bug Zahlungskorrekturen mit Tischbestellung synchronisieren
 

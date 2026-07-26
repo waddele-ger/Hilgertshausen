@@ -52,6 +52,7 @@ Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 - Kompakte und erweiterte Bezahlansicht verwenden dieselbe Zahlungslogik und unterscheiden sich nur in der Darstellung.
 - Die kompakte Bezahlansicht priorisiert die Artikelaufzählung und verzichtet auf Bezahlvorschläge sowie entbehrliche Erklärtexte.
 - Ein App-Update darf keine Kassendaten oder lokal gespeicherten Einstellungen löschen.
+- In der App werden höchstens die beiden unmittelbar vorherigen Versionen zum Rücksprung angeboten.
 
 ## TODO-Kennzeichnungen
 

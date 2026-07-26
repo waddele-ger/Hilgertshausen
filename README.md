@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.5.2
+Version: Alpha 3.5.3
 
 ## Projekt
 
@@ -21,6 +21,7 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Kompakte Bezahlansicht mit sichtbarer Artikelübersicht und ohne Bezahlvorschläge
 - Erweiterte Bezahlansicht mit allen Komfortfunktionen auswählbar
 - App-Aktualisierung direkt in den Einstellungen anstoßen
+- Direkter Rücksprung auf die beiden vorherigen App-Versionen
 - Tische automatisch freigeben
 
 ### Kassentage

@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.5.3</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.5.1</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -39,14 +39,8 @@
     #paymentView.compact .payment-options-toggle{display:block}
     #paymentView.compact .payment-main{position:static}
     #paymentView.compact .payment-main h3{margin-bottom:4px}
-    #paymentView.compact .cash-grid{display:none}
-    #paymentView.compact .payment-options .notice{display:none}
+    #paymentView.compact .cash-grid{grid-template-columns:repeat(3,1fr)}
     #paymentView.compact .total{font-size:30px}
-    .compact-items{display:none;gap:7px;margin:9px 0 4px}
-    #paymentView.compact .compact-items{display:grid}
-    .compact-items-title{font-size:14px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
-    .compact-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:#f0e7da;border-radius:12px;padding:10px 12px}
-    .compact-item strong{font-size:16px}.compact-item-price{font-weight:900;color:var(--wine);white-space:nowrap}
     .tile{border:0;border-radius:var(--r);background:var(--card);box-shadow:var(--shadow);padding:18px;min-height:140px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:8px;color:var(--ink);transition:transform .08s ease}
     .tile:active{transform:scale(.98)}.tile.free{background:#e7f4eb;outline:2px solid #a9d0b8}.table-status{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:900}.table-status.open{color:#7a5411}.table-status.free{color:#24663f}.tile strong{font-size:22px}.tile .price,.tile .sum{font-size:25px;font-weight:900;color:var(--wine)}.tile .meta{color:var(--muted)}.tile.busy{outline:4px solid var(--gold);background:#fff4d0}
     .cat{background:linear-gradient(145deg,#fffaf1,#eadbc2)}.cat.active{outline:4px solid var(--gold);background:#fff0c6;transform:translateY(-2px)}.product-tile{transition:transform .12s ease,filter .12s ease}.product-tile.tap-impulse{transform:scale(.96);filter:brightness(.92)}.product-prompt{margin:3px 0 12px;color:var(--muted);font-weight:800}.product-panel{scroll-margin-top:18px}
@@ -106,7 +100,7 @@
   <div class="toolbar"><div><button class="btn" id="backOrder">← Bestellung</button> <h2 id="paymentName" style="display:inline"></h2></div></div>
   <div class="payment-layout">
     <div class="panel payment-options"><h3>Zahlungsoptionen</h3><div class="modes"><button id="whole" class="btn active">Gesamter Tisch</button><button id="split" class="btn">Einzelne Positionen</button></div><div id="splitArea" style="display:none"><div class="notice">Wähle mit + und − genau aus, was diese Person bezahlt.</div><div id="splitList" class="list"></div></div><div class="total"><span>Warenwert</span><span id="grossTotal">0,00 €</span></div><div class="voucher-box"><strong>Gutscheine einlösen</strong><div class="voucher-controls"><button class="btn" id="voucherMinus" aria-label="Einen Gutschein entfernen">−</button><div class="voucher-count"><span id="voucherCount">0</span> ×</div><button class="btn gold" id="voucherPlus" aria-label="Gutschein im Wert von 10,50 Euro hinzufügen">+</button></div><button class="btn gold" id="voucherAdd" style="width:100%">Gutschein −10,50 €</button><div class="voucher-summary"><span>Gutscheinwert</span><span id="voucherDiscount">−0,00 €</span></div></div></div>
-    <aside class="panel payment-main"><h3>Barzahlung</h3><div id="compactItems" class="compact-items"></div><button class="btn payment-options-toggle" id="togglePaymentOptions">Teilzahlung oder Gutschein</button><div class="total"><span>Bar zu zahlen</span><span id="payTotal">0,00 €</span></div><div id="cashButtons" class="cash-grid"></div><input id="cashInput" class="cash-input" inputmode="decimal" placeholder="Erhaltener Betrag"><div class="change"><span>Rückgeld</span><span id="change">0,00 €</span></div><button id="finish" class="btn green" style="width:100%;margin-top:11px">Zahlung abschließen</button></aside>
+    <aside class="panel payment-main"><h3>Barzahlung</h3><button class="btn payment-options-toggle" id="togglePaymentOptions">Teilzahlung oder Gutschein</button><div class="total"><span>Bar zu zahlen</span><span id="payTotal">0,00 €</span></div><div id="cashButtons" class="cash-grid"></div><input id="cashInput" class="cash-input" inputmode="decimal" placeholder="Erhaltener Betrag"><div class="change"><span>Rückgeld</span><span id="change">0,00 €</span></div><button id="finish" class="btn green" style="width:100%;margin-top:11px">Zahlung abschließen</button></aside>
   </div>
 </section>
 </div>
@@ -141,9 +135,9 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.3</div></div>
-<a class="btn" href="versionen/alpha-3.5.2/index.html" style="text-decoration:none">Zur Alpha 3.5.2 wechseln</a>
-<a class="btn" href="versionen/alpha-3.5.1/index.html" style="text-decoration:none">Zur Alpha 3.5.1 wechseln</a>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.1</div></div>
+<a class="btn" href="versionen/alpha-2.0/index.html" style="text-decoration:none">Zur Alpha 2.0 wechseln</a>
+<a class="btn" href="versionen/alpha-1.1/index.html" style="text-decoration:none">Zur Alpha 1.1 wechseln</a>
 </div>
 <button class="btn red" id="closeSettings">Schließen</button>
 </div></div></dialog>
@@ -187,7 +181,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.3?</h3><ul class="changelog-list"><li>Die Versionsauswahl zeigt nur noch die beiden unmittelbar vorherigen Versionen</li><li>Rücksprünge führen jetzt zu Alpha 3.5.2 und Alpha 3.5.1</li><li>Ältere Versionen bleiben über GitHub verfügbar</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.1?</h3><ul class="changelog-list"><li>Die App kann direkt in den Einstellungen aktualisiert werden</li><li>Das Bezahlmenü ist zwischen kompakter und erweiterter Ansicht umschaltbar</li><li>Die gewählte Ansicht bleibt auf diesem Gerät gespeichert</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -196,7 +190,7 @@ const PRODUCTS=[
 {id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.5.3';
+const APP_VERSION='Alpha 3.5.1';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const CATEGORY_ORDER=['Bier','Alkoholfreie Getränke','Wein','Essen'];
 const VOUCHER_VALUE=10.5;
@@ -277,24 +271,7 @@ function grossPayTotal(){return mode==='whole'?total(order(tableId)):Object.entr
 function payTotal(){return Math.max(0,grossPayTotal()-(voucherCount*VOUCHER_VALUE))}
 function changeVoucher(delta){const max=Math.floor(grossPayTotal()/VOUCHER_VALUE);voucherCount=Math.min(max,Math.max(0,voucherCount+delta));updatePay()}
 function cashValue(){return parseFloat((document.getElementById('cashInput').value||'0').replace(',','.'))||0}
-function renderCompactItems(){
-  const box=document.getElementById('compactItems'),source=mode==='whole'?order(tableId):selection;
-  const entries=Object.entries(source).filter(([,qty])=>Number(qty)>0);
-  box.innerHTML='<div class="compact-items-title">Zu bezahlende Artikel</div>';
-  if(!entries.length){
-    box.innerHTML+='<div class="empty">Noch keine Positionen ausgewählt.</div>';
-    return;
-  }
-  entries.forEach(([id,qty])=>{
-    const product=prod(id);
-    if(!product)return;
-    const row=document.createElement('div');
-    row.className='compact-item';
-    row.innerHTML=`<strong>${qty} × ${esc(product.n)}</strong><span class="compact-item-price">${euro(qty*product.p)}</span>`;
-    box.appendChild(row);
-  });
-}
-function updatePay(){const gross=grossPayTotal(),t=payTotal(),cash=cashValue();renderCompactItems();document.getElementById('grossTotal').textContent=euro(gross);document.getElementById('voucherCount').textContent=String(voucherCount);document.getElementById('voucherDiscount').textContent='−'+euro(voucherCount*VOUCHER_VALUE);document.getElementById('voucherMinus').disabled=voucherCount<=0;document.getElementById('voucherPlus').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('voucherAdd').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('payTotal').textContent=euro(t);document.getElementById('change').textContent=euro(Math.max(0,cash-t));const vals=[t,Math.ceil(t/5)*5,Math.ceil(t/10)*10,20,50,100].filter((v,i,a)=>v>=t&&a.indexOf(v)===i).slice(0,6),g=document.getElementById('cashButtons');g.innerHTML='';vals.forEach(v=>{const b=document.createElement('button');b.className='btn gold';b.textContent=v===t?euro(v)+' passend':euro(v);b.onclick=()=>{document.getElementById('cashInput').value=v.toFixed(2).replace('.',',');updatePay()};g.appendChild(b)})}
+function updatePay(){const gross=grossPayTotal(),t=payTotal(),cash=cashValue();document.getElementById('grossTotal').textContent=euro(gross);document.getElementById('voucherCount').textContent=String(voucherCount);document.getElementById('voucherDiscount').textContent='−'+euro(voucherCount*VOUCHER_VALUE);document.getElementById('voucherMinus').disabled=voucherCount<=0;document.getElementById('voucherPlus').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('voucherAdd').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('payTotal').textContent=euro(t);document.getElementById('change').textContent=euro(Math.max(0,cash-t));const vals=[t,Math.ceil(t/5)*5,Math.ceil(t/10)*10,20,50,100].filter((v,i,a)=>v>=t&&a.indexOf(v)===i).slice(0,6),g=document.getElementById('cashButtons');g.innerHTML='';vals.forEach(v=>{const b=document.createElement('button');b.className='btn gold';b.textContent=v===t?euro(v)+' passend':euro(v);b.onclick=()=>{document.getElementById('cashInput').value=v.toFixed(2).replace('.',',');updatePay()};g.appendChild(b)})}
 function finish(){if(!requireActiveCashDay())return;const gross=grossPayTotal(),t=payTotal(),cash=cashValue();if(gross<=0)return alert('Bitte zuerst Positionen auswählen.');if(cash<t)return alert('Der erhaltene Betrag ist kleiner als die Rechnung.');const change=cash-t,name=state.tables.find(x=>x.id===tableId)?.name||'Tisch',voucherText=voucherCount?`\nGutscheine: ${voucherCount} × ${euro(VOUCHER_VALUE)} (−${euro(voucherCount*VOUCHER_VALUE)})`:'';if(!confirm(`${name}\n\nWarenwert: ${euro(gross)}${voucherText}\nBar zu zahlen: ${euro(t)}\nErhalten: ${euro(cash)}\nRückgeld: ${euro(change)}\n\nZahlung abschließen?`))return;const o=order(tableId),paidItems={};if(mode==='whole'){Object.assign(paidItems,o);state.orders[tableId]={}}else{Object.entries(selection).forEach(([id,q])=>{if(!q)return;paidItems[id]=q;o[id]=(o[id]||0)-q;if(o[id]<=0)delete o[id]})}state.payments.push({number:state.nextPaymentNumber++,tableId,total:t,grossTotal:gross,voucherCount,voucherValue:voucherCount*VOUCHER_VALUE,cash,change,time:new Date().toISOString(),items:paidItems,corrections:[]});history=[];save();renderOrder();tables();total(order(tableId))?view('orderView'):view('tablesView')}
 function tableNameById(id){return state.tables.find(t=>t.id===id)?.name||'Unbekannter Tisch'}
 function paymentNumber(p){return '#'+String(p.number||0).padStart(5,'0')}

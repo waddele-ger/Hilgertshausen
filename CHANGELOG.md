@@ -1,5 +1,12 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.3 – Versionsauswahl aktualisiert
+
+### Geändert
+- Die App bietet nur noch die beiden unmittelbar vorherigen Versionen als Rücksprung an.
+- Alpha 3.5.2 und Alpha 3.5.1 sind direkt aus den Einstellungen erreichbar.
+- Die veralteten Verweise auf Alpha 2.0 und Alpha 1.1 wurden entfernt.
+
 ## Alpha 3.5.2 – Kompakte Bezahlansicht überarbeitet
 
 ### Verbessert
