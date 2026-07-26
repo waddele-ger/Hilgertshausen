@@ -1,5 +1,14 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.4 – Offene Tische und Tischverwaltung
+
+### Neu
+- Die Anzeige „Offene Tische“ ist anklickbar und öffnet eine Übersicht aller offenen Tische.
+- Aus der Übersicht kann direkt zur passenden Reihe und zum gewünschten Tisch gesprungen werden.
+- Die Tischverwaltung ist wieder in den Einstellungen verfügbar.
+- Tischbezeichnungen und Reihenzuordnungen können bearbeitet werden.
+- Tische können hinzugefügt oder gelöscht werden; offene Tische sind vor dem Löschen geschützt.
+
 ## Alpha 3.5.3 – Versionsauswahl aktualisiert
 
 ### Geändert

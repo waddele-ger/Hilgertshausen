@@ -53,6 +53,8 @@ Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware.
 - Die kompakte Bezahlansicht priorisiert die Artikelaufzählung und verzichtet auf Bezahlvorschläge sowie entbehrliche Erklärtexte.
 - Ein App-Update darf keine Kassendaten oder lokal gespeicherten Einstellungen löschen.
 - In der App werden höchstens die beiden unmittelbar vorherigen Versionen zum Rücksprung angeboten.
+- Tischbezeichnungen und Reihenzuordnungen dürfen in den Einstellungen bearbeitet werden.
+- Tische mit offenen Bestellungen dürfen nicht gelöscht werden.
 
 ## TODO-Kennzeichnungen
 

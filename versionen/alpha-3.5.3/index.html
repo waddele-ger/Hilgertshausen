@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.5.4</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.5.3</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -26,7 +26,7 @@
     .btn{border:0;border-radius:15px;padding:13px 16px;min-height:50px;font-weight:800;background:#ede6da;color:var(--ink)}
     .btn.gold{background:var(--gold)}.btn.green{background:var(--green);color:white}.btn.red{background:var(--red);color:white}.btn.ghost{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.6);color:#fff}
     .view{display:none}.view.active{display:block}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 2px 12px}.toolbar h2,.toolbar h3{margin:0}
-    .status-card{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);min-width:min(100%,360px)}.status-item{display:flex;align-items:center;gap:10px}.status-button{border:0;background:transparent;text-align:left;color:inherit;border-radius:12px;padding:5px;cursor:pointer}.status-button:hover,.status-button:focus-visible{background:#f3eadc;outline:2px solid var(--gold)}.status-button>span:last-child,.status-button>span:last-child>span{display:block}.status-icon{font-size:24px}.status-label{font-size:13px;color:var(--muted);font-weight:750}.status-value{font-size:20px;font-weight:950;color:var(--wine)}
+    .status-card{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);min-width:min(100%,360px)}.status-item{display:flex;align-items:center;gap:10px}.status-icon{font-size:24px}.status-label{font-size:13px;color:var(--muted);font-weight:750}.status-value{font-size:20px;font-weight:950;color:var(--wine)}
     .grid{display:grid;gap:13px}.tables{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.cats{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.products{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}
     .row-picker{display:grid;gap:7px;min-width:170px}.row-picker label{font-size:14px;font-weight:900;color:var(--muted)}.row-picker select{width:100%;padding:12px;border:2px solid #c9beb0;border-radius:13px;background:#fff;font:inherit;font-weight:900;color:var(--wine)}
     .voucher-box{display:grid;gap:9px;background:#fff4d0;border:2px solid var(--gold);border-radius:14px;padding:12px;margin:12px 0}.voucher-controls{display:grid;grid-template-columns:52px 1fr 52px;gap:8px;align-items:center}.voucher-count{text-align:center;font-size:24px;font-weight:900;color:var(--wine)}.voucher-summary{display:flex;justify-content:space-between;gap:10px;font-weight:900}
@@ -55,8 +55,7 @@
     .total{display:flex;justify-content:space-between;font-size:28px;font-weight:950;border-top:2px solid var(--line);padding:14px 3px 4px;margin-top:12px}.actions2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
     .empty{text-align:center;color:var(--muted);padding:24px}.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modes .active{outline:4px solid var(--gold)}
     .cash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.cash-grid .btn{font-size:19px;min-height:63px}.cash-input{width:100%;font-size:28px;padding:15px;border:2px solid #c9beb0;border-radius:15px;text-align:right;margin:11px 0;background:white}.change{display:flex;justify-content:space-between;background:#e1f1e5;padding:15px;border-radius:15px;font-size:25px;font-weight:950}
-    dialog{border:0;border-radius:22px;padding:0;width:min(600px,calc(100% - 22px));box-shadow:0 24px 70px rgba(0,0,0,.4)}dialog::backdrop{background:rgba(0,0,0,.55)}.dialog{padding:18px;background:var(--card)}.dialog h3{margin-top:0}.formrow{display:flex;gap:8px;margin:9px 0}.formrow input,.formrow select{flex:1;padding:13px;border:1px solid #bfb3a4;border-radius:13px;background:#fff}.config-list{display:flex;flex-direction:column;gap:8px;max-height:46vh;overflow:auto}.config-row{display:grid;grid-template-columns:110px 1fr auto;gap:8px}.config-row input,.config-row select{min-width:0;padding:12px;border:1px solid #bfb3a4;border-radius:12px;background:#fff}
-    .open-table-list{display:grid;gap:8px}.open-table-link{width:100%;border:0;border-radius:14px;background:#fff4d0;padding:13px;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;font-weight:900;color:var(--ink)}.open-table-link strong:last-child{color:var(--wine)}
+    dialog{border:0;border-radius:22px;padding:0;width:min(600px,calc(100% - 22px));box-shadow:0 24px 70px rgba(0,0,0,.4)}dialog::backdrop{background:rgba(0,0,0,.55)}.dialog{padding:18px;background:var(--card)}.dialog h3{margin-top:0}.formrow{display:flex;gap:8px;margin:9px 0}.formrow input{flex:1;padding:13px;border:1px solid #bfb3a4;border-radius:13px}.config-list{display:flex;flex-direction:column;gap:8px;max-height:46vh;overflow:auto}.config-row{display:grid;grid-template-columns:1fr auto;gap:8px}.config-row input{padding:12px;border:1px solid #bfb3a4;border-radius:12px}
     .settings-grid{display:grid;gap:14px}.settings-group{display:grid;gap:8px;padding:12px;background:#f3eadc;border-radius:16px}.settings-group h4{margin:0 0 2px;font-size:15px;color:var(--wine)}.settings-grid .btn{text-align:left}.notice{background:#fff0c5;border-radius:14px;padding:12px;margin:10px 0}.install-banner{display:none;background:#e9f2ff;border:2px solid #9dbce8;padding:12px;border-radius:16px;margin:14px 0;align-items:center;justify-content:space-between;gap:10px}.install-banner.show{display:flex}
     .footerbar{position:fixed;bottom:0;left:0;right:0;background:rgba(243,239,230,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px;z-index:30;display:none}.footerbar .inner{max-width:1240px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .feedback-types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.feedback-types label{background:#eee3d4;border:2px solid transparent;border-radius:14px;padding:12px;text-align:center;font-weight:800}.feedback-types label:has(input:checked){border-color:var(--gold);background:#fff0c6}.feedback-types input{display:none}.feedback-text{width:100%;min-height:150px;border:2px solid #c9beb0;border-radius:14px;padding:13px;font:inherit;resize:vertical;background:#fff}.test-questions{display:grid;gap:7px;background:#f1e8dc;border-radius:14px;padding:12px;margin:10px 0}.test-questions label{display:flex;gap:9px;align-items:flex-start}.version-box{background:#efe5d7;padding:12px;border-radius:14px}.stats-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat-box{background:#f3eadc;border-radius:14px;padding:12px}.stat-box strong{display:block;font-size:22px;color:var(--wine)}.payment-entry{background:#f3eadc;border-radius:14px;padding:12px;margin:8px 0}.payment-entry.corrected{border:2px solid var(--gold)}.payment-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.payment-lines{margin-top:8px;font-size:14px;color:var(--muted)}.correction{background:#fff0c5;border-radius:10px;padding:8px;margin-top:8px}.edit-items{display:grid;gap:8px;max-height:42vh;overflow:auto}.edit-item{display:grid;grid-template-columns:1fr 80px;gap:8px;align-items:center}.edit-item input{width:100%;padding:10px;border:1px solid #bfb3a4;border-radius:10px}.changelog-list{padding-left:20px}.changelog-list li{margin:8px 0}.day-status{background:#e8f2ec;border:2px solid #9cc6ad;border-radius:14px;padding:12px}.day-status.inactive{background:#fff0c5;border-color:#ddb85c}.danger-zone{border:2px solid #d99b9b;background:#fbeaea}.confirm-input{width:100%;padding:13px;border:2px solid #c9beb0;border-radius:13px;margin:10px 0;font-size:18px}.archive-entry{background:#eee7dc;border-radius:14px;padding:12px;margin:8px 0}
@@ -88,7 +87,7 @@
 </div>
 
 <section id="tablesView" class="view active">
-  <div class="toolbar"><div><h2>Tischübersicht</h2><div class="row-picker"><label for="tableRow">Tischreihe auswählen</label><select id="tableRow" aria-label="Tischreihe auswählen"></select></div></div><div class="status-card" aria-live="polite"><button class="status-item status-button" id="showOpenTables" aria-label="Offene Tische anzeigen"><span class="status-icon">🟢</span><span><span class="status-label">Offene Tische</span><span id="openTablesCount" class="status-value">0</span></span></button><div class="status-item"><span class="status-icon">💶</span><div><div class="status-label">Offener Betrag</div><div id="openAmount" class="status-value">0,00 €</div></div></div></div></div></div>
+  <div class="toolbar"><div><h2>Tischübersicht</h2><div class="row-picker"><label for="tableRow">Tischreihe auswählen</label><select id="tableRow" aria-label="Tischreihe auswählen"></select></div></div><div class="status-card" aria-live="polite"><div class="status-item"><span class="status-icon">🟢</span><div><div class="status-label">Offene Tische</div><div id="openTablesCount" class="status-value">0</div></div></div><div class="status-item"><span class="status-icon">💶</span><div><div class="status-label">Offener Betrag</div><div id="openAmount" class="status-value">0,00 €</div></div></div></div></div>
   <div id="tables" class="grid tables"></div>
 </section>
 
@@ -118,7 +117,6 @@
 <div class="settings-group"><h4>📋 Allgemein</h4>
 <label class="setting-toggle"><span>Haptisches Feedback</span><input type="checkbox" id="hapticEnabled"></label>
 <label class="setting-select"><span>Bezahlansicht</span><select id="paymentUiMode"><option value="compact">Kompakt</option><option value="extended">Erweitert</option></select></label>
-<button class="btn" id="manageTables">Tische verwalten</button>
 </div>
 <div class="settings-group"><h4>🧾 Kassentag</h4>
 <div id="cashDayStatus" class="day-status inactive"></div>
@@ -143,9 +141,9 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.4</div></div>
-<a class="btn" href="versionen/alpha-3.5.3/index.html" style="text-decoration:none">Zur Alpha 3.5.3 wechseln</a>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.3</div></div>
 <a class="btn" href="versionen/alpha-3.5.2/index.html" style="text-decoration:none">Zur Alpha 3.5.2 wechseln</a>
+<a class="btn" href="versionen/alpha-3.5.1/index.html" style="text-decoration:none">Zur Alpha 3.5.1 wechseln</a>
 </div>
 <button class="btn red" id="closeSettings">Schließen</button>
 </div></div></dialog>
@@ -165,8 +163,7 @@
 <dialog id="deleteArchivedDayDialog"><div class="dialog"><h3>Live-Kassentag dauerhaft löschen</h3><div class="notice"><strong id="deleteArchivedDayName"></strong><div id="deleteArchivedDayPeriod" class="sub"></div></div><div class="locked-note">⚠️ Dieser Kassentag enthält echte Kassendaten. Das Löschen kann nicht rückgängig gemacht werden.</div><p>Zur Bestätigung bitte <strong>LIVE LÖSCHEN</strong> eingeben.</p><input id="deleteArchivedDayConfirm" class="confirm-input" autocomplete="off" placeholder="LIVE LÖSCHEN eingeben"><div class="actions2"><button class="btn" id="cancelDeleteArchivedDay">Abbrechen</button><button class="btn red" id="confirmDeleteArchivedDay">Dauerhaft löschen</button></div></div></dialog>
 
 <dialog id="editPaymentDialog"><div class="dialog"><h3 id="editPaymentTitle">Zahlung bearbeiten</h3><div class="notice">Diese Zahlung ist bereits abgeschlossen. Mengenänderungen werden automatisch mit dem ursprünglichen Tisch abgeglichen und bleiben nachvollziehbar.</div><div id="editItems" class="edit-items"></div><div class="total"><span>Neuer Betrag</span><span id="editTotal">0,00 €</span></div><div class="actions2"><button class="btn" id="cancelEditPayment">Abbrechen</button><button class="btn green" id="saveEditPayment">Korrektur speichern</button></div><button class="btn red" id="deletePayment" style="width:100%;margin-top:10px">Zahlung löschen und Artikel zurück auf den Tisch</button></div></dialog>
-<dialog id="tablesDialog"><div class="dialog"><h3>Tische verwalten</h3><div id="configList" class="config-list"></div><div class="formrow"><select id="newTableRow" aria-label="Tischreihe"></select><input id="newTable" placeholder="Tischbezeichnung"><button id="addTable" class="btn gold">Hinzufügen</button></div><div class="actions2"><button id="cancelTables" class="btn">Abbrechen</button><button id="saveTables" class="btn green">Speichern</button></div></div></dialog>
-<dialog id="openTablesDialog"><div class="dialog"><h3>Offene Tische</h3><div id="openTablesList" class="open-table-list"></div><button class="btn" id="closeOpenTables" style="width:100%;margin-top:10px">Schließen</button></div></dialog>
+<dialog id="tablesDialog"><div class="dialog"><h3>Tische verwalten</h3><div id="configList" class="config-list"></div><div class="formrow"><input id="newTable" placeholder="z. B. Tisch 13 oder Bar"><button id="addTable" class="btn gold">Hinzufügen</button></div><div class="actions2"><button id="cancelTables" class="btn">Abbrechen</button><button id="saveTables" class="btn green">Speichern</button></div></div></dialog>
 
 <dialog id="startDayDialog"><div class="dialog"><h3>Kassentag starten</h3><div class="locked-note">Bevor kassiert werden kann, muss ein Kassentag gestartet werden. Dadurch bleiben verschiedene Veranstaltungen sauber getrennt.</div><div id="legacyDataBox" style="display:none" class="notice"><strong>Ältere Zahlungsdaten gefunden</strong><p>Diese Daten stammen aus der bisherigen Version und würden die neue Statistik verfälschen.</p><label><input type="radio" name="legacyAction" value="archive" checked> Alte Daten als unvollständigen Kassentag archivieren</label><br><label><input type="radio" name="legacyAction" value="delete"> Alte Daten dauerhaft löschen</label></div><label>Name / Veranstaltung (optional)<input id="cashDayName" class="confirm-input" placeholder="z. B. Sommerfest Samstag"></label><button class="btn green" id="confirmStartDay" style="width:100%">Kassentag jetzt starten</button><div class="demo-start-separator">oder direkt ausprobieren</div><button class="btn gold" id="startDemoDay" style="width:100%">🚀 Demo-Kassentag starten</button><div class="sub" style="margin-top:8px;text-align:center">Keine Eingabe nötig. Demo-Daten werden nicht archiviert.</div></div></dialog>
 
@@ -190,7 +187,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.4?</h3><ul class="changelog-list"><li>Offene Tische können direkt angezeigt und geöffnet werden</li><li>Die Tischverwaltung ist wieder in den Einstellungen verfügbar</li><li>Tische lassen sich bearbeiten, hinzufügen, löschen und einer Reihe zuordnen</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.3?</h3><ul class="changelog-list"><li>Die Versionsauswahl zeigt nur noch die beiden unmittelbar vorherigen Versionen</li><li>Rücksprünge führen jetzt zu Alpha 3.5.2 und Alpha 3.5.1</li><li>Ältere Versionen bleiben über GitHub verfügbar</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -199,21 +196,17 @@ const PRODUCTS=[
 {id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.5.4';
+const APP_VERSION='Alpha 3.5.3';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const CATEGORY_ORDER=['Bier','Alkoholfreie Getränke','Wein','Essen'];
 const VOUCHER_VALUE=10.5;
 const DEFAULT=Array.from({length:99},(_,i)=>({id:'t'+(i+1),name:`${Math.floor(i/11)+1}.${(i%11)+1}`,row:Math.floor(i/11)+1}));
 let state=load(),tableId=null,category=null,history=[],mode='whole',selection={},voucherCount=0,installPrompt=null,editingPayment=null,secureArchiveAccess=false,accessTapCount=0,accessTapTimer=null,selectedArchiveDayId=null;
 function normalizeTables(tables){
-  if(!Array.isArray(tables)||!tables.length)return structuredClone(DEFAULT);
-  return tables.map((table,index)=>{
-    const fallback=DEFAULT[index]||{id:'t'+Date.now()+'-'+index,name:'Tisch '+(index+1),row:1};
-    const row=Math.min(9,Math.max(1,Number(table.row)||Number(fallback.row)||1));
-    return{id:String(table.id||fallback.id),name:String(table.name||fallback.name),row};
-  });
+  const byId=new Map((tables||[]).map(t=>[t.id,t]));
+  return DEFAULT.map(t=>({...t,...byId.get(t.id),name:t.name,row:t.row}));
 }
-function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.tables=normalizeTables(x.tables);x.tableNames=x.tableNames||Object.fromEntries(x.tables.map(t=>[t.id,t.name]));x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.settings=x.settings||{};x.settings.haptic=x.settings.haptic!==false;x.settings.paymentUi=x.settings.paymentUi==='extended'?'extended':'compact';x.selectedTableRow=Math.min(9,Math.max(1,Number(x.selectedTableRow)||1));x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[];p.voucherCount=Number(p.voucherCount)||0;p.voucherValue=Number(p.voucherValue)||0});return x}}catch(e){}return{tables:DEFAULT,tableNames:Object.fromEntries(DEFAULT.map(t=>[t.id,t.name])),orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1,selectedTableRow:1,settings:{haptic:true,paymentUi:'compact'}}}
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.tables=normalizeTables(x.tables);x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.settings=x.settings||{};x.settings.haptic=x.settings.haptic!==false;x.settings.paymentUi=x.settings.paymentUi==='extended'?'extended':'compact';x.selectedTableRow=Math.min(9,Math.max(1,Number(x.selectedTableRow)||1));x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[];p.voucherCount=Number(p.voucherCount)||0;p.voucherValue=Number(p.voucherValue)||0});return x}}catch(e){}return{tables:DEFAULT,orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1,selectedTableRow:1,settings:{haptic:true,paymentUi:'compact'}}}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function hasOpenOrders(){return Object.values(state.orders||{}).some(o=>total(o)>0)}
 function activeDayLabel(){if(!state.activeCashDay)return 'Kein Kassentag aktiv';const d=new Date(state.activeCashDay.startedAt).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});return `${state.activeCashDay.name||'Kassentag'} · gestartet ${d}`}
@@ -261,28 +254,6 @@ function tables(){
   save();
 }
 function openTable(id){if(!requireActiveCashDay())return;tableId=id;category=null;history=[];document.getElementById('tableName').textContent=state.tables.find(x=>x.id===id)?.name||'Tisch';renderCats();renderOrder();view('orderView')}
-function openOpenTables(){
-  const list=document.getElementById('openTablesList'),openTables=state.tables.filter(table=>total(order(table.id))>0);
-  list.innerHTML='';
-  if(!openTables.length){
-    list.innerHTML='<div class="empty">Aktuell ist kein Tisch offen.</div>';
-  }else{
-    openTables.sort((a,b)=>Number(a.row)-Number(b.row)||a.name.localeCompare(b.name,'de',{numeric:true})).forEach(table=>{
-      const button=document.createElement('button');
-      button.className='open-table-link';
-      button.innerHTML=`<strong>${esc(table.name)}</strong><strong>${euro(total(order(table.id)))}</strong>`;
-      button.onclick=()=>{
-        state.selectedTableRow=Number(table.row)||1;
-        save();
-        document.getElementById('openTablesDialog').close();
-        tables();
-        openTable(table.id);
-      };
-      list.appendChild(button);
-    });
-  }
-  document.getElementById('openTablesDialog').showModal();
-}
 function renderCats(){const g=document.getElementById('categories');g.innerHTML='';CATEGORY_ORDER.forEach(c=>{const b=document.createElement('button');b.className='tile cat'+(category===c?' active':'');b.setAttribute('aria-pressed',category===c?'true':'false');b.innerHTML=`<strong>${esc(c)}</strong><div class="meta">${PRODUCTS.filter(x=>x.c===c).length} Artikel</div>`;b.onclick=()=>{category=c;renderProducts(true)};g.appendChild(b)});document.getElementById('products').innerHTML='<div class="empty">Bitte einen Bereich auswählen.</div>';document.getElementById('productTitle').textContent='Artikel';document.getElementById('productPrompt').textContent='Bitte zuerst einen Bereich auswählen.';document.getElementById('backCats').style.display='none'}
 function renderProducts(shouldScroll=false){const g=document.getElementById('products');g.innerHTML='';document.getElementById('productTitle').textContent=category;document.getElementById('productPrompt').textContent='Bitte Artikel auswählen';document.getElementById('backCats').style.display='inline-block';document.querySelectorAll('#categories .cat').forEach(b=>{const active=b.querySelector('strong')?.textContent===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active?'true':'false')});PRODUCTS.filter(x=>x.c===category).forEach(p=>{const q=order(tableId)[p.id]||0,b=document.createElement('button');b.className='tile product-tile';b.innerHTML=`<strong>${esc(p.n)}</strong><div class="price">${euro(p.p)}</div><div class="meta">${q?'Bereits '+q+'×':'Antippen zum Hinzufügen'}</div>`;b.onclick=()=>{if(b.disabled)return;b.disabled=true;b.classList.add('tap-impulse');setTimeout(()=>qty(p.id,1,true),120)};g.appendChild(b)});if(shouldScroll)requestAnimationFrame(()=>document.getElementById('productPanel').scrollIntoView({behavior:'smooth',block:'start'}))}
 function hapticPulse(){if(state.settings?.haptic&&navigator.vibrate)navigator.vibrate(40)}
@@ -325,7 +296,7 @@ function renderCompactItems(){
 }
 function updatePay(){const gross=grossPayTotal(),t=payTotal(),cash=cashValue();renderCompactItems();document.getElementById('grossTotal').textContent=euro(gross);document.getElementById('voucherCount').textContent=String(voucherCount);document.getElementById('voucherDiscount').textContent='−'+euro(voucherCount*VOUCHER_VALUE);document.getElementById('voucherMinus').disabled=voucherCount<=0;document.getElementById('voucherPlus').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('voucherAdd').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('payTotal').textContent=euro(t);document.getElementById('change').textContent=euro(Math.max(0,cash-t));const vals=[t,Math.ceil(t/5)*5,Math.ceil(t/10)*10,20,50,100].filter((v,i,a)=>v>=t&&a.indexOf(v)===i).slice(0,6),g=document.getElementById('cashButtons');g.innerHTML='';vals.forEach(v=>{const b=document.createElement('button');b.className='btn gold';b.textContent=v===t?euro(v)+' passend':euro(v);b.onclick=()=>{document.getElementById('cashInput').value=v.toFixed(2).replace('.',',');updatePay()};g.appendChild(b)})}
 function finish(){if(!requireActiveCashDay())return;const gross=grossPayTotal(),t=payTotal(),cash=cashValue();if(gross<=0)return alert('Bitte zuerst Positionen auswählen.');if(cash<t)return alert('Der erhaltene Betrag ist kleiner als die Rechnung.');const change=cash-t,name=state.tables.find(x=>x.id===tableId)?.name||'Tisch',voucherText=voucherCount?`\nGutscheine: ${voucherCount} × ${euro(VOUCHER_VALUE)} (−${euro(voucherCount*VOUCHER_VALUE)})`:'';if(!confirm(`${name}\n\nWarenwert: ${euro(gross)}${voucherText}\nBar zu zahlen: ${euro(t)}\nErhalten: ${euro(cash)}\nRückgeld: ${euro(change)}\n\nZahlung abschließen?`))return;const o=order(tableId),paidItems={};if(mode==='whole'){Object.assign(paidItems,o);state.orders[tableId]={}}else{Object.entries(selection).forEach(([id,q])=>{if(!q)return;paidItems[id]=q;o[id]=(o[id]||0)-q;if(o[id]<=0)delete o[id]})}state.payments.push({number:state.nextPaymentNumber++,tableId,total:t,grossTotal:gross,voucherCount,voucherValue:voucherCount*VOUCHER_VALUE,cash,change,time:new Date().toISOString(),items:paidItems,corrections:[]});history=[];save();renderOrder();tables();total(order(tableId))?view('orderView'):view('tablesView')}
-function tableNameById(id){return state.tables.find(t=>t.id===id)?.name||state.tableNames?.[id]||'Unbekannter Tisch'}
+function tableNameById(id){return state.tables.find(t=>t.id===id)?.name||'Unbekannter Tisch'}
 function paymentNumber(p){return '#'+String(p.number||0).padStart(5,'0')}
 
 function updateProtectedUi(){
@@ -549,50 +520,11 @@ function deleteEditingPayment(){
 }
 
 function openSettings(){updateCashDayStatus();document.getElementById('paymentUiMode').value=state.settings.paymentUi||'compact';document.getElementById('updateStatus').textContent='';document.getElementById('settingsDialog').showModal()}
-function tableRowOptions(selected){
-  return Array.from({length:9},(_,index)=>`<option value="${index+1}"${Number(selected)===index+1?' selected':''}>Reihe ${index+1}</option>`).join('');
-}
-function configTableRow(table){
-  const row=document.createElement('div');
-  row.className='config-row';
-  row.dataset.id=table.id;
-  row.innerHTML=`<select aria-label="Tischreihe">${tableRowOptions(table.row)}</select><input value="${esc(table.name)}" aria-label="Tischbezeichnung"><button class="btn red">Löschen</button>`;
-  row.querySelector('button').onclick=()=>{
-    if(total(order(table.id)))return alert('Dieser Tisch hat eine offene Bestellung und kann nicht gelöscht werden.');
-    row.remove();
-  };
-  return row;
-}
-function openConfig(){
-  document.getElementById('settingsDialog').close();
-  const list=document.getElementById('configList');
-  list.innerHTML='';
-  [...state.tables].sort((a,b)=>Number(a.row)-Number(b.row)||a.name.localeCompare(b.name,'de',{numeric:true})).forEach(table=>list.appendChild(configTableRow(table)));
-  const newRow=document.getElementById('newTableRow');
-  newRow.innerHTML=tableRowOptions(state.selectedTableRow||1);
-  document.getElementById('newTable').value='';
-  document.getElementById('tablesDialog').showModal();
-}
-function addRow(){
-  const input=document.getElementById('newTable'),name=input.value.trim();
-  if(!name)return alert('Bitte eine Tischbezeichnung eingeben.');
-  const row=Number(document.getElementById('newTableRow').value)||1;
-  document.getElementById('configList').appendChild(configTableRow({id:'t'+Date.now(),name,row}));
-  input.value='';
-}
-function saveConfig(){
-  const rows=[...document.querySelectorAll('#configList .config-row')];
-  if(!rows.length)return alert('Mindestens ein Tisch wird benötigt.');
-  const tables=rows.map((row,index)=>({id:row.dataset.id,name:row.querySelector('input').value.trim()||'Tisch '+(index+1),row:Number(row.querySelector('select').value)||1}));
-  state.tableNames={...(state.tableNames||{}),...Object.fromEntries(state.tables.map(table=>[table.id,table.name])),...Object.fromEntries(tables.map(table=>[table.id,table.name]))};
-  state.tables=tables;
-  save();
-  initTableRows();
-  tables();
-  document.getElementById('tablesDialog').close();
-}
+function openConfig(){document.getElementById('settingsDialog').close();const l=document.getElementById('configList');l.innerHTML='';state.tables.forEach(t=>{const r=document.createElement('div');r.className='config-row';r.innerHTML=`<input value="${esc(t.name)}" data-id="${t.id}"><button class="btn red">Löschen</button>`;r.children[1].onclick=()=>{if(total(order(t.id)))return alert('Dieser Tisch hat eine offene Bestellung.');r.remove()};l.appendChild(r)});document.getElementById('tablesDialog').showModal()}
+function addRow(){const inp=document.getElementById('newTable'),n=inp.value.trim();if(!n)return;const r=document.createElement('div');r.className='config-row';r.innerHTML=`<input value="${esc(n)}" data-id="t${Date.now()}"><button class="btn red">Löschen</button>`;r.children[1].onclick=()=>r.remove();document.getElementById('configList').appendChild(r);inp.value=''}
+function saveConfig(){const inputs=[...document.querySelectorAll('#configList input')];if(!inputs.length)return alert('Mindestens ein Tisch wird benötigt.');state.tables=inputs.map((x,i)=>({id:x.dataset.id,name:x.value.trim()||'Tisch '+(i+1)}));save();tables();document.getElementById('tablesDialog').close()}
 function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Festkasse_Datensicherung_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
-function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.tables||!x.orders)throw 0;if(confirm('Aktuelle Daten durch diese Datensicherung ersetzen?')){state=x;state.tables=normalizeTables(state.tables);state.tableNames=state.tableNames||Object.fromEntries(state.tables.map(t=>[t.id,t.name]));state.payments=state.payments||[];state.archivedCashDays=state.archivedCashDays||[];state.activeCashDay=state.activeCashDay||null;state.settings=state.settings||{};state.settings.haptic=state.settings.haptic!==false;state.settings.paymentUi=state.settings.paymentUi==='extended'?'extended':'compact';state.selectedTableRow=Math.min(9,Math.max(1,Number(state.selectedTableRow)||1));save();location.reload()}}catch(e){alert('Diese Datei ist keine gültige Datensicherung.')}};r.readAsText(file)}
+function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.tables||!x.orders)throw 0;if(confirm('Aktuelle Daten durch diese Datensicherung ersetzen?')){state=x;state.tables=normalizeTables(state.tables);state.payments=state.payments||[];state.archivedCashDays=state.archivedCashDays||[];state.activeCashDay=state.activeCashDay||null;state.settings=state.settings||{};state.settings.haptic=state.settings.haptic!==false;state.settings.paymentUi=state.settings.paymentUi==='extended'?'extended':'compact';state.selectedTableRow=Math.min(9,Math.max(1,Number(state.selectedTableRow)||1));save();location.reload()}}catch(e){alert('Diese Datei ist keine gültige Datensicherung.')}};r.readAsText(file)}
 async function updateApp(){
   const button=document.getElementById('updateApp'),status=document.getElementById('updateStatus'),oldText=button.textContent;
   button.disabled=true;button.textContent='Suche nach Aktualisierung …';status.textContent='';
@@ -675,7 +607,6 @@ document.getElementById('openStats').onclick=openStats;document.getElementById('
 document.getElementById('versionBox').onclick=handleProtectedAccess;document.getElementById('versionBox').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handleProtectedAccess()}};
 document.getElementById('feedbackSettings').onclick=()=>{document.getElementById('settingsDialog').close();openFeedback()};document.getElementById('cancelFeedback').onclick=()=>document.getElementById('feedbackDialog').close();document.getElementById('sendFeedback').onclick=sendFeedback;document.getElementById('openChangelog').onclick=()=>{document.getElementById('settingsDialog').close();document.getElementById('changelogDialog').showModal()};document.getElementById('closeChangelog').onclick=()=>document.getElementById('changelogDialog').close();
 document.getElementById('updateApp').onclick=updateApp;
-document.getElementById('manageTables').onclick=openConfig;document.getElementById('showOpenTables').onclick=openOpenTables;document.getElementById('closeOpenTables').onclick=()=>document.getElementById('openTablesDialog').close();
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installBanner').classList.add('show')});document.getElementById('installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installBanner').classList.remove('show')};
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js');
 const hapticSetting=document.getElementById('hapticEnabled');hapticSetting.checked=state.settings.haptic!==false;hapticSetting.onchange=()=>{state.settings.haptic=hapticSetting.checked;save();if(hapticSetting.checked)hapticPulse()};
