@@ -1,5 +1,10 @@
 # PROJECT_RULES
 
+## Bezahlvorgang
+
+- Die erweiterte Bezahlansicht ist der Standard; die kompakte Ansicht bleibt optional.
+- Der Bezahlen-Button muss in jeder unterstützten Bildschirmgröße sichtbar und erreichbar bleiben.
+
 ## Ziel
 
 Die Festkasse ist keine hochkomplexe oder finanzamtzertifizierte Kassensoftware. Sie soll eine einfache, zuverlässige und leicht bedienbare Kassierhilfe für Vereinsveranstaltungen sein.

@@ -8,6 +8,9 @@
 
 ## ⚙️ Funktionen
 
+- [x] Bezahlen-Button zuverlässig sichtbar und erreichbar machen
+- [x] Erweiterte Bezahlansicht als Standard festlegen
+
 - [ ] Praxistest für Kassentag starten, beenden, archivieren und löschen auswerten
 - [x] Archivierte Kassentage öffnen und Grunddaten schreibgeschützt anzeigen
 - [ ] Archivdetails um vollständige Zahlungsliste, Tischstatistik und Korrekturhistorie erweitern

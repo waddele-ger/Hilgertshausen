@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.5.5</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.5.4</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -52,7 +52,7 @@
     .cat{background:linear-gradient(145deg,#fffaf1,#eadbc2)}.cat.active{outline:4px solid var(--gold);background:#fff0c6;transform:translateY(-2px)}.product-tile{transition:transform .12s ease,filter .12s ease}.product-tile.tap-impulse{transform:scale(.96);filter:brightness(.92)}.product-prompt{margin:3px 0 12px;color:var(--muted);font-weight:800}.product-panel{scroll-margin-top:18px}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}.panel{background:var(--card);border-radius:var(--r);padding:15px;box-shadow:var(--shadow)}.side{position:sticky;top:104px}
     .list{display:flex;flex-direction:column;gap:9px;max-height:54vh;overflow:auto}.row{display:grid;grid-template-columns:50px 1fr 50px;gap:8px;align-items:center;background:#f0e7da;border-radius:15px;padding:9px}.row button{border:0;border-radius:12px;height:46px;font-size:26px;font-weight:900}.minus{background:#e8c8c3;color:#711d18}.plus{background:#cde8d7;color:#1f6038}.row-name{font-weight:850}.sub{font-size:14px;color:var(--muted)}
-    .total{display:flex;justify-content:space-between;font-size:28px;font-weight:950;border-top:2px solid var(--line);padding:14px 3px 4px;margin-top:12px}.actions2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.order-actions #pay{display:block!important;visibility:visible!important;width:100%}
+    .total{display:flex;justify-content:space-between;font-size:28px;font-weight:950;border-top:2px solid var(--line);padding:14px 3px 4px;margin-top:12px}.actions2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
     .empty{text-align:center;color:var(--muted);padding:24px}.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modes .active{outline:4px solid var(--gold)}
     .cash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.cash-grid .btn{font-size:19px;min-height:63px}.cash-input{width:100%;font-size:28px;padding:15px;border:2px solid #c9beb0;border-radius:15px;text-align:right;margin:11px 0;background:white}.change{display:flex;justify-content:space-between;background:#e1f1e5;padding:15px;border-radius:15px;font-size:25px;font-weight:950}
     dialog{border:0;border-radius:22px;padding:0;width:min(600px,calc(100% - 22px));box-shadow:0 24px 70px rgba(0,0,0,.4)}dialog::backdrop{background:rgba(0,0,0,.55)}.dialog{padding:18px;background:var(--card)}.dialog h3{margin-top:0}.formrow{display:flex;gap:8px;margin:9px 0}.formrow input,.formrow select{flex:1;padding:13px;border:1px solid #bfb3a4;border-radius:13px;background:#fff}.config-list{display:flex;flex-direction:column;gap:8px;max-height:46vh;overflow:auto}.config-row{display:grid;grid-template-columns:110px 1fr auto;gap:8px}.config-row input,.config-row select{min-width:0;padding:12px;border:1px solid #bfb3a4;border-radius:12px;background:#fff}
@@ -68,7 +68,7 @@
 .archive-detail-box span{display:block;font-size:13px;color:var(--muted);font-weight:750}
 .archive-detail-box strong{display:block;font-size:19px;color:var(--wine);margin-top:3px}
 @media(max-width:520px){.archive-detail-grid{grid-template-columns:1fr}}.locked-note{background:#fff0c5;border:2px solid #ddb85c;border-radius:14px;padding:12px;margin:12px 0}.demo-banner{display:none;background:#ffd95f;border:3px solid #9b6d00;border-radius:16px;padding:11px 14px;margin:12px 0;font-weight:950;text-align:center;color:#4f3700}.demo-banner.show{display:block}.demo-start-separator{display:flex;align-items:center;gap:10px;margin:14px 0;color:var(--muted);font-weight:800}.demo-start-separator:before,.demo-start-separator:after{content:"";height:1px;background:var(--line);flex:1}
-    @media(max-width:850px){.brand img{width:60px;height:60px}.layout,.payment-layout{grid-template-columns:1fr}.side,.payment-main{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}.order-actions{position:sticky;bottom:76px;z-index:8;background:var(--card);padding:10px 0 2px;box-shadow:0 -10px 18px rgba(41,37,34,.08)}}
+    @media(max-width:850px){.brand img{width:60px;height:60px}.layout,.payment-layout{grid-template-columns:1fr}.side,.payment-main{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}}
   </style>
 </head>
 <body>
@@ -99,7 +99,7 @@
       <div class="panel"><h3>Bereich auswählen</h3><div id="categories" class="grid cats"></div></div>
       <div id="productPanel" class="panel product-panel" style="margin-top:14px"><div class="toolbar"><h3 id="productTitle">Artikel</h3><button id="backCats" class="btn" style="display:none">← Bereiche</button></div><div id="productPrompt" class="product-prompt">Bitte zuerst einen Bereich auswählen.</div><div id="products" class="grid products"></div></div>
     </div>
-    <aside class="panel side"><h3>Tischbestellung</h3><div id="orderList" class="list"></div><div class="total"><span>Gesamt</span><span id="orderTotal">0,00 €</span></div><div class="actions2 order-actions"><button class="btn" id="undo">Rückgängig</button><button class="btn green" id="pay">Bezahlen</button></div></aside>
+    <aside class="panel side"><h3>Tischbestellung</h3><div id="orderList" class="list"></div><div class="total"><span>Gesamt</span><span id="orderTotal">0,00 €</span></div><div class="actions2"><button class="btn" id="undo">Rückgängig</button><button class="btn green" id="pay">Bezahlen</button></div></aside>
   </div>
 </section>
 
@@ -143,9 +143,9 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.5</div></div>
-<a class="btn" href="versionen/alpha-3.5.4/index.html" style="text-decoration:none">Zur Alpha 3.5.4 wechseln</a>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.4</div></div>
 <a class="btn" href="versionen/alpha-3.5.3/index.html" style="text-decoration:none">Zur Alpha 3.5.3 wechseln</a>
+<a class="btn" href="versionen/alpha-3.5.2/index.html" style="text-decoration:none">Zur Alpha 3.5.2 wechseln</a>
 </div>
 <button class="btn red" id="closeSettings">Schließen</button>
 </div></div></dialog>
@@ -190,7 +190,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.5?</h3><ul class="changelog-list"><li>Der Bezahlen-Button ist wieder zuverlässig sichtbar und erreichbar</li><li>Die erweiterte Bezahlansicht ist jetzt der Standard</li><li>Die kompakte Ansicht bleibt in den Einstellungen auswählbar</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.4?</h3><ul class="changelog-list"><li>Offene Tische können direkt angezeigt und geöffnet werden</li><li>Die Tischverwaltung ist wieder in den Einstellungen verfügbar</li><li>Tische lassen sich bearbeiten, hinzufügen, löschen und einer Reihe zuordnen</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -199,7 +199,7 @@ const PRODUCTS=[
 {id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.5.5';
+const APP_VERSION='Alpha 3.5.4';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const CATEGORY_ORDER=['Bier','Alkoholfreie Getränke','Wein','Essen'];
 const VOUCHER_VALUE=10.5;
@@ -213,7 +213,7 @@ function normalizeTables(tables){
     return{id:String(table.id||fallback.id),name:String(table.name||fallback.name),row};
   });
 }
-function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.tables=normalizeTables(x.tables);x.tableNames=x.tableNames||Object.fromEntries(x.tables.map(t=>[t.id,t.name]));x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.settings=x.settings||{};x.settings.haptic=x.settings.haptic!==false;if(!x.settings.paymentUiDefaultV2){x.settings.paymentUi='extended';x.settings.paymentUiDefaultV2=true}else{x.settings.paymentUi=x.settings.paymentUi==='compact'?'compact':'extended'}x.selectedTableRow=Math.min(9,Math.max(1,Number(x.selectedTableRow)||1));x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[];p.voucherCount=Number(p.voucherCount)||0;p.voucherValue=Number(p.voucherValue)||0});return x}}catch(e){}return{tables:DEFAULT,tableNames:Object.fromEntries(DEFAULT.map(t=>[t.id,t.name])),orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1,selectedTableRow:1,settings:{haptic:true,paymentUi:'extended',paymentUiDefaultV2:true}}}
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.tables&&x.orders){x.tables=normalizeTables(x.tables);x.tableNames=x.tableNames||Object.fromEntries(x.tables.map(t=>[t.id,t.name]));x.payments=x.payments||[];x.archivedCashDays=x.archivedCashDays||[];x.activeCashDay=x.activeCashDay||null;x.nextPaymentNumber=x.nextPaymentNumber||((x.payments.length||0)+1);x.settings=x.settings||{};x.settings.haptic=x.settings.haptic!==false;x.settings.paymentUi=x.settings.paymentUi==='extended'?'extended':'compact';x.selectedTableRow=Math.min(9,Math.max(1,Number(x.selectedTableRow)||1));x.payments.forEach((p,i)=>{p.number=p.number||i+1;p.corrections=p.corrections||[];p.voucherCount=Number(p.voucherCount)||0;p.voucherValue=Number(p.voucherValue)||0});return x}}catch(e){}return{tables:DEFAULT,tableNames:Object.fromEntries(DEFAULT.map(t=>[t.id,t.name])),orders:{},payments:[],archivedCashDays:[],activeCashDay:null,nextPaymentNumber:1,selectedTableRow:1,settings:{haptic:true,paymentUi:'compact'}}}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function hasOpenOrders(){return Object.values(state.orders||{}).some(o=>total(o)>0)}
 function activeDayLabel(){if(!state.activeCashDay)return 'Kein Kassentag aktiv';const d=new Date(state.activeCashDay.startedAt).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});return `${state.activeCashDay.name||'Kassentag'} · gestartet ${d}`}
@@ -287,10 +287,10 @@ function renderCats(){const g=document.getElementById('categories');g.innerHTML=
 function renderProducts(shouldScroll=false){const g=document.getElementById('products');g.innerHTML='';document.getElementById('productTitle').textContent=category;document.getElementById('productPrompt').textContent='Bitte Artikel auswählen';document.getElementById('backCats').style.display='inline-block';document.querySelectorAll('#categories .cat').forEach(b=>{const active=b.querySelector('strong')?.textContent===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active?'true':'false')});PRODUCTS.filter(x=>x.c===category).forEach(p=>{const q=order(tableId)[p.id]||0,b=document.createElement('button');b.className='tile product-tile';b.innerHTML=`<strong>${esc(p.n)}</strong><div class="price">${euro(p.p)}</div><div class="meta">${q?'Bereits '+q+'×':'Antippen zum Hinzufügen'}</div>`;b.onclick=()=>{if(b.disabled)return;b.disabled=true;b.classList.add('tap-impulse');setTimeout(()=>qty(p.id,1,true),120)};g.appendChild(b)});if(shouldScroll)requestAnimationFrame(()=>document.getElementById('productPanel').scrollIntoView({behavior:'smooth',block:'start'}))}
 function hapticPulse(){if(state.settings?.haptic&&navigator.vibrate)navigator.vibrate(40)}
 function qty(id,d,record){const o=order(tableId),before=o[id]||0,after=Math.max(0,before+d);if(record)history.push({id,before});if(after)o[id]=after;else delete o[id];if(d>0)hapticPulse();save();renderOrder();if(category)renderProducts()}
-function renderOrder(){const o=order(tableId),l=document.getElementById('orderList');l.innerHTML='';const es=Object.entries(o);if(!es.length)l.innerHTML='<div class="empty">Noch keine Artikel auf diesem Tisch.</div>';es.forEach(([id,q])=>{const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${q} × ${esc(p.n)}</div><div class="sub">${euro(q*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>qty(id,-1,true);r.children[2].onclick=()=>qty(id,1,true);l.appendChild(r)});document.getElementById('orderTotal').textContent=euro(total(o));const payButton=document.getElementById('pay');payButton.hidden=false;payButton.disabled=!es.length}
+function renderOrder(){const o=order(tableId),l=document.getElementById('orderList');l.innerHTML='';const es=Object.entries(o);if(!es.length)l.innerHTML='<div class="empty">Noch keine Artikel auf diesem Tisch.</div>';es.forEach(([id,q])=>{const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${q} × ${esc(p.n)}</div><div class="sub">${euro(q*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>qty(id,-1,true);r.children[2].onclick=()=>qty(id,1,true);l.appendChild(r)});document.getElementById('orderTotal').textContent=euro(total(o));document.getElementById('pay').disabled=!es.length}
 function undo(){const x=history.pop();if(!x)return;const o=order(tableId);if(x.before)o[x.id]=x.before;else delete o[x.id];save();renderOrder();if(category)renderProducts()}
 function applyPaymentUi(){
-  const compact=state.settings?.paymentUi==='compact',paymentView=document.getElementById('paymentView');
+  const compact=state.settings?.paymentUi!=='extended',paymentView=document.getElementById('paymentView');
   paymentView.classList.toggle('compact',compact);
   paymentView.classList.remove('show-options');
   document.getElementById('togglePaymentOptions').textContent='Teilzahlung oder Gutschein';
@@ -548,7 +548,7 @@ function deleteEditingPayment(){
   document.getElementById('statsDialog').showModal();
 }
 
-function openSettings(){updateCashDayStatus();document.getElementById('paymentUiMode').value=state.settings.paymentUi||'extended';document.getElementById('updateStatus').textContent='';document.getElementById('settingsDialog').showModal()}
+function openSettings(){updateCashDayStatus();document.getElementById('paymentUiMode').value=state.settings.paymentUi||'compact';document.getElementById('updateStatus').textContent='';document.getElementById('settingsDialog').showModal()}
 function tableRowOptions(selected){
   return Array.from({length:9},(_,index)=>`<option value="${index+1}"${Number(selected)===index+1?' selected':''}>Reihe ${index+1}</option>`).join('');
 }
@@ -592,7 +592,7 @@ function saveConfig(){
   document.getElementById('tablesDialog').close();
 }
 function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Festkasse_Datensicherung_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
-function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.tables||!x.orders)throw 0;if(confirm('Aktuelle Daten durch diese Datensicherung ersetzen?')){state=x;state.tables=normalizeTables(state.tables);state.tableNames=state.tableNames||Object.fromEntries(state.tables.map(t=>[t.id,t.name]));state.payments=state.payments||[];state.archivedCashDays=state.archivedCashDays||[];state.activeCashDay=state.activeCashDay||null;state.settings=state.settings||{};state.settings.haptic=state.settings.haptic!==false;state.settings.paymentUi=state.settings.paymentUi==='compact'?'compact':'extended';state.settings.paymentUiDefaultV2=true;state.selectedTableRow=Math.min(9,Math.max(1,Number(state.selectedTableRow)||1));save();location.reload()}}catch(e){alert('Diese Datei ist keine gültige Datensicherung.')}};r.readAsText(file)}
+function importData(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.tables||!x.orders)throw 0;if(confirm('Aktuelle Daten durch diese Datensicherung ersetzen?')){state=x;state.tables=normalizeTables(state.tables);state.tableNames=state.tableNames||Object.fromEntries(state.tables.map(t=>[t.id,t.name]));state.payments=state.payments||[];state.archivedCashDays=state.archivedCashDays||[];state.activeCashDay=state.activeCashDay||null;state.settings=state.settings||{};state.settings.haptic=state.settings.haptic!==false;state.settings.paymentUi=state.settings.paymentUi==='extended'?'extended':'compact';state.selectedTableRow=Math.min(9,Math.max(1,Number(state.selectedTableRow)||1));save();location.reload()}}catch(e){alert('Diese Datei ist keine gültige Datensicherung.')}};r.readAsText(file)}
 async function updateApp(){
   const button=document.getElementById('updateApp'),status=document.getElementById('updateStatus'),oldText=button.textContent;
   button.disabled=true;button.textContent='Suche nach Aktualisierung …';status.textContent='';
@@ -679,7 +679,7 @@ document.getElementById('manageTables').onclick=openConfig;document.getElementBy
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installBanner').classList.add('show')});document.getElementById('installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installBanner').classList.remove('show')};
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js');
 const hapticSetting=document.getElementById('hapticEnabled');hapticSetting.checked=state.settings.haptic!==false;hapticSetting.onchange=()=>{state.settings.haptic=hapticSetting.checked;save();if(hapticSetting.checked)hapticPulse()};
-const paymentUiSetting=document.getElementById('paymentUiMode');paymentUiSetting.value=state.settings.paymentUi||'extended';paymentUiSetting.onchange=()=>{state.settings.paymentUi=paymentUiSetting.value==='compact'?'compact':'extended';state.settings.paymentUiDefaultV2=true;save();applyPaymentUi()};
+const paymentUiSetting=document.getElementById('paymentUiMode');paymentUiSetting.value=state.settings.paymentUi||'compact';paymentUiSetting.onchange=()=>{state.settings.paymentUi=paymentUiSetting.value==='extended'?'extended':'compact';save();applyPaymentUi()};
 initTableRows();tables();updateCashDayStatus();updateProtectedUi();if(!state.activeCashDay)setTimeout(openStartDay,100);
 </script>
 </body>

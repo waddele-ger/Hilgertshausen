@@ -1,5 +1,15 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.5 – Hotfix Bezahlvorgang
+
+### Behoben
+- Der Bezahlen-Button ist in der Tischbestellung wieder zuverlässig sichtbar und auf kleinen Bildschirmen erreichbar.
+
+### Geändert
+- Die erweiterte Bezahlansicht ist jetzt der Standard.
+- Bestehende Installationen werden einmalig auf die erweiterte Ansicht umgestellt.
+- Die kompakte Ansicht bleibt in den Einstellungen auswählbar.
+
 ## Alpha 3.5.4 – Offene Tische und Tischverwaltung
 
 ### Neu

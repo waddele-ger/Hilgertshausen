@@ -1,6 +1,6 @@
 # TSV Hilgertshausen – Festkasse
 
-Version: Alpha 3.5.4
+Version: Alpha 3.5.5
 
 ## Projekt
 
@@ -18,8 +18,9 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Mehrere Gutscheine zu je 10,50 € beim Bezahlen einlösen
 - Eingelöste Gutscheine in Zahlung und Statistik nachvollziehen
 - Optionales haptisches Feedback beim Hinzufügen eines Artikels
-- Kompakte Bezahlansicht mit sichtbarer Artikelübersicht und ohne Bezahlvorschläge
-- Erweiterte Bezahlansicht mit allen Komfortfunktionen auswählbar
+- Erweiterte Bezahlansicht mit allen Komfortfunktionen als Standard
+- Kompakte Bezahlansicht weiterhin optional auswählbar
+- Stets sichtbarer und erreichbarer Bezahlen-Button
 - App-Aktualisierung direkt in den Einstellungen anstoßen
 - Direkter Rücksprung auf die beiden vorherigen App-Versionen
 - Offene Tische als Liste anzeigen und direkt öffnen
