@@ -9,6 +9,7 @@
 - Die erweiterte Bezahlansicht ist jetzt der Standard.
 - Bestehende Installationen werden einmalig auf die erweiterte Ansicht umgestellt.
 - Die kompakte Ansicht bleibt in den Einstellungen auswählbar.
+- Als Rückfallversionen werden nur Alpha 3.5.3 und Alpha 3.5.2 angeboten; die fehlerhafte Alpha 3.5.4 wurde ausgeschlossen.
 
 ## Alpha 3.5.4 – Offene Tische und Tischverwaltung
 

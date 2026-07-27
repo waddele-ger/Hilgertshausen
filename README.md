@@ -22,7 +22,7 @@ Der Fokus liegt auf schneller Bedienung, wenigen Klicks, klarer Übersicht, einf
 - Kompakte Bezahlansicht weiterhin optional auswählbar
 - Stets sichtbarer und erreichbarer Bezahlen-Button
 - App-Aktualisierung direkt in den Einstellungen anstoßen
-- Direkter Rücksprung auf die beiden vorherigen App-Versionen
+- Direkter Rücksprung auf die letzten beiden geeigneten App-Versionen
 - Offene Tische als Liste anzeigen und direkt öffnen
 - Tische bearbeiten, hinzufügen, löschen und Reihen zuordnen
 - Tische automatisch freigeben

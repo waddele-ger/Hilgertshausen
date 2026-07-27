@@ -5,8 +5,8 @@ const ASSETS = [
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './versionen/alpha-3.5.4/index.html',
-  './versionen/alpha-3.5.3/index.html'
+  './versionen/alpha-3.5.3/index.html',
+  './versionen/alpha-3.5.2/index.html'
 ];
 
 self.addEventListener('install', event => {
