@@ -4,6 +4,8 @@
 
 - Die erweiterte Bezahlansicht ist der Standard; die kompakte Ansicht bleibt optional.
 - Der Bezahlen-Button muss in jeder unterstützten Bildschirmgröße sichtbar und erreichbar bleiben.
+- Der Wechsel in die Bezahlansicht muss den sichtbaren Bereich gezielt zur Bezahlüberschrift führen.
+- Ansichtswechsel dürfen nicht pauschal an den Seitenanfang springen.
 
 ## Ziel
 

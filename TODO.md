@@ -8,6 +8,10 @@
 
 ## ⚙️ Funktionen
 
+- [x] Bezahlansicht zuverlässig öffnen
+- [x] Unkontrollierte Sprünge beim Ansichtswechsel beseitigen
+- [x] Nach der Tischauswahl Tischname und Artikelauswahl sichtbar positionieren
+
 - [x] Bezahlen-Button zuverlässig sichtbar und erreichbar machen
 - [x] Erweiterte Bezahlansicht als Standard festlegen
 

@@ -1,5 +1,16 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.6 – Hotfix Bezahlansicht und Navigation
+
+### Behoben
+- Der Bezahlvorgang öffnet nach einem Druck auf „Bezahlen“ wieder zuverlässig.
+- Ansichtswechsel springen nicht mehr pauschal an den Seitenanfang.
+- Auch bei mehreren offenen Tischen bleibt die gewählte Ansicht im Blick.
+
+### Verbessert
+- Nach der Tischauswahl wird automatisch zu Tischname und Artikelauswahl gescrollt.
+- Der gewählte Tisch bleibt dabei erkennbar.
+
 ## Alpha 3.5.5 – Hotfix Bezahlvorgang
 
 ### Behoben

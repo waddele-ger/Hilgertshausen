@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – Alpha 3.5.5</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.5.6</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -25,7 +25,7 @@
     .head-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
     .btn{border:0;border-radius:15px;padding:13px 16px;min-height:50px;font-weight:800;background:#ede6da;color:var(--ink)}
     .btn.gold{background:var(--gold)}.btn.green{background:var(--green);color:white}.btn.red{background:var(--red);color:white}.btn.ghost{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.6);color:#fff}
-    .view{display:none}.view.active{display:block}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 2px 12px}.toolbar h2,.toolbar h3{margin:0}
+    .view{display:none}.view.active{display:block}.view>.toolbar{scroll-margin-top:108px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 2px 12px}.toolbar h2,.toolbar h3{margin:0}
     .status-card{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);min-width:min(100%,360px)}.status-item{display:flex;align-items:center;gap:10px}.status-button{border:0;background:transparent;text-align:left;color:inherit;border-radius:12px;padding:5px;cursor:pointer}.status-button:hover,.status-button:focus-visible{background:#f3eadc;outline:2px solid var(--gold)}.status-button>span:last-child,.status-button>span:last-child>span{display:block}.status-icon{font-size:24px}.status-label{font-size:13px;color:var(--muted);font-weight:750}.status-value{font-size:20px;font-weight:950;color:var(--wine)}
     .grid{display:grid;gap:13px}.tables{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.cats{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.products{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}
     .row-picker{display:grid;gap:7px;min-width:170px}.row-picker label{font-size:14px;font-weight:900;color:var(--muted)}.row-picker select{width:100%;padding:12px;border:2px solid #c9beb0;border-radius:13px;background:#fff;font:inherit;font-weight:900;color:var(--wine)}
@@ -68,7 +68,7 @@
 .archive-detail-box span{display:block;font-size:13px;color:var(--muted);font-weight:750}
 .archive-detail-box strong{display:block;font-size:19px;color:var(--wine);margin-top:3px}
 @media(max-width:520px){.archive-detail-grid{grid-template-columns:1fr}}.locked-note{background:#fff0c5;border:2px solid #ddb85c;border-radius:14px;padding:12px;margin:12px 0}.demo-banner{display:none;background:#ffd95f;border:3px solid #9b6d00;border-radius:16px;padding:11px 14px;margin:12px 0;font-weight:950;text-align:center;color:#4f3700}.demo-banner.show{display:block}.demo-start-separator{display:flex;align-items:center;gap:10px;margin:14px 0;color:var(--muted);font-weight:800}.demo-start-separator:before,.demo-start-separator:after{content:"";height:1px;background:var(--line);flex:1}
-    @media(max-width:850px){.brand img{width:60px;height:60px}.layout,.payment-layout{grid-template-columns:1fr}.side,.payment-main{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}.order-actions{position:sticky;bottom:76px;z-index:8;background:var(--card);padding:10px 0 2px;box-shadow:0 -10px 18px rgba(41,37,34,.08)}}
+    @media(max-width:850px){.brand img{width:60px;height:60px}.layout,.payment-layout{grid-template-columns:1fr}.side,.payment-main{position:static}header{position:static}.head-actions .desktop{display:none}.footerbar{display:block}.app{padding-bottom:90px}.tile{min-height:125px}.brand small{display:none}.order-actions{position:sticky;bottom:76px;z-index:8;background:var(--card);padding:10px 0 2px;box-shadow:0 -10px 18px rgba(41,37,34,.08)}.view>.toolbar{scroll-margin-top:12px}}
   </style>
 </head>
 <body>
@@ -143,7 +143,7 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.5</div></div>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.6</div></div>
 <a class="btn" href="versionen/alpha-3.5.3/index.html" style="text-decoration:none">Zur Alpha 3.5.3 wechseln</a>
 <a class="btn" href="versionen/alpha-3.5.2/index.html" style="text-decoration:none">Zur Alpha 3.5.2 wechseln</a>
 </div>
@@ -190,7 +190,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.5?</h3><ul class="changelog-list"><li>Der Bezahlen-Button ist wieder zuverlässig sichtbar und erreichbar</li><li>Die erweiterte Bezahlansicht ist jetzt der Standard</li><li>Die kompakte Ansicht bleibt in den Einstellungen auswählbar</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.6?</h3><ul class="changelog-list"><li>Der Bezahlvorgang öffnet wieder zuverlässig</li><li>Ansichtswechsel springen nicht mehr unkontrolliert an den Seitenanfang</li><li>Nach der Tischauswahl bleiben Tischname und Artikelauswahl im Blick</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -199,7 +199,7 @@ const PRODUCTS=[
 {id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='Alpha 3.5.5';
+const APP_VERSION='Alpha 3.5.6';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const CATEGORY_ORDER=['Bier','Alkoholfreie Getränke','Wein','Essen'];
 const VOUCHER_VALUE=10.5;
@@ -241,7 +241,15 @@ function euro(v){return new Intl.NumberFormat('de-DE',{style:'currency',currency
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function prod(id){return PRODUCTS.find(x=>x.id===id)}function order(id){if(!state.orders[id])state.orders[id]={};return state.orders[id]}
 function total(o){return Object.entries(o).reduce((s,[id,q])=>s+(prod(id)?.p||0)*q,0)}
-function view(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function view(id,scrollTarget='.toolbar'){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  const nextView=document.getElementById(id);
+  nextView.classList.add('active');
+  requestAnimationFrame(()=>{
+    const target=scrollTarget?nextView.querySelector(scrollTarget):nextView;
+    (target||nextView).scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
 function initTableRows(){
   const select=document.getElementById('tableRow');
   select.innerHTML=Array.from({length:9},(_,i)=>`<option value="${i+1}">Reihe ${i+1}</option>`).join('');
@@ -260,7 +268,7 @@ function tables(){
   document.getElementById('openAmount').textContent=euro(sum);
   save();
 }
-function openTable(id){if(!requireActiveCashDay())return;tableId=id;category=null;history=[];document.getElementById('tableName').textContent=state.tables.find(x=>x.id===id)?.name||'Tisch';renderCats();renderOrder();view('orderView')}
+function openTable(id){if(!requireActiveCashDay())return;tableId=id;category=null;history=[];document.getElementById('tableName').textContent=state.tables.find(x=>x.id===id)?.name||'Tisch';renderCats();renderOrder();view('orderView','.toolbar')}
 function openOpenTables(){
   const list=document.getElementById('openTablesList'),openTables=state.tables.filter(table=>total(order(table.id))>0);
   list.innerHTML='';
@@ -299,7 +307,18 @@ function togglePaymentOptions(){
   const paymentView=document.getElementById('paymentView'),shown=paymentView.classList.toggle('show-options');
   document.getElementById('togglePaymentOptions').textContent=shown?'Zahlungsoptionen ausblenden':'Teilzahlung oder Gutschein';
 }
-function startPay(){if(!total(order(tableId)))return;mode='whole';selection={};voucherCount=0;document.getElementById('whole').classList.add('active');document.getElementById('split').classList.remove('active');document.getElementById('splitArea').style.display='none';document.getElementById('paymentName').textContent=state.tables.find(x=>x.id===tableId)?.name||'Tisch';document.getElementById('cashInput').value='';applyPaymentUi();renderSplit();updatePay();view('paymentView')}
+function startPay(event){
+  if(event)event.preventDefault();
+  if(!tableId||!total(order(tableId)))return;
+  mode='whole';selection={};voucherCount=0;
+  document.getElementById('whole').classList.add('active');
+  document.getElementById('split').classList.remove('active');
+  document.getElementById('splitArea').style.display='none';
+  document.getElementById('paymentName').textContent=state.tables.find(x=>x.id===tableId)?.name||'Tisch';
+  document.getElementById('cashInput').value='';
+  applyPaymentUi();renderSplit();updatePay();
+  view('paymentView','.toolbar');
+}
 function setMode(m){mode=m;document.getElementById('whole').classList.toggle('active',m==='whole');document.getElementById('split').classList.toggle('active',m==='split');document.getElementById('splitArea').style.display=m==='split'?'block':'none';updatePay()}
 function renderSplit(){const l=document.getElementById('splitList');l.innerHTML='';Object.entries(order(tableId)).forEach(([id,q])=>{selection[id]=Math.min(selection[id]||0,q);const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${selection[id]} von ${q} × ${esc(p.n)}</div><div class="sub">${euro(selection[id]*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>{selection[id]=Math.max(0,selection[id]-1);renderSplit();updatePay()};r.children[2].onclick=()=>{selection[id]=Math.min(q,selection[id]+1);renderSplit();updatePay()};l.appendChild(r)})}
 function grossPayTotal(){return mode==='whole'?total(order(tableId)):Object.entries(selection).reduce((s,[id,q])=>s+(prod(id)?.p||0)*q,0)}
