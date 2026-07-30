@@ -1,5 +1,11 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.8 – Bezahl-Button auf dem Smartphone erreichbar
+
+### Behoben
+- Auf dem Smartphone wurde der Button „Zahlung abschließen“ von der unteren Navigationsleiste verdeckt. Dadurch war er nicht sichtbar und ein Antippen zeigte keine Reaktion.
+- Die Bezahlansicht hat jetzt genügend Abstand nach unten, sodass der Button frei über der Leiste liegt und den Tipp zuverlässig entgegennimmt.
+
 ## Alpha 3.5.7 – Demo-Kassentag zuverlässig beenden
 
 ### Behoben

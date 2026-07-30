@@ -9,6 +9,7 @@
 ## ⚙️ Funktionen
 
 - [x] Demo-Kassentag auch bei offenen Tischen beenden können (setzt den ganzen Demo-Tag auf null)
+- [x] Mobile: Button „Zahlung abschließen“ nicht mehr von der unteren Leiste verdecken (Tap kam nicht an)
 - [x] Bezahlansicht zuverlässig öffnen
 - [x] Unkontrollierte Sprünge beim Ansichtswechsel beseitigen
 - [x] Nach der Tischauswahl Tischname und Artikelauswahl sichtbar positionieren
