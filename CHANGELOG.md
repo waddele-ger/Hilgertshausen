@@ -1,5 +1,15 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.7 – Demo-Kassentag zuverlässig beenden
+
+### Behoben
+- Ein Demo-Kassentag kann jetzt jederzeit beendet werden, auch wenn noch Tische mit offenen Bestellungen belegt sind.
+- Beim Beenden eines Demo-Kassentags werden alle Demo-Daten inklusive offener Tische vollständig verworfen.
+- Testerinnen und Tester bleiben dadurch nicht mehr im Demo-Modus „gefangen“.
+
+### Unverändert
+- Echte Kassentage bleiben geschützt: Sie lassen sich weiterhin erst beenden, wenn keine offenen Bestellungen mehr vorhanden sind.
+
 ## Alpha 3.5.6 – Hotfix Bezahlansicht und Navigation
 
 ### Behoben
