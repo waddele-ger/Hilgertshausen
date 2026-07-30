@@ -1,5 +1,15 @@
 # Änderungsprotokoll
 
+## Version 1.0.0 – Erste offizielle Version
+
+### Neu
+- Erste offizielle Version für den Live-Einsatz im Festzelt. Allen einen erfolgreichen Abend!
+- Kurze Vibration jetzt auch beim Abschließen einer Zahlung.
+- Favicon ergänzt.
+
+### Sicherheit
+- Über die Einstellungen kann jederzeit auf die letzte stabile Version 3.5.9 zurückgewechselt werden. Die Kassendaten bleiben dabei erhalten.
+
 ## Alpha 3.5.9 – Tischreihen-Reparatur, Haptik und Gutschein-Anzeige
 
 ### Behoben

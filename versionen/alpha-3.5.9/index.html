@@ -8,10 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Festkasse">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="icon" href="icons/icon-192.png">
-  <link rel="icon" sizes="512x512" href="icons/icon-512.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Hilgertshausen Festkasse – 1.0.0</title>
+  <title>Hilgertshausen Festkasse – Alpha 3.5.9</title>
   <style>
     :root{
       --bg:#f3efe6;--card:#fffaf1;--card2:#f5ead8;--ink:#292522;--muted:#756d64;
@@ -145,9 +143,9 @@
 <button class="btn" id="openChangelog">Was ist neu?</button>
 </div>
 <div class="settings-group"><h4>ℹ️ Über die App</h4>
-<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>1.0.0</div></div>
-<a class="btn gold" href="versionen/alpha-3.5.9/index.html" style="text-decoration:none">🛟 Zur letzten stabilen Version 3.5.9 wechseln</a>
-<div class="sub" style="margin-top:6px">Bei Problemen kannst du beruhigt zurückwechseln – deine Kassendaten bleiben erhalten.</div>
+<div class="version-box" id="versionBox" role="button" tabindex="0" aria-label="Installierte Version"><strong>Installierte Version</strong><div>Alpha 3.5.9</div></div>
+<a class="btn" href="versionen/alpha-3.5.3/index.html" style="text-decoration:none">Zur Alpha 3.5.3 wechseln</a>
+<a class="btn" href="versionen/alpha-3.5.2/index.html" style="text-decoration:none">Zur Alpha 3.5.2 wechseln</a>
 </div>
 <button class="btn red" id="closeSettings">Schließen</button>
 </div></div></dialog>
@@ -192,7 +190,7 @@
 </div><div class="notice">Dein Feedback wird direkt an das Festkasse-Team gesendet. Eine Anmeldung ist nicht erforderlich.</div><div class="actions2"><button class="btn" id="cancelFeedback">Abbrechen</button><button class="btn green" id="sendFeedback">Feedback senden</button></div></div></dialog>
 
 
-<dialog id="changelogDialog"><div class="dialog"><h3>Version 1.0.0 🎉</h3><ul class="changelog-list"><li><strong>Allen einen erfolgreichen Abend beim Kassieren! 🍻</strong></li><li>Bei Problemen könnt ihr in den Einstellungen jederzeit beruhigt auf die letzte stabile Version 3.5.9 zurückwechseln – eure Kassendaten bleiben dabei erhalten.</li><li>Neu: kurze Vibration auch beim Abschließen einer Zahlung.</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
+<dialog id="changelogDialog"><div class="dialog"><h3>Was ist neu in Alpha 3.5.9?</h3><ul class="changelog-list"><li>Leere Tischreihen werden automatisch repariert – alle Reihen zeigen wieder ihre Tische</li><li>Haptisches Feedback beim Buchen eines Artikels funktioniert wieder</li><li>Eingelöste Gutscheine sind jetzt auch beim Bearbeiten einer Zahlung sichtbar</li><li>Neu: Diese Übersicht erscheint ab jetzt automatisch beim ersten Start nach einem Update</li></ul><button class="btn green" id="closeChangelog" style="width:100%">Schließen</button></div></dialog>
 <script>
 const PRODUCTS=[
 {id:'braten',c:'Essen',n:'Braten mit Kartoffelsalat',p:9},{id:'rollbraten',c:'Essen',n:'Rollbratensemmel',p:4.5},{id:'pommes',c:'Essen',n:'Portion Pommes',p:4.5},{id:'champignons',c:'Essen',n:'Gebratene Champignons mit Feta, Knoblauchdip und Baguette',p:9},{id:'emmentaler',c:'Essen',n:'Portion Emmentaler (150 g)',p:6},{id:'fischsemmel',c:'Essen',n:'Fischsemmel',p:4.5},{id:'leberkaese',c:'Essen',n:'Leberkässemmel',p:3.5},{id:'kaesesemmel',c:'Essen',n:'Käsesemmel',p:3.5},{id:'breze',c:'Essen',n:'Große Brez’n',p:3.5},{id:'semmel',c:'Essen',n:'Semmel',p:1},
@@ -201,7 +199,7 @@ const PRODUCTS=[
 {id:'spezi',c:'Alkoholfreie Getränke',n:'Spezi 0,5 l',p:3.5},{id:'limo_zitrone',c:'Alkoholfreie Getränke',n:'Limonade Zitrone 0,5 l',p:3.5},{id:'limo_orange',c:'Alkoholfreie Getränke',n:'Limonade Orange 0,5 l',p:3.5},{id:'wasser_still',c:'Alkoholfreie Getränke',n:'Mineralwasser still 0,5 l',p:3},{id:'wasser_classic',c:'Alkoholfreie Getränke',n:'Mineralwasser classic 0,5 l',p:3},{id:'apfelschorle',c:'Alkoholfreie Getränke',n:'Apfelschorle naturtrüb 0,5 l',p:3.5},{id:'johannisbeer',c:'Alkoholfreie Getränke',n:'Johannisbeerschorle 0,5 l',p:3.5},{id:'holunder',c:'Alkoholfreie Getränke',n:'Holunderschorle 0,5 l',p:3.5}
 ];
 const KEY='hilgertshausen_festkasse_alpha1';
-const APP_VERSION='1.0.0';
+const APP_VERSION='Alpha 3.5.9';
 const FORMSPREE_URL='https://formspree.io/f/mjgnybzp';
 const CATEGORY_ORDER=['Bier','Alkoholfreie Getränke','Wein','Essen'];
 const VOUCHER_VALUE=10.5;
@@ -296,7 +294,7 @@ function openOpenTables(){
 }
 function renderCats(){const g=document.getElementById('categories');g.innerHTML='';CATEGORY_ORDER.forEach(c=>{const b=document.createElement('button');b.className='tile cat'+(category===c?' active':'');b.setAttribute('aria-pressed',category===c?'true':'false');b.innerHTML=`<strong>${esc(c)}</strong><div class="meta">${PRODUCTS.filter(x=>x.c===c).length} Artikel</div>`;b.onclick=()=>{category=c;renderProducts(true)};g.appendChild(b)});document.getElementById('products').innerHTML='<div class="empty">Bitte einen Bereich auswählen.</div>';document.getElementById('productTitle').textContent='Artikel';document.getElementById('productPrompt').textContent='Bitte zuerst einen Bereich auswählen.';document.getElementById('backCats').style.display='none'}
 function renderProducts(shouldScroll=false){const g=document.getElementById('products');g.innerHTML='';document.getElementById('productTitle').textContent=category;document.getElementById('productPrompt').textContent='Bitte Artikel auswählen';document.getElementById('backCats').style.display='inline-block';document.querySelectorAll('#categories .cat').forEach(b=>{const active=b.querySelector('strong')?.textContent===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active?'true':'false')});PRODUCTS.filter(x=>x.c===category).forEach(p=>{const q=order(tableId)[p.id]||0,b=document.createElement('button');b.className='tile product-tile';b.innerHTML=`<strong>${esc(p.n)}</strong><div class="price">${euro(p.p)}</div><div class="meta">${q?'Bereits '+q+'×':'Antippen zum Hinzufügen'}</div>`;b.onclick=()=>{if(b.disabled)return;b.disabled=true;b.classList.add('tap-impulse');hapticPulse();setTimeout(()=>qty(p.id,1,true),120)};g.appendChild(b)});if(shouldScroll)requestAnimationFrame(()=>document.getElementById('productPanel').scrollIntoView({behavior:'smooth',block:'start'}))}
-function hapticPulse(pattern){if(state.settings?.haptic&&navigator.vibrate)navigator.vibrate(pattern||40)}
+function hapticPulse(){if(state.settings?.haptic&&navigator.vibrate)navigator.vibrate(40)}
 function qty(id,d,record){const o=order(tableId),before=o[id]||0,after=Math.max(0,before+d);if(record)history.push({id,before});if(after)o[id]=after;else delete o[id];if(d>0)hapticPulse();save();renderOrder();if(category)renderProducts()}
 function renderOrder(){const o=order(tableId),l=document.getElementById('orderList');l.innerHTML='';const es=Object.entries(o);if(!es.length)l.innerHTML='<div class="empty">Noch keine Artikel auf diesem Tisch.</div>';es.forEach(([id,q])=>{const p=prod(id),r=document.createElement('div');r.className='row';r.innerHTML=`<button class="minus">−</button><div><div class="row-name">${q} × ${esc(p.n)}</div><div class="sub">${euro(q*p.p)}</div></div><button class="plus">+</button>`;r.children[0].onclick=()=>qty(id,-1,true);r.children[2].onclick=()=>qty(id,1,true);l.appendChild(r)});document.getElementById('orderTotal').textContent=euro(total(o));const payButton=document.getElementById('pay');payButton.hidden=false;payButton.disabled=!es.length}
 function undo(){const x=history.pop();if(!x)return;const o=order(tableId);if(x.before)o[x.id]=x.before;else delete o[x.id];save();renderOrder();if(category)renderProducts()}
@@ -346,7 +344,7 @@ function renderCompactItems(){
   });
 }
 function updatePay(){const gross=grossPayTotal(),t=payTotal(),cash=cashValue();renderCompactItems();document.getElementById('grossTotal').textContent=euro(gross);document.getElementById('voucherCount').textContent=String(voucherCount);document.getElementById('voucherDiscount').textContent='−'+euro(voucherCount*VOUCHER_VALUE);document.getElementById('voucherMinus').disabled=voucherCount<=0;document.getElementById('voucherPlus').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('voucherAdd').disabled=voucherCount>=Math.floor(gross/VOUCHER_VALUE);document.getElementById('payTotal').textContent=euro(t);document.getElementById('change').textContent=euro(Math.max(0,cash-t));const vals=[t,Math.ceil(t/5)*5,Math.ceil(t/10)*10,20,50,100].filter((v,i,a)=>v>=t&&a.indexOf(v)===i).slice(0,6),g=document.getElementById('cashButtons');g.innerHTML='';vals.forEach(v=>{const b=document.createElement('button');b.className='btn gold';b.textContent=v===t?euro(v)+' passend':euro(v);b.onclick=()=>{document.getElementById('cashInput').value=v.toFixed(2).replace('.',',');updatePay()};g.appendChild(b)})}
-function finish(){if(!requireActiveCashDay())return;const gross=grossPayTotal(),t=payTotal(),cash=cashValue();if(gross<=0)return alert('Bitte zuerst Positionen auswählen.');if(cash<t)return alert('Der erhaltene Betrag ist kleiner als die Rechnung.');const change=cash-t,name=state.tables.find(x=>x.id===tableId)?.name||'Tisch',voucherText=voucherCount?`\nGutscheine: ${voucherCount} × ${euro(VOUCHER_VALUE)} (−${euro(voucherCount*VOUCHER_VALUE)})`:'';if(!confirm(`${name}\n\nWarenwert: ${euro(gross)}${voucherText}\nBar zu zahlen: ${euro(t)}\nErhalten: ${euro(cash)}\nRückgeld: ${euro(change)}\n\nZahlung abschließen?`))return;const o=order(tableId),paidItems={};if(mode==='whole'){Object.assign(paidItems,o);state.orders[tableId]={}}else{Object.entries(selection).forEach(([id,q])=>{if(!q)return;paidItems[id]=q;o[id]=(o[id]||0)-q;if(o[id]<=0)delete o[id]})}state.payments.push({number:state.nextPaymentNumber++,tableId,total:t,grossTotal:gross,voucherCount,voucherValue:voucherCount*VOUCHER_VALUE,cash,change,time:new Date().toISOString(),items:paidItems,corrections:[]});hapticPulse([45,55,90]);history=[];save();renderOrder();tables();total(order(tableId))?view('orderView'):view('tablesView')}
+function finish(){if(!requireActiveCashDay())return;const gross=grossPayTotal(),t=payTotal(),cash=cashValue();if(gross<=0)return alert('Bitte zuerst Positionen auswählen.');if(cash<t)return alert('Der erhaltene Betrag ist kleiner als die Rechnung.');const change=cash-t,name=state.tables.find(x=>x.id===tableId)?.name||'Tisch',voucherText=voucherCount?`\nGutscheine: ${voucherCount} × ${euro(VOUCHER_VALUE)} (−${euro(voucherCount*VOUCHER_VALUE)})`:'';if(!confirm(`${name}\n\nWarenwert: ${euro(gross)}${voucherText}\nBar zu zahlen: ${euro(t)}\nErhalten: ${euro(cash)}\nRückgeld: ${euro(change)}\n\nZahlung abschließen?`))return;const o=order(tableId),paidItems={};if(mode==='whole'){Object.assign(paidItems,o);state.orders[tableId]={}}else{Object.entries(selection).forEach(([id,q])=>{if(!q)return;paidItems[id]=q;o[id]=(o[id]||0)-q;if(o[id]<=0)delete o[id]})}state.payments.push({number:state.nextPaymentNumber++,tableId,total:t,grossTotal:gross,voucherCount,voucherValue:voucherCount*VOUCHER_VALUE,cash,change,time:new Date().toISOString(),items:paidItems,corrections:[]});history=[];save();renderOrder();tables();total(order(tableId))?view('orderView'):view('tablesView')}
 function tableNameById(id){return state.tables.find(t=>t.id===id)?.name||state.tableNames?.[id]||'Unbekannter Tisch'}
 function paymentNumber(p){return '#'+String(p.number||0).padStart(5,'0')}
 

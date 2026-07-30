@@ -35,13 +35,13 @@
 - [x] Formspree integrieren
 - [x] GitHub-Issue-System vollständig entfernen
 - [ ] Einstellungen und Kassendaten sauber voneinander trennen
-- [ ] Favicon hinzufügen
+- [x] Favicon hinzufügen
 
 
 #feature Haptisches Feedback (Vibration)
 
 - [x] Kurze Vibration beim Hinzufügen eines Artikels.
-- Optional auch beim Abschließen einer Zahlung.
+- [x] Optional auch beim Abschließen einer Zahlung.
 - [x] Nur auf unterstützten Geräten verwenden.
 - [x] In den Einstellungen ein- und ausschaltbar machen.
 
