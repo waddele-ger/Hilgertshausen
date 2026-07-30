@@ -10,6 +10,10 @@
 
 - [x] Demo-Kassentag auch bei offenen Tischen beenden können (setzt den ganzen Demo-Tag auf null)
 - [x] Mobile: Button „Zahlung abschließen“ nicht mehr von der unteren Leiste verdecken (Tap kam nicht an)
+- [x] Leere Tischreihen bei Alt-Daten automatisch mit Standard-Tischen auffüllen (nichts löschen)
+- [x] Haptik synchron in der Nutzer-Geste auslösen (vorher per setTimeout blockiert)
+- [x] Eingelöste Gutscheine im „Öffnen und bearbeiten“-Dialog anzeigen
+- [x] „Was ist neu?“-Übersicht beim ersten Start nach einem Update automatisch zeigen (einmal pro Version)
 - [x] Bezahlansicht zuverlässig öffnen
 - [x] Unkontrollierte Sprünge beim Ansichtswechsel beseitigen
 - [x] Nach der Tischauswahl Tischname und Artikelauswahl sichtbar positionieren

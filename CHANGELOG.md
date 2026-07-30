@@ -1,5 +1,17 @@
 # Änderungsprotokoll
 
+## Alpha 3.5.9 – Tischreihen-Reparatur, Haptik und Gutschein-Anzeige
+
+### Behoben
+- Tischreihen ohne Tische (z. B. auf Geräten mit Daten aus einer älteren Version) werden beim Start automatisch mit den Standard-Tischen aufgefüllt. Alle neun Reihen zeigen wieder ihre Tische; vorhandene Umbenennungen und Kassendaten bleiben erhalten, es wird nichts gelöscht.
+- Das haptische Feedback beim Buchen eines Artikels wird wieder ausgelöst. Die Vibration lief bisher verzögert außerhalb der Nutzer-Geste und wurde vom Browser blockiert.
+
+### Verbessert
+- Beim Öffnen und Bearbeiten einer abgeschlossenen Zahlung werden eingelöste Gutscheine jetzt angezeigt (Anzahl, Wert und Warenwert).
+
+### Neu
+- Nach einem Update erscheint beim ersten Start automatisch eine „Was ist neu?“-Übersicht mit den Änderungen der Version. Sie wird pro Version nur einmal angezeigt.
+
 ## Alpha 3.5.8 – Bezahl-Button auf dem Smartphone erreichbar
 
 ### Behoben
