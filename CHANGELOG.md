@@ -1,5 +1,10 @@
 # Änderungsprotokoll
 
+## Version 1.0.1 – Reihe 9 erweitert
+
+### Neu
+- Reihe 9 wurde um die Tische 9.12, 9.13 und 9.14 erweitert (baulicher Umbau am Ende des Festzelts). Die neuen Tische erscheinen automatisch auch auf bereits genutzten Geräten; vorhandene Daten bleiben unangetastet.
+
 ## Version 1.0.0 – Erste offizielle Version
 
 ### Neu
