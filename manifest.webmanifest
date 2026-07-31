@@ -1,7 +1,7 @@
 {
   "name": "Hilgertshausen Festkasse",
   "short_name": "Festkasse",
-  "description": "Mobile Bar-Kassierhilfe für das Sportfest in Hilgertshausen – Version 1.0.1.",
+  "description": "Mobile Bar-Kassierhilfe für das Sportfest in Hilgertshausen – Version 1.0.2.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

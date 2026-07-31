@@ -1,5 +1,10 @@
 # Änderungsprotokoll
 
+## Version 1.0.2 – Tischverwaltung repariert
+
+### Behoben
+- In der Tischverwaltung (Einstellungen → „Tische verwalten") führte das Speichern zu einem Fehler, wodurch der Dialog hängen blieb und Änderungen nicht sichtbar wurden. Ursache war eine lokale Variable, die die Anzeige-Funktion verdeckte. Tische lassen sich jetzt wieder zuverlässig hinzufügen, umbenennen und löschen.
+
 ## Version 1.0.1 – Reihe 9 erweitert
 
 ### Neu
